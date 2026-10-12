@@ -37,3 +37,18 @@ sudo apt update
 sudo apt install apache2 php libapache2-mod-php php-mysql mysql-server
 sudo a2enmod headers
 ```
+
+### Front-end libraries
+
+Bootstrap is included in this repository. The other libraries are loaded from CDNs, so nothing else needs to be downloaded.
+
+| Library | Version | Source |
+|---|---|---|
+| Bootstrap | 5.3.6 | Included (`Web/front-end/bootstrap-5.3.6-dist/`) |
+| Chart.js | 4.x | jsDelivr |
+| chartjs-adapter-date-fns | 3.x | jsDelivr |
+| chartjs-plugin-datalabels | 2.x | jsDelivr |
+| noUiSlider | 15.8.1 | jsDelivr |
+| jsPDF | 2.5.1 | cdnjs |
+| html2canvas | 1.4.1 | cdnjs |
+| SheetJS (xlsx) | 0.18.5 | cdnjs |
