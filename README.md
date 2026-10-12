@@ -52,3 +52,5 @@ Bootstrap is included in this repository. The other libraries are loaded from CD
 | jsPDF | 2.5.1 | PDF export of charts |
 | html2canvas | 1.4.1 | PNG export of panels |
 | SheetJS (xlsx) | 0.18.5 | Excel export of rank tables |
+
+Bootstrap is served locally; the other libraries are loaded from public CDNs (jsDelivr, cdnjs).
