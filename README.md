@@ -1,5 +1,5 @@
 # SARS-CoV-2-Variation-Monitoring-Network
-This platform analyzes GISAID whole-genome sequences to track SARS-CoV-2 variants by country or worldwide. Users can follow the spread of variants, mutations across viral genes such as the S gene, and time-lapse trends of specific mutation sites.
+This document describes the software environment, installation and configuration of the SARS-CoV-2 Variation Monitoring Network web system.
 
 The interface is bilingual (English / Traditional Chinese) and has four modules:
 
@@ -54,3 +54,53 @@ Bootstrap is included in this repository. The other libraries are loaded from CD
 | SheetJS (xlsx) | 0.18.5 | Excel export of rank tables |
 
 Bootstrap is served locally; the other libraries are loaded from public CDNs (jsDelivr, cdnjs).
+
+## Repository structure
+ 
+```
+SARS-CoV-2-Variation-Monitoring-Network/
+├── README.md
+├── config/
+│   └── db.php                     # Database connection (reads environment variables)
+├── Data/
+│   └── sars_covid.sql             # Database schema (structure only, no data)
+└── Web/
+    ├── back-end/                  # PHP API, served at /api
+    │   ├── common.php             # Shared helpers: query, parameters, JSON output
+    │   ├── chartData.php          # Chart data queries for all modules
+    │   ├── selectOptions.php      # Country and gene menu options
+    │   ├── healthz.php            # Health check
+    │   └── server/                # API endpoints
+    │       ├── sixtype_series.php
+    │       ├── genomic_series.php
+    │       ├── genomic_histogram_top15.php
+    │       ├── genomic_genes.php
+    │       ├── voc_series.php
+    │       ├── voc_series2.php
+    │       ├── voc_histogram_top10.php
+    │       ├── voc_radar.php
+    │       ├── css.php
+    │       ├── countries_strainType.php
+    │       ├── countries_genomic.php
+    │       └── countries_voc.php
+    └── front-end/                 # Static website (document root)
+        ├── index.html             # Home page and news
+        ├── tracking.html          # World map, Six Strain Types, Genomic Variation, VOC
+        ├── css.html               # CSS Rankings
+        ├── about.html             # About
+        ├── bootstrap-5.3.6-dist/  # Bootstrap (local copy)
+        ├── css/                   # Stylesheets
+        ├── js/
+        │   ├── i18n.js            # English / Chinese switch
+        │   ├── chart-i18n.js      # Chart text translation
+        │   ├── index.js           # News list on the home page
+        │   ├── tracking.js        # Tracking page layout and navigation
+        │   ├── word_country.js    # World map and country charts
+        │   ├── six_type.js        # Six Strain Types
+        │   ├── genomic_variation.js  # Emerging Genomic Variation
+        │   ├── voc.js             # VOC Tracking
+        │   ├── css.js             # CSS Rankings
+        │   └── nav-active.js      # Highlights the current menu item
+        ├── doc/                   # News articles, images and index.json
+        └── image/                 # Maps, icons and figures
+```
