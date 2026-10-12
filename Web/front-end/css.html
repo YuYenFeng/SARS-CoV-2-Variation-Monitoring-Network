@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!--
+    css.html — CSS Rankings 頁 / CSS Rankings page
+    在 Tracking 頁的「Correlated SNV Set (CSS) Rankings」面板裡以 iframe 顯示（js/tracking.js 載入），
+    也可以單獨開啟。
+    Shown in an iframe in the Tracking page's "Correlated SNV Set (CSS) Rankings" panel
+    (loaded by js/tracking.js); it can also be opened on its own.
+
+    兩個分頁 / Two tabs
+      CSS 搜尋：一個 CSS 在全球與各國的排名、SNV、趨勢曲線
+      CSS search: one CSS — its ranks worldwide and per country, SNVs and trend curves
+      國家搜尋：一個國家內的 CSS 排名、SNV、曲線與雷達圖
+      Country search: CSS rankings, SNVs, curves and radar inside one country
+
+    程式 / Script：js/css.js　樣式 / Styles：css/site.css（全站共用 shared）、css/css_country.css（本頁 this page）
+-->
+<html lang="en">
+<head>
+    <title>SARS-CoV-2 Variation Monitoring Network</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- 不快取這個頁面 / Do not cache this page -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- Bootstrap 5.3.6（本機 / local） -->
+    <link rel="stylesheet" href="/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+
+    <!-- 全站共用樣式 / Shared site styles -->
+    <link rel="stylesheet" href="/css/site.css">
+    <!-- 本頁樣式 / Page styles -->
+    <link rel="stylesheet" href="/css/css_country.css">
+
+    <!-- 中英文切換：要放在 <head>，頁面才不會先閃出另一種語言
+         Language switch: must be in <head> so the other language never flashes -->
+    <script src="/js/i18n.js"></script>
+
+    <!-- Chart.js（圖表 charts）、html2canvas（面板下載成 PNG / panel PNG downloads）、
+         SheetJS（各國名次表下載成 Excel / country rank table as Excel） -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<main class="flex-fill pt-2">
+
+    <!-- ===== 分頁：CSS 搜尋 / 國家搜尋 / Tabs: CSS search / Country search ===== -->
+    <div class="search-mode-tabs">
+        <ul class="nav nav-tabs" id="searchModeTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="css-search-tab" type="button"
+                        role="tab" aria-controls="cssSearchPane" aria-selected="true">
+                    <span data-l="en">CSS search</span><span data-l="zh">CSS 搜尋</span>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="country-search-tab" type="button"
+                        role="tab" aria-controls="countrySearchPane" aria-selected="false">
+                    <span data-l="en">Country search</span><span data-l="zh">國家搜尋</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tab-content" id="searchModeTabContent">
+
+        <!-- ============================================================
+             CSS 搜尋：一個 CSS，在全球與各國的表現
+             CSS search: one CSS, seen worldwide and in every country
+             ============================================================ -->
+        <div class="tab-pane fade show active" id="cssSearchPane"
+             role="tabpanel" aria-labelledby="css-search-tab" tabindex="0">
+
+            <div class="context-bar" id="cssContextBar">
+                <span class="context-bar-title"><span data-l="en">Showing this CSS</span><span data-l="zh">目前顯示的 CSS</span></span>
+                <span id="cssContextIdentity"></span>
+                <span class="context-note"><span data-l="en">Every figure on this page describes the CSS named here.</span><span data-l="zh">此頁所有圖表都是這個 CSS 的資料。</span></span>
+            </div>
+
+            <div class="row mx-0 g-2 layout-row pt-1 search-top-row">
+
+                <!-- 左：全球排名 / Left: Global ranking -->
+                <div class="col-12 col-lg-3">
+                    <div class="border rounded shadow p-3 h-100 side-panel" id="rankPanel">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="panel-title"><span data-l="en">Global rank</span><span data-l="zh">全球排名</span></span>
+                            <select id="rankTopN" class="form-select form-select-sm w-auto ms-auto shadow-sm"
+                                    aria-label="How many CSS to list">
+                                <option value="10" selected data-zh="前 10 名">Top 10</option>
+                                <option value="20" data-zh="前 20 名">Top 20</option>
+                                <option value="50" data-zh="前 50 名">Top 50</option>
+                                <option value="all" data-zh="全部">All</option>
+                            </select>
+                        </div>
+                        <div id="rankTabs" class="rank-tabs mb-1"></div>
+                        <div id="rankMetricLabel" class="metric-label"></div>
+                        <div id="rankList" class="rank-list">
+                            <div class="d-flex align-items-center gap-2 text-muted small py-2">
+                                <div class="spinner-border spinner-border-sm" role="status"></div>
+                                <span data-l="en">Loading rankings…</span><span data-l="zh">排名載入中…</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 中：SNV，下方是全球趨勢 / Middle: SNVs, then the Global trend -->
+                <div class="col-12 col-lg-6">
+                    <div class="search-middle">
+
+                        <div class="border rounded shadow p-3 panel" id="snvPanel">
+                            <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                <span class="panel-title"><span data-l="en">CSS single nucleotide variations (SNVs)</span><span data-l="zh">CSS 的 SNV</span></span>
+                                <span class="ms-auto" id="snvDownloadBtn"></span>
+                            </div>
+                            <div class="meta-hidden" id="snvCssMeta"></div>
+                            <div id="snvSvgWrap" class="snv-svg-wrap">
+                                <div class="svg-loading" id="snvSvgContainer">
+                                    <span data-l="en">Loading genome map…</span><span data-l="zh">基因體圖載入中…</span>
+                                </div>
+                            </div>
+                            <div class="figure-legend">
+                                <span data-l="en"><b>Above:</b> Gene positions along the genome. Raised, full-colour blocks
+                                carry this CSS's SNVs; faded blocks carry none.<br>
+                                <b>Below:</b> SNV and amino-acid haplotypes of each gene, shown in the same colours.</span>
+                                <span data-l="zh"><b>上方</b> 基因在基因體上的位置。浮起、全彩的區塊帶有此 CSS 的 SNV；淡色區塊則沒有。<br>
+                                <b>下方</b> 各基因的 SNV 與胺基酸單倍型，顏色與上方相同。</span>
+                            </div>
+                            <div id="snvList" class="snv-list mt-1">
+                                <div class="text-muted small py-2"><span data-l="en">Pick a CSS in the ranking list to see its SNVs.</span><span data-l="zh">從排名清單選擇 CSS，即可檢視它的 SNV。</span></div>
+                            </div>
+                        </div>
+
+                        <div class="border rounded shadow p-3 panel" id="globalSmoothPanel">
+                            <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                <span class="panel-title"><span data-l="en">Global trend</span><span data-l="zh">全球趨勢</span></span>
+                                <span id="globalSmoothDownloadBtn" class="ms-auto"></span>
+                            </div>
+                            <div class="meta-hidden" id="globalSmoothCssMeta"></div>
+                            <div class="smooth-date-controls mb-2">
+                                <span class="smooth-date-label"><span data-l="en">Date range</span><span data-l="zh">日期範圍</span></span>
+                                <label for="globalSmoothDateFrom"><span data-l="en">From</span><span data-l="zh">從</span></label>
+                                <input type="date" id="globalSmoothDateFrom" class="form-control form-control-sm">
+                                <label for="globalSmoothDateTo"><span data-l="en">To</span><span data-l="zh">至</span></label>
+                                <input type="date" id="globalSmoothDateTo" class="form-control form-control-sm">
+                                <button type="button" id="globalSmoothDateApply" class="btn btn-sm btn-outline-primary"><span data-l="en">Apply</span><span data-l="zh">套用</span></button>
+                                <button type="button" id="globalSmoothDateReset" class="btn btn-sm btn-outline-secondary"><span data-l="en">Full range</span><span data-l="zh">完整範圍</span></button>
+                            </div>
+                            <div id="globalSmoothBody" class="panel-body-fill">
+                                <div class="text-muted small py-2"><span data-l="en">Pick a CSS to see its Global trend.</span><span data-l="zh">選擇 CSS，即可檢視它的全球趨勢。</span></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 右：全球排名雷達圖 / Right: Global rank radar -->
+                <div class="col-12 col-lg-3">
+                    <div class="border rounded shadow p-3 h-100 side-panel" id="radarPanel">
+                        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                            <span class="panel-title"><span data-l="en">Global rank profile</span><span data-l="zh">全球排名概況</span></span>
+                            <span class="ms-auto" id="radarDownloadBtn"></span>
+                        </div>
+                        <div id="radarBody" class="panel-scroll">
+                            <div class="text-muted small py-2"><span data-l="en">Pick a CSS to see its eight worldwide ranks.</span><span data-l="zh">選擇 CSS，即可檢視它的 8 項全球排名。</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 下：同一個 CSS 在各國的名次，以及單一國家的曲線
+                 Bottom: the same CSS country by country, and the curve in one country -->
+            <div class="row mx-0 g-2 layout-row pb-3">
+                <div class="col-12 col-lg-6">
+                    <div class="border rounded shadow p-3 h-100" id="ctryRankPanel">
+                        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                            <span class="panel-title" id="ctryRankTitle"><span data-l="en">This CSS, ranked in each country</span><span data-l="zh">此 CSS 在各國的排名</span></span>
+                            <span class="ms-auto" id="ctryRankDownloadBtn"></span>
+                        </div>
+                        <div class="meta-hidden" id="ctryRankCssMeta"></div>
+                        <div class="d-flex align-items-center gap-2 mb-1 flex-wrap curve-country-row">
+                            <label class="curve-country-label" for="ctryCountrySelect"><span data-l="en">Country for the curve</span><span data-l="zh">曲線顯示的國家</span></label>
+                            <select id="ctryCountrySelect" class="form-select form-select-sm w-auto shadow-sm"
+                                    disabled>
+                                <option value="Taiwan" selected>Taiwan</option>
+                            </select>
+                        </div>
+                        <div id="ctryRankBody">
+                            <div class="text-muted small py-2"><span data-l="en">Pick a CSS above.</span><span data-l="zh">請先在上方選擇 CSS。</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="border rounded shadow p-3 h-100 d-flex flex-column" id="smoothPanel">
+                        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                            <span class="panel-title"><span data-l="en">Curve in one country</span><span data-l="zh">單一國家的曲線</span></span>
+                            <span id="smoothDownloadBtn" class="ms-auto"></span>
+                        </div>
+                        <div class="meta-hidden" id="smoothCssMeta"></div>
+                        <div class="smooth-date-controls mb-2">
+                            <span class="smooth-date-label"><span data-l="en">Date range</span><span data-l="zh">日期範圍</span></span>
+                            <label for="smoothDateFrom"><span data-l="en">From</span><span data-l="zh">從</span></label>
+                            <input type="date" id="smoothDateFrom" class="form-control form-control-sm">
+                            <label for="smoothDateTo"><span data-l="en">To</span><span data-l="zh">至</span></label>
+                            <input type="date" id="smoothDateTo" class="form-control form-control-sm">
+                            <button type="button" id="smoothDateApply" class="btn btn-sm btn-outline-primary"><span data-l="en">Apply</span><span data-l="zh">套用</span></button>
+                            <button type="button" id="smoothDateReset" class="btn btn-sm btn-outline-secondary"><span data-l="en">Full range</span><span data-l="zh">完整範圍</span></button>
+                        </div>
+                        <div id="smoothBody">
+                            <div class="text-muted small py-2"><span data-l="en">Pick a CSS above, then a country on the left.</span><span data-l="zh">請先在上方選擇 CSS，再從左側選擇國家。</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mx-0 g-2 layout-row">
+                <div class="col-12">
+                    <div class="text-muted text-center upload-note">
+                        <div><span data-l="en">Data upload time</span><span data-l="zh">資料上傳時間</span>: 2026/08/27</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             國家搜尋：一個國家內的 CSS 排名
+             Country search: CSS rankings inside one country
+             ============================================================ -->
+        <div class="tab-pane fade" id="countrySearchPane"
+             role="tabpanel" aria-labelledby="country-search-tab" tabindex="0">
+
+            <div class="context-bar for-country" id="countryContextBar">
+                <span class="context-bar-title"><span data-l="en">Showing this country</span><span data-l="zh">目前顯示的國家</span></span>
+                <span id="countryContextIdentity"></span>
+                <span class="context-note"><span data-l="en">Every rank and curve on this page is measured inside this country.</span><span data-l="zh">此頁所有排名與曲線都以這個國家為範圍計算。</span></span>
+            </div>
+
+            <div class="row mx-0 g-2 layout-row pt-1 pb-3 search-top-row">
+
+                <!-- 左：國家選單、指標分頁、CSS 排名 / Left: country menu, metric tabs, CSS ranking -->
+                <div class="col-12 col-lg-3">
+                    <div class="border rounded shadow p-3 h-100 side-panel" id="countryCssRankPanel">
+                        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                            <span class="panel-title"><span data-l="en">CSS ranking in this country</span><span data-l="zh">此國家的 CSS 排名</span></span>
+                            <span class="ms-auto" id="countryRankDownloadBtn"></span>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="countrySearchSelect" class="form-label mb-1 field-label"><span data-l="en">Country</span><span data-l="zh">國家</span></label>
+                            <select id="countrySearchSelect" class="form-select form-select-sm shadow-sm">
+                                <option value="" disabled selected data-zh="載入中…">Loading…</option>
+                            </select>
+                            <div class="country-sample-note">
+                                <span data-l="en">The number in brackets indicates the number of sequences available for that country.
+                                The country shown by default is the country with the largest number of strains.</span>
+                                <span data-l="zh">括號內的數字是該國可用的序列數。預設顯示序列數最多的國家。</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="countryCssTopN" class="form-label mb-1 field-label"><span data-l="en">How many to list</span><span data-l="zh">顯示筆數</span></label>
+                            <select id="countryCssTopN" class="form-select form-select-sm shadow-sm">
+                                <option value="10" data-zh="前 10 名">Top 10</option>
+                                <option value="20" data-zh="前 20 名">Top 20</option>
+                                <option value="50" data-zh="前 50 名">Top 50</option>
+                                <option value="all" selected data-zh="全部">All</option>
+                            </select>
+                        </div>
+
+                        <div id="countryCssRankTabs" class="rank-tabs mb-1"></div>
+                        <div id="countryCssRankMetricLabel" class="metric-label"></div>
+                        <div id="countryCssRankList" class="rank-list">
+                            <div class="text-muted small py-2"><span data-l="en">Open Country search to load the Global ranking.</span><span data-l="zh">開啟國家搜尋以載入排名。</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 中：SNV，下方是此國家的曲線 / Middle: SNVs, then the curve in this country -->
+                <div class="col-12 col-lg-6">
+                    <div class="search-middle">
+
+                        <div class="border rounded shadow p-3 panel" id="countrySnvPanel">
+                            <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                <span class="panel-title"><span data-l="en">CSS single nucleotide variations (SNVs)</span><span data-l="zh">CSS 的 SNV</span></span>
+                                <span class="ms-auto" id="countrySnvDownloadBtn"></span>
+                            </div>
+                            <div class="meta-hidden" id="countrySnvCssMeta"></div>
+                            <div id="countrySnvSvgWrap" class="snv-svg-wrap">
+                                <div class="svg-loading" id="countrySnvSvgContainer">
+                                    <span data-l="en">Loading genome map…</span><span data-l="zh">基因體圖載入中…</span>
+                                </div>
+                            </div>
+                            <div class="figure-legend">
+                                <span data-l="en"><b>Above:</b> Gene positions along the genome. Raised, full-colour blocks
+                                carry this CSS's SNVs; faded blocks carry none.<br>
+                                <b>Below:</b> SNV and amino-acid haplotypes of each gene, shown in the same colours.</span>
+                                <span data-l="zh"><b>上方</b> 基因在基因體上的位置。浮起、全彩的區塊帶有此 CSS 的 SNV；淡色區塊則沒有。<br>
+                                <b>下方</b> 各基因的 SNV 與胺基酸單倍型，顏色與上方相同。</span>
+                            </div>
+                            <div id="countrySnvList" class="snv-list mt-1">
+                                <div class="text-muted small py-2"><span data-l="en">Select a CSS on the left to see its SNVs.</span><span data-l="zh">從左側選擇 CSS，即可檢視它的 SNV。</span></div>
+                            </div>
+                        </div>
+
+                        <div class="border rounded shadow p-3 panel" id="countrySmoothPanel">
+                            <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                <span class="panel-title"><span data-l="en">Curve in this country</span><span data-l="zh">此國家的曲線</span></span>
+                                <span id="countrySmoothDownloadBtn" class="ms-auto"></span>
+                            </div>
+                            <div class="meta-hidden" id="countrySmoothCssMeta"></div>
+                            <div class="smooth-date-controls mb-2">
+                                <span class="smooth-date-label"><span data-l="en">Date range</span><span data-l="zh">日期範圍</span></span>
+                                <label for="countrySmoothDateFrom"><span data-l="en">From</span><span data-l="zh">從</span></label>
+                                <input type="date" id="countrySmoothDateFrom" class="form-control form-control-sm">
+                                <label for="countrySmoothDateTo"><span data-l="en">To</span><span data-l="zh">至</span></label>
+                                <input type="date" id="countrySmoothDateTo" class="form-control form-control-sm">
+                                <button type="button" id="countrySmoothDateApply" class="btn btn-sm btn-outline-primary"><span data-l="en">Apply</span><span data-l="zh">套用</span></button>
+                                <button type="button" id="countrySmoothDateReset" class="btn btn-sm btn-outline-secondary"><span data-l="en">Full range</span><span data-l="zh">完整範圍</span></button>
+                            </div>
+                            <div id="countrySmoothBody" class="panel-body-fill">
+                                <div class="text-muted small py-2"><span data-l="en">Select a CSS to see its curve here.</span><span data-l="zh">選擇 CSS，即可在這裡檢視它的曲線。</span></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 右：所選 CSS 在此國家的排名雷達圖 / Right: rank radar of the selected CSS in this country -->
+                <div class="col-12 col-lg-3">
+                    <div class="border rounded shadow p-3 h-100 side-panel" id="countryRadarPanel">
+                        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                            <span class="panel-title"><span data-l="en">Rank profile in this country</span><span data-l="zh">此國家的排名概況</span></span>
+                            <span class="ms-auto" id="countryRadarDownloadBtn"></span>
+                        </div>
+                        <div id="countryRadarBody" class="panel-scroll">
+                            <div class="text-muted small py-2"><span data-l="en">Select a CSS to see its eight ranks in this country.</span><span data-l="zh">選擇 CSS，即可檢視它在此國家的 8 項排名。</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- 本頁程式 / Page script -->
+<script src="/js/css.js"></script>
+
+</body>
+</html>

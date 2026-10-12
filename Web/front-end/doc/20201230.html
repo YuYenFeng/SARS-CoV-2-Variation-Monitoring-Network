@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<!--
+    doc/20201230.html — 英國變異株（VOC 202012/01）Q&A
+              The UK variant (VOC 202012/01): Q&A
+    上方是標題與摘要，下方每張卡片是一個問題，點選後跳出答案視窗。
+    A title and summary on top; each card below is a question that opens its answer in a modal.
+    中英文內容各寫一份：<div data-l="en"> 與 <div data-l="zh">，由 i18n.js 切換。
+    English and Chinese content are written separately in <div data-l="en"> and
+    <div data-l="zh">; i18n.js shows one of them.
+    標題左邊的 Back 按鈕由 nav-active.js 自動加上（20201230 自己放了按鈕）。
+    The Back button left of the title is added by nav-active.js (20201230 has its own).
+    樣式 / Styles：css/site.css（全站共用 shared）、css/doc.css（文章頁共用 article pages）
+-->
+<html lang="en">
+    <head>
+        <title>SARS-CoV-2 Variation Monitoring Network</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- Bootstrap 5.3.6（本機 / local） -->
+        <link rel="stylesheet" href="/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+
+        <!-- 全站共用樣式 / Shared site styles -->
+        <link rel="stylesheet" href="/css/site.css">
+        <!-- 文章頁共用樣式 / Shared article-page styles -->
+        <link rel="stylesheet" href="/css/doc.css">
+
+        <!-- 中英文切換：要放在 <head>，頁面才不會先閃出另一種語言
+             Language switch: must be in <head> so the other language never flashes -->
+        <script src="/js/i18n.js"></script>
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+        <!-- ===== 導覽列 / Navigation bar ===== -->
+        <header class="fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-dark ">
+                <div class="container-fluid px-2">
+                    <a class="navbar-brand fw-bold text-truncate me-auto" href="/index.html">SARS-CoV-2 Variation Monitoring Network</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto me-4 mb-2 mb-lg-0 nav-pills">
+                        <li class="nav-item">
+                        <a class="nav-link" href="/index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/tracking.html">Tracking</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active nav-shl" href="https://shlab.duckdns.org/">Smart Health Lab</a>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="flex-fill pt-3">
+            <!-- ===== 英文內容（預設顯示）/ English content (shown by default) ===== -->
+            <div data-l="en">
+            <div class="container pb-4 mb-4 border-bottom">
+                <a href="/index.html" class="doc-back mb-3">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 7.5H14.5A.5.5 0 0 1 15 8"/>
+                    </svg>Back
+                </a>
+                <div class="row g-4 g-lg-5 align-items-center">
+                    <div class="col-lg-6">
+                        <h3 class="fs-2 fw-bold text-body-emphasis mb-2">The UK Variant of SARS-CoV-2 (Official Name: VOC 202012/01): Q&amp;A</h3>
+                        <p class="text-secondary mb-4 doc-date">Updated: 2020-12-30</p>
+                        <p class="lead mb-3 text-justify">SARS-CoV-2, the virus that causes COVID-19, has profoundly changed societies around the world. Using data from the Global Initiative on Sharing All Influenza Data (GISAID), Academia Sinica analyzed more than 200,000 viral genome sequences and found that the virus can be classified into six major types. Type VI began rising rapidly in many countries in February and March 2020, became dominant by April, and now accounts for 99% of circulating viruses.</p>
+                        <p class="lead mb-0 text-justify">However, the virus is still mutating. What is the current status of the UK variant that has recently drawn so much attention, and how might it develop? Here we try to answer these questions, and we will continue to follow the evolution of SARS-CoV-2 through this monitoring network.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="/doc/20201230.jpg" class="img-fluid border rounded-3 shadow-lg" alt="Mutation sites on the spike protein of the UK variant VOC 202012/01" width="700" height="500">
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid py-3">
+                <div class="row g-4 justify-content-center">
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center mx-auto qa-card-body">
+                                        <h5 class="card-title mb-0">Q1. Where did the UK variant come from?<br>Where was it first detected?</h5>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel1">Q1. Where did the UK variant come from? Where was it first detected?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">According to a report by Public Health England, the UK variant VOC 202012/01 carries 23 mutations in its genome. It was first detected in Kent, in southeast England, and its origin is still unknown. It has now been found in London and in southern and southeastern England.</p>
+                                            <p class="text-justify">Because VOC 202012/01 involves many mutation sites, institutions have used different criteria to decide whether a strain belongs to VOC 202012/01 (Note 1). Using the representative VOC 202012/01 strain EPI_ISL_601443 as the reference, and based on 265,138 viral genome sequences in GISAID, we found 1,354 VOC 202012/01 strains from the UK and 3 from Denmark. The first strains in these two countries were collected on September 20 and November 9, respectively. Its incidence in the UK began rising at the end of October 2020.</p>
+                                            <div class="accordion accordion-flush" id="accordionFlush-q1">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-q1" aria-expanded="false" aria-controls="flush-collapse-q1">
+                                                            Note 1
+                                                        </button>
+                                                    </h2>
+                                                    <div id="flush-collapse-q1" class="accordion-collapse collapse" data-bs-parent="#accordionFlush-q1">
+                                                        <div class="accordion-body">
+                                                            <p class="text-justify">According to the Public Health England report, the new UK variant VOC 202012/01 carries 23 mutations, comprising the 17 mutations listed in Table 1 of the reference and the 6 mutations described in the text above Table 1.</p>
+                                                            <p class="text-justify">The 17 mutations in Table 1 are as follows (nucleotide changes are given first, with the corresponding amino-acid changes in parentheses):</p>
+                                                            <ol>
+                                                                <li>3 single-nucleotide variants (SNVs) in ORF1ab: C3267T (T1001I), C5388A (A1708D), T6954C (I2230T).</li>
+                                                                <li>1 deletion in ORF1ab: nucleotides 11288–11296 deletion (SGF 3675–3677 deletion).</li>
+                                                                <li>2 deletions in the S protein: nucleotides 21765–21770 deletion (HV 69–70 deletion) and nucleotides 21991–21993 deletion (Y144 deletion).</li>
+                                                                <li>6 SNVs in the S protein: A23063T (N501Y), C23271A (A570D), C23604A (P681H), C23709T (T716I), T24506G (S982A), G24914C (D1118H).</li>
+                                                                <li>3 SNVs in ORF8: C27972T (Q27stop), G28048T (R52I), A28111G (Y73C).</li>
+                                                                <li>2 nucleotide variants in the N protein: 28280 GAT-&gt;CTA (D3L), C28977T (S235F).</li>
+                                                            </ol>
+                                                            <p class="text-justify">In addition, the 6 synonymous SNVs described in the text above Table 1 are:</p>
+                                                            <ol>
+                                                                <li>5 SNVs in ORF1ab: C913T, C5986T, C14676T, C15279T, C16176T.</li>
+                                                                <li>1 SNV in the M gene: T26801C.</li>
+                                                            </ol>
+                                                            <p class="text-justify">Because VOC 202012/01 involves many mutation sites, institutions may not use the same criteria to decide whether a strain is VOC 202012/01. For example, GISAID's description focuses on the 8 mutations in the spike protein. As another example, VOC 202012/01 belongs to lineage B.1.1.7 in GISAID, whose representative strain is EPI_ISL_601443 (September 20), so some definitions use the 17 mutations listed in Table 1 of the report.</p>
+                                                            <p class="text-justify">We compared these criteria against 265,138 viral genome sequences in GISAID. Using only the 6 SNVs in the S protein, we found 1,460 VOC 202012/01 strains from the UK, 3 from Denmark and 1 from Australia, with the first strains in these three countries collected on September 20, November 9 and November 30, respectively. Using only the 2 deletions in the S protein, we found 1,463 strains from the UK, 13 from Denmark and 1 from Australia, first collected on September 20, October 12 and November 30, respectively; there was also one strain from Slovenia collected on March 7 (a data problem in GISAID cannot be ruled out, but if the data are correct, this mutation occurred very early). Using the 2 deletions plus the 6 SNVs in the S protein, we found 1,445 strains from the UK, 3 from Denmark and 1 from Australia, first collected on September 20, November 9 and November 30, respectively. Including all 17 mutations in Table 1, we found 1,354 strains from the UK and 3 from Denmark, first collected on September 20 and November 9, respectively. Finally, when all 23 mutations were included, the closest match was EPI_ISL_601443 (September 20), which carries all 17 mutations in Table 1 but only 5 of the 6 synonymous SNVs: at nucleotide 16176 it carries C rather than the variant T. A possible explanation for why no strain carries all 23 mutations is that VOC 202012/01 belongs to GISAID lineage B.1.1.7, with EPI_ISL_601443 (September 20) as its representative strain, and the missing mutation is found in other strains of the same B.1.1.7 lineage.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center mx-auto qa-card-body">
+                                        <h5 class="card-title mb-0">Q2. Will the mutations affect vaccine effectiveness?</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel2">Q2. Will the mutations affect vaccine effectiveness?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">VOC 202012/01 is not a new virus. It is still SARS-CoV-2, only with changes in its genome sequence. It has been found mainly in the UK and later in other countries such as Denmark and Australia. Recent news reports describe detections in Germany, Singapore, Hong Kong and elsewhere, but these have not yet appeared in the GISAID database. This is because not every virus sample is sequenced, sequenced data are not always uploaded to GISAID, and the criteria and definitions used to identify the new UK variant may differ (Note 1).</p>
+                                            <div class="accordion accordion-flush" id="accordionFlush-q2">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-q2" aria-expanded="false" aria-controls="flush-collapse-q2">
+                                                            Note 1
+                                                        </button>
+                                                    </h2>
+                                                    <div id="flush-collapse-q2" class="accordion-collapse collapse" data-bs-parent="#accordionFlush-q2">
+                                                        <div class="accordion-body">
+                                                            <p class="text-justify">According to the Public Health England report, the new UK variant VOC 202012/01 carries 23 mutations, comprising the 17 mutations listed in Table 1 of the reference and the 6 mutations described in the text above Table 1.</p>
+                                                            <p class="text-justify">The 17 mutations in Table 1 are as follows (nucleotide changes are given first, with the corresponding amino-acid changes in parentheses):</p>
+                                                            <ol>
+                                                                <li>3 single-nucleotide variants (SNVs) in ORF1ab: C3267T (T1001I), C5388A (A1708D), T6954C (I2230T).</li>
+                                                                <li>1 deletion in ORF1ab: nucleotides 11288–11296 deletion (SGF 3675–3677 deletion).</li>
+                                                                <li>2 deletions in the S protein: nucleotides 21765–21770 deletion (HV 69–70 deletion) and nucleotides 21991–21993 deletion (Y144 deletion).</li>
+                                                                <li>6 SNVs in the S protein: A23063T (N501Y), C23271A (A570D), C23604A (P681H), C23709T (T716I), T24506G (S982A), G24914C (D1118H).</li>
+                                                                <li>3 SNVs in ORF8: C27972T (Q27stop), G28048T (R52I), A28111G (Y73C).</li>
+                                                                <li>2 nucleotide variants in the N protein: 28280 GAT-&gt;CTA (D3L), C28977T (S235F).</li>
+                                                            </ol>
+                                                            <p class="text-justify">In addition, the 6 synonymous SNVs described in the text above Table 1 are:</p>
+                                                            <ol>
+                                                                <li>5 SNVs in ORF1ab: C913T, C5986T, C14676T, C15279T, C16176T.</li>
+                                                                <li>1 SNV in the M gene: T26801C.</li>
+                                                            </ol>
+                                                            <p class="text-justify">Because VOC 202012/01 involves many mutation sites, institutions may not use the same criteria to decide whether a strain is VOC 202012/01. For example, GISAID's description focuses on the 8 mutations in the spike protein. As another example, VOC 202012/01 belongs to lineage B.1.1.7 in GISAID, whose representative strain is EPI_ISL_601443 (September 20), so some definitions use the 17 mutations listed in Table 1 of the report.</p>
+                                                            <p class="text-justify">We compared these criteria against 265,138 viral genome sequences in GISAID. Using only the 6 SNVs in the S protein, we found 1,460 VOC 202012/01 strains from the UK, 3 from Denmark and 1 from Australia, with the first strains in these three countries collected on September 20, November 9 and November 30, respectively. Using only the 2 deletions in the S protein, we found 1,463 strains from the UK, 13 from Denmark and 1 from Australia, first collected on September 20, October 12 and November 30, respectively; there was also one strain from Slovenia collected on March 7 (a data problem in GISAID cannot be ruled out, but if the data are correct, this mutation occurred very early). Using the 2 deletions plus the 6 SNVs in the S protein, we found 1,445 strains from the UK, 3 from Denmark and 1 from Australia, first collected on September 20, November 9 and November 30, respectively. Including all 17 mutations in Table 1, we found 1,354 strains from the UK and 3 from Denmark, first collected on September 20 and November 9, respectively. Finally, when all 23 mutations were included, the closest match was EPI_ISL_601443 (September 20), which carries all 17 mutations in Table 1 but only 5 of the 6 synonymous SNVs: at nucleotide 16176 it carries C rather than the variant T. A possible explanation for why no strain carries all 23 mutations is that VOC 202012/01 belongs to GISAID lineage B.1.1.7, with EPI_ISL_601443 (September 20) as its representative strain, and the missing mutation is found in other strains of the same B.1.1.7 lineage.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center mx-auto qa-card-body">
+                                        <h5 class="card-title mb-0">Q3. How should we monitor viral mutations?</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel3" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel3">Q3. How should we monitor viral mutations?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">Errors made when a virus replicates are called mutations. If a mutation has no effect on the virus, it simply drifts within the viral population and has little impact. If it harms the virus, it is eliminated from the population. Conversely, if a mutation helps the virus adapt to its environment or to conditions in the human body, the variant will multiply and spread more easily among people. Most mutations fall into the first two categories (no effect or a negative effect). This variant appears to spread more easily, but the reason is unknown, and positive selection by the environment or within the human body cannot be ruled out.</p>
+                                            <p class="text-justify">The virus enters cells mainly through its spike protein, the key it uses to unlock and invade human cells. The receptor-binding domain (RBD) of the spike protein is the first part of the virus to contact the surface of human cells. In theory, changes in this region could slightly increase the virus's chance of invading cells or of evading vaccines, but this still needs to be verified.</p>
+                                            <p class="text-justify">The new UK variant has 23 mutations in its genome, 8 of which (2 deletions and 6 single-nucleotide variants, SNVs) are in the spike protein. One of these 6 SNVs lies in the critical RBD, the region where SARS-CoV-2 binds to human cells and which is key to the virus entering host cells. It requires continued monitoring.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container-fluid py-3">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop4">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q4. How does it differ from previous variants?</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel4" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel4">Q4. How does it differ from previous variants?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">Viral mutations can occur at random, and each of the mutations that define VOC 202012/01 had appeared before in different strains. This time, however, many mutations appeared together in the same strain, and 8 of them are in the spike protein.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop5">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q5. Is this variant highly mutated?<br>Will it keep mutating?</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop5" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel5" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel5">Q5. Is this variant highly mutated? Will it keep mutating?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">Like influenza viruses, SARS-CoV-2 is an RNA virus and is highly mutable, although it mutates less than influenza viruses. Because RNA viruses mutate readily, further mutation of VOC 202012/01 is probably unavoidable.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop6">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q6. Is the new variant a major threat?<br>Will it spread faster or be more deadly?</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop6" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel6" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel6">Q6. Is the new variant a major threat? Will it spread faster or be more deadly?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">So far we only know that its genome sequence has changed and that it has a higher multiplicative advantage than other strains in the UK. Its effective reproductive number (Rt) has also risen. However, there are no reports yet that infected people have more severe symptoms. Whether it is more deadly or affects vaccine efficacy requires close monitoring and caution. At present, we only know that it may spread faster.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid py-3">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop7">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q7. Can people who have been infected<br>be infected again by the variant?</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop7" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel7" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel7">Q7. Can people who have been infected be infected again by the variant?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">In theory, people who have recovered from infection carry multiple neutralizing antibodies (Note 2), and the variant is unlikely to evade all of them. Scientists therefore generally believe that people who have been infected are unlikely to be reinfected by the variant, but this remains to be confirmed.</p>
+                                            <div class="accordion accordion-flush" id="accordionFlush-q7">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-q7" aria-expanded="false" aria-controls="flush-collapse-q7">
+                                                            Note 2
+                                                        </button>
+                                                    </h2>
+                                                    <div id="flush-collapse-q7" class="accordion-collapse collapse" data-bs-parent="#accordionFlush-q7">
+                                                        <div class="accordion-body">
+                                                            <p class="text-justify">Antibodies that make a virus lose its infectivity are called neutralizing antibodies. To stop the virus from entering cells, an antibody must bind to the receptor-binding domain (RBD, about 222 amino acids) of the SARS-CoV-2 spike protein. After infection, the immune system produces antibodies against the virus's various structural proteins. Each antibody recognizes an antigenic epitope of roughly 15–20 amino acids. Because the RBD is the virus's key, antibodies that bind to it can usually neutralize the virus. Patients who have recovered from COVID-19 are known to produce neutralizing antibodies that recognize the RBD, and patients with more severe symptoms usually have higher neutralizing antibody titers. Because the RBD is fairly large (222 amino acids), antibodies can bind to different parts of it. If mutations are limited to a small part of the RBD, most antibodies whose epitopes are not at the mutated sites should still be able to neutralize the virus.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop8">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q8. Can existing vaccines<br>protect against the UK variant?</h5>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="modal fade" id="staticBackdrop8" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel8" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel8">Q8. Can existing vaccines protect against the UK variant?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">The main component of current COVID-19 vaccines is the spike protein or its receptor-binding domain (RBD), or RNA that produces the spike protein. As with the RBD-neutralizing antibodies produced by recovered patients, vaccination triggers the immune system to produce neutralizing antibodies that recognize the RBD. Experts therefore currently believe that people vaccinated with the existing COVID-19 vaccines should be protected against the UK variant.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop9">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q9. What is the current status of other strains?<br>Will they keep mutating?</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop9" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel9" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel9">Q9. What is the current status of other strains? Will they keep mutating?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">RNA viruses mutate easily. The SARS-CoV-2 that now dominates the world is mainly Type VI, which evolved from the early Wuhan-1 strain, but the virus continues to mutate and new subtypes are emerging. The variant found in the UK is also a subtype of Type VI. Further mutation is therefore probably unavoidable.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid py-3">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop10">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q10. Is this variant present in Taiwan now?</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop10" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel10" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel10">Q10. Is this variant present in Taiwan now?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">According to the Central Epidemic Command Center and media reports on December 30, 2020, Taiwan has confirmed its first case of the UK variant, but the related genome sequence data have not yet been released. Close monitoring will continue.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a  type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop11">
+                                <div  class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q11. How should we respond as the virus keeps mutating?</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop11" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel11" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel11">Q11. How should we respond as the virus keeps mutating?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">Sun Tzu's <i>The Art of War</i> says: "Do not rely on the enemy not coming, but on our readiness to receive him; do not rely on the enemy not attacking, but on having made our position unassailable." In facing COVID-19, we must keep the right prevention habits and carry out all prevention measures. Advances in modern technology allow us to witness the evolution of this virus, and we believe that further research will help us understand it better and develop strategies to help control the pandemic.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="container py-3">
+                <h4>References</h4>
+                <ul>
+                    <li>Chand, Meera; Hopkins, Susan; Dabrera, Gavin; Achison, Christina; Barclay, Wendy; Ferguson, Neil; Volz, Erik; Loman, Nick; Rambaut, Andrew; Barrett, Jeff (21 December 2020). Investigation of novel SARS-COV-2 variant: Variant of Concern 202012/01 (PDF) (Report). Public Health England. Retrieved 22 December 2020. [<a href="https://www.gov.uk/government/publications/investigation-of-novel-sars-cov-2-variant-variant-of-concern-20201201">Link</a>]</li>
+                </ul>
+            </div>
+            </div>
+
+            <!-- ===== 中文內容 / Chinese content ===== -->
+            <div data-l="zh">
+            <div class="container pb-4 mb-4 border-bottom">
+                <a href="/index.html" class="doc-back mb-3">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 7.5H14.5A.5.5 0 0 1 15 8"/>
+                    </svg>Back
+                </a>
+                <div class="row g-4 g-lg-5 align-items-center">
+                    <div class="col-lg-6">
+                        <h3 class="fs-2 fw-bold text-body-emphasis mb-2">英國變種新冠病毒（正式名稱：VOC 202012/01）Q&A</h3>
+                        <p class="text-secondary mb-4 doc-date">更新日期：2020-12-30</p>
+                        <p class="lead mb-3 text-justify">新冠肺炎病毒（SARS-CoV-2）對全球社會帶來巨變。本院根據全球共享流感數據倡議組織（GISAID）資料，分析二十萬筆以上的病毒基因序列樣本資料。發現病毒可歸類為六大類型。其中「第六型」自今（2020）年2、3月開始在各國急速竄升，4月已雄霸一方，佔目前流傳病毒類型的99%。</p>
+                        <p class="lead mb-0 text-justify">然而，病毒變異仍是現在進行式，尤其近日引發討論的英國變種病毒現在狀況如何？又會如何發展？本院除試著回答這些問題外，也將持續透過此監測網觀察新冠肺炎病毒的變異走向。</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="/doc/20201230.jpg" class="img-fluid border rounded-3 shadow-lg" alt="英國變種新冠病毒 VOC 202012/01 在刺突蛋白上的變異位點" width="700" height="500">
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid py-3">
+                <div class="row g-4 justify-content-center">
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop1-zh">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center mx-auto qa-card-body">
+                                        <h5 class="card-title mb-0">Q1. 英國變種新冠病毒來自哪裡？<br>最早在哪裡被發現？</h5>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="modal fade" id="staticBackdrop1-zh" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1-zh" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel1-zh">Q1. 英國變種新冠病毒來自哪裡？最早在哪裡被發現？</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">根據英格蘭公共衛生署（Public Health England）的報告，此英國變種病毒株「VOC 202012/01」有23個病毒基因變異點。最早是在英格蘭東南方的肯特郡（Kent）所發現，起源現今仍未知。目前在英國倫敦、英國南部及東南部都有發現。</p>
+                                            <p class="text-justify">VOC 202012/01涉及的變異位點眾多，後續各單位在認定病毒株是否為VOC 202012/01時，標準不盡相同（註一）。以VOC 202012/01典型病毒株EPI_ISL_601443作為比對標準，根據全球共享流感數據倡議組織（GISAID）的265,138株病毒株基因體資料，可以發現VOC 202012/01有1,354株來自英國，有3株來自丹麥，這兩國發現第一株的時間分別是9月20日、11月9日。發生率在英國自2020年10月底開始攀升。</p>
+                                            <div class="accordion accordion-flush" id="accordionFlush-q1-zh">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-q1-zh" aria-expanded="false" aria-controls="flush-collapse-q1-zh">
+                                                            註一
+                                                        </button>
+                                                    </h2>
+                                                    <div id="flush-collapse-q1-zh" class="accordion-collapse collapse" data-bs-parent="#accordionFlush-q1-zh">
+                                                        <div class="accordion-body">
+                                                            <p class="text-justify">根據英格蘭公共衛生署（Public Health England）的報告，此英國新變種病毒株VOC 202012/01有23個病毒基因變異點，包括參考資料中表一所列的17個變異，以及表一上方文字描述的6個變異。</p>
+                                                            <p class="text-justify">表一所列的17個變異包括（以下變異名稱的描述先呈現核苷酸變異，括號內再補充氨基酸變異名稱）：</p>
+                                                            <ol>
+                                                                <li>ORF1ab蛋白上3個單位點（SNV）變異：C3267T（T1001I）、C5388A（A1708D）、T6954C（I2230T）。</li>
+                                                                <li>ORF1ab蛋白上1個缺失（deletion）變異：核苷酸11288 – 11296 deletion（SGF 3675 – 3677 deletion）。</li>
+                                                                <li>S蛋白上2個缺失變異：核苷酸21765 – 21770 deletion（HV 69 – 70 deletion）、核苷酸21991 – 21993 deletion（Y144 deletion）。</li>
+                                                                <li>S蛋白上6個單位點變異：A23063T（N501Y）、C23271A（A570D）、C23604A（P681H）、C23709T（T716I）、T24506G（S982A）、G24914C（D1118H）。</li>
+                                                                <li>Orf8蛋白上3個單位點變異：C27972T（Q27stop）、G28048T（R52I）、A28111G（Y73C）。</li>
+                                                                <li>N蛋白上2個核苷酸變異：28280 GAT->CTA（D3L）、C28977T（S235F）。</li>
+                                                            </ol>
+                                                            <p class="text-justify">另外，表一上方文字描述的6個同義單位點變異（synonymous SNV）包括：</p>
+                                                            <ol>
+                                                                <li>ORF1ab上5個單位點變異：C913T、C5986T、C14676T、C15279T、C16176T。</li>
+                                                                <li>M基因上1個單位點變異：T26801C。</li>
+                                                            </ol>
+                                                            <p class="text-justify">VOC 202012/01涉及的變異位點眾多，後續各單位在認定病毒株是否為VOC 202012/01時，標準未必相同。例如，GISAID上的說明是以刺突蛋白上的8變異為主。又例如，VOC 202012/01屬於GISAID上的B1.1.7支系，典型病毒株為EPI_ISL_601443（9月20日），因此也有以文件表一所列的17個變異為主。</p>
+                                                            <p class="text-justify">我們根據GISAID的265,138株病毒株基因體資料來比對，若是單以S蛋白上6個單位點變異作為標準，可以發現VOC 202012/01有1,460株來自英國，3株來自丹麥，1株來自澳洲，這三國發現第一株的時間分別是9月20日、11月9日、11月30日。若是單以S蛋白上2個缺失變異作為標準，可以發現VOC 202012/01有1,463株來自英國，13株來自丹麥，1株來自澳洲，這三國發現第一株的時間分別是9月20日、10月12日、11月30日，另外還有一株來自斯洛維尼亞，時間是3月07日（目前無法排除是否GISAID資料的問題，但若資料正確，那此變異很早就發生過）。若是單以S蛋白上2個缺失（deletion）變異加上6個單位點（SNV）變異作為標準，可以發現VOC 202012/01有1,445株來自英國，3株來自丹麥，1株來自澳洲，這三國發現第一株的時間分別是9月20日、11月9日、11月30日。若是把文件表一所列的17個變異都納入，可以發現VOC 202012/01有1,354株來自英國，3株來自丹麥，第一株的時間分別是9月20日、11月9日。最後，若是進一步把23個病毒基因變異點全部納入，只發現EPI_ISL_601443（9月20日）最接近，完整攜帶文件表一所列的17個變異，但6個同義單位點變異上只攜帶5個變異，在核苷酸16176位點上是攜帶C而非變異T。無法找到滿足全部23個變異的可能解釋，因為VOC 202012/01屬於GISAID上的B1.1.7支系，EPI_ISL_601443（9月20日）為該支系典型病毒株，缺少的變異會在同屬B1.1.7支系的其他病毒株中發現。</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop2-zh">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center mx-auto qa-card-body">
+                                        <h5 class="card-title mb-0">Q2. 變異是否會影響疫苗效果？</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop2-zh" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel2-zh" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel2-zh">Q2. 變異是否會影響疫苗效果？</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">VOC 202012/01不是全新病毒，也是新冠病毒SARS-CoV-2，只是病毒基因體序列有所變異。主要出現在英國，爾後出現在丹麥和澳洲等其他國家。近期新聞報導在德國、新加坡、香港等世界各國發現，但尚未在GISAID資料庫發現。原因是並非所有病毒株都會進行定序，有病毒定序資料也未必上傳GISAID，且在所謂的英國新變異病毒序列的認定上，採用的標準和定義可能不盡相同（註一）。</p>
+                                            <div class="accordion accordion-flush" id="accordionFlush-q2-zh">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-q2-zh" aria-expanded="false" aria-controls="flush-collapse-q2-zh">
+                                                            註一
+                                                        </button>
+                                                    </h2>
+                                                    <div id="flush-collapse-q2-zh" class="accordion-collapse collapse" data-bs-parent="#accordionFlush-q2-zh">
+                                                        <div class="accordion-body">
+                                                            <p class="text-justify">根據英格蘭公共衛生署（Public Health England）的報告，此英國新變種病毒株VOC 202012/01有23個病毒基因變異點，包括參考資料中表一所列的17個變異，以及表一上方文字描述的6個變異。</p>
+                                                            <p class="text-justify">表一所列的17個變異包括（以下變異名稱的描述先呈現核苷酸變異，括號內再補充氨基酸變異名稱）：</p>
+                                                            <ol>
+                                                                <li>ORF1ab蛋白上3個單位點（SNV）變異：C3267T（T1001I）、C5388A（A1708D）、T6954C（I2230T）。</li>
+                                                                <li>ORF1ab蛋白上1個缺失（deletion）變異：核苷酸11288 – 11296 deletion（SGF 3675 – 3677 deletion）。</li>
+                                                                <li>S蛋白上2個缺失變異：核苷酸21765 – 21770 deletion（HV 69 – 70 deletion）、核苷酸21991 – 21993 deletion（Y144 deletion）。</li>
+                                                                <li>S蛋白上6個單位點變異：A23063T（N501Y）、C23271A（A570D）、C23604A（P681H）、C23709T（T716I）、T24506G（S982A）、G24914C（D1118H）。</li>
+                                                                <li>Orf8蛋白上3個單位點變異：C27972T（Q27stop）、G28048T（R52I）、A28111G（Y73C）。</li>
+                                                                <li>N蛋白上2個核苷酸變異：28280 GAT->CTA（D3L）、C28977T（S235F）。</li>
+                                                            </ol>
+                                                            <p class="text-justify">另外，表一上方文字描述的6個同義單位點變異（synonymous SNV）包括：</p>
+                                                            <ol>
+                                                                <li>ORF1ab上5個單位點變異：C913T、C5986T、C14676T、C15279T、C16176T。</li>
+                                                                <li>M基因上1個單位點變異：T26801C。</li>
+                                                            </ol>
+                                                            <p class="text-justify">VOC 202012/01涉及的變異位點眾多，後續各單位在認定病毒株是否為VOC 202012/01時，標準未必相同。例如，GISAID上的說明是以刺突蛋白上的8變異為主。又例如，VOC 202012/01屬於GISAID上的B1.1.7支系，典型病毒株為EPI_ISL_601443（9月20日），因此也有以文件表一所列的17個變異為主。</p>
+                                                            <p class="text-justify">我們根據GISAID的265,138株病毒株基因體資料來比對，若是單以S蛋白上6個單位點變異作為標準，可以發現VOC 202012/01有1,460株來自英國，3株來自丹麥，1株來自澳洲，這三國發現第一株的時間分別是9月20日、11月9日、11月30日。若是單以S蛋白上2個缺失變異作為標準，可以發現VOC 202012/01有1,463株來自英國，13株來自丹麥，1株來自澳洲，這三國發現第一株的時間分別是9月20日、10月12日、11月30日，另外還有一株來自斯洛維尼亞，時間是3月07日（目前無法排除是否GISAID資料的問題，但若資料正確，那此變異很早就發生過）。若是單以S蛋白上2個缺失（deletion）變異加上6個單位點（SNV）變異作為標準，可以發現VOC 202012/01有1,445株來自英國，3株來自丹麥，1株來自澳洲，這三國發現第一株的時間分別是9月20日、11月9日、11月30日。若是把文件表一所列的17個變異都納入，可以發現VOC 202012/01有1,354株來自英國，3株來自丹麥，第一株的時間分別是9月20日、11月9日。最後，若是進一步把23個病毒基因變異點全部納入，只發現EPI_ISL_601443（9月20日）最接近，完整攜帶文件表一所列的17個變異，但6個同義單位點變異上只攜帶5個變異，在核苷酸16176位點上是攜帶C而非變異T。無法找到滿足全部23個變異的可能解釋，因為VOC 202012/01屬於GISAID上的B1.1.7支系，EPI_ISL_601443（9月20日）為該支系典型病毒株，缺少的變異會在同屬B1.1.7支系的其他病毒株中發現。</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop3-zh">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center mx-auto qa-card-body">
+                                        <h5 class="card-title mb-0">Q3. 我們該如何監測病毒變異？</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop3-zh" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel3-zh" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel3-zh">Q3. 我們該如何監測病毒變異？</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">病毒在複製過程中若產生錯誤，就稱為變異。若變異對病毒無影響，則此變異就在病毒群中隨波逐流，不太起作用。若變異對病毒產生負面的影響，則此變異就會在病毒群中被淘汰。反之，若變異使病毒更適應外在環境或人體內條件，則此變異株會在人群中更易增生、傳染。大部份的變異對病毒而言都屬前兩者(無影響或負影響)。這次變異看來有更易傳播的特性，但發生原因不明。不排除是環境或人體內的正向篩選。</p>
+                                            <p class="text-justify">此外，病毒入侵細胞主要是靠病毒的刺突蛋白（Spike protein），這是病毒用來解鎖、進攻人體的鑰匙，其中刺突蛋白上的受體結合域（receptor-binding domain, RBD）是病毒最先接觸人體細胞表面的部分，若有變動，理論上便有少許可能增強病毒入侵的機率,或逃避疫苗的機會。但仍須驗證。</p>
+                                            <p class="text-justify">此次英國新變種病毒的基因共有23個變異，其中有8個（包括2個缺失(deletion)變異和6個單位點(SNV)變異）落在刺突蛋白上。6個SNV變異中又有1個在關鍵的RBD區域，也就是新冠病毒與人類細胞的結合區，是病毒進入宿主細胞的關鍵，須持續追蹤觀察。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            <div class="container-fluid py-3">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop4-zh">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q4. 和過往變異病毒差別在哪？</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop4-zh" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel4-zh" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel4-zh">Q4. 和過往變異病毒差別在哪？</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">病毒變異可能隨機發生，定義VOC 202012/01的變異之前也分別在不同病毒株出現過，但這次是眾多變異在「同一病毒株上出現」，且其中有8個落在刺突蛋白上。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop5-zh">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q5. 此病毒變異程度高嗎？<br>還會繼續變異嗎？</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop5-zh" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel5-zh" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel5-zh">Q5. 此病毒變異程度高嗎？還會繼續變異嗎？</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">SARS-CoV-2和流感病毒同屬RNA病毒，有高變異性。但SARS-CoV-2仍比流感病毒變異性低。根據RNA病毒容易發生變異的特性，VOC 202012/01繼續變異恐難以避免。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop6-zh">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q6. 新變種病毒威脅大嗎？<br>傳染速度會因此加快嗎？變得更致命嗎？</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop6-zh" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel6-zh" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel6-zh">Q6. 新變種病毒威脅大嗎？傳染速度會因此加快嗎？變得更致命嗎？</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">目前只知道它的基因序列改變了，且在英國的增生優勢 (multiplicative advantage) 較其他病毒株高。有效傳播數 (effective reproductive number, Rt) 亦有上升。但尚未有報導顯示感染者會有較嚴重的症狀。至於是否會更致命，或是影響疫苗效力等疑問，都須密切追縱，謹慎以對。目前僅知傳染速度可能增快。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid py-3">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop7-zh">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q7. 感染過的人還有可能會<br>被變異病毒感染嗎？</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop7-zh" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel7-zh" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel7-zh">Q7. 感染過的人還有可能會被變異病毒感染嗎？</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">理論上，感染過且康復的人有多重的「中和性抗體」（註二）。變異病毒應不致於避開所有的中和性抗體。因此，目前學者們普遍認為，感染過的人應該不會被變異病毒再次感染。但是否確實如此，有待證實。</p>
+                                            <div class="accordion accordion-flush" id="accordionFlush-q7-zh">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-q7-zh" aria-expanded="false" aria-controls="flush-collapse-q7-zh">
+                                                            註二
+                                                        </button>
+                                                    </h2>
+                                                    <div id="flush-collapse-q7-zh" class="accordion-collapse collapse" data-bs-parent="#accordionFlush-q7-zh">
+                                                        <div class="accordion-body">
+                                                            <p class="text-justify">能讓病毒失去感染力的抗體，稱為中和性抗體。要阻止病毒進入細胞，抗體需結合新冠病毒刺突蛋白上的受體結合域 (稱為RBD，約有222個胺基酸) 。新冠病毒感染後，會啟動人體的免疫系統，對病毒的各種結構蛋白產生抗體。每種抗體辨識抗原的「位點」(antigenic epitope)大約是15-20個胺基酸。因為RBD是新冠病毒的鑰匙，若抗體能和RBD結合，通常能讓病毒失去感染力，而成為中和性抗體。目前已知，感染過新冠病毒的康復病人，會產生能辨識RBD的中和性抗體，而且症狀越嚴重的病人，通常產生的中和性抗體效價越高。因為RBD範圍相當大(222個胺基酸)，抗體可以結合到它的不同部位，如果突變部位僅限於RBD的局部範圍，大部分「抗原決定位(antigenic epitope)」不在該突變位置的抗體應該還會維持中和病毒的能力。</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop8-zh">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q8. 已經研發出的疫苗可以<br>對抗英國變種病毒嗎？</h5>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="modal fade" id="staticBackdrop8-zh" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel8-zh" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel8-zh">Q8. 已經研發出的疫苗可以對抗英國變種病毒嗎？</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">目前新冠病毒疫苗的主要成分就是刺突蛋白或受體結合域(RBD)，或產生刺突蛋白的RNA。與康復病人產生RBD中和性抗體原理相同，接種疫苗後，人體會啟動免疫系統，產生會辨識RBD的中和性抗體。因此專家現在認為，接種過現在的新冠疫苗，應該可以對抗英國變種病毒。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop9-zh">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q9. 其他病毒株目前變異的狀況？<br>會繼續變異嗎？</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop9-zh" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel9-zh" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel9-zh">Q9. 其他病毒株目前變異的狀況？會繼續變異嗎？</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">RNA病毒具有容易發生變異的特性，目前主宰世界的新冠病毒主要是從早期武漢一號病毒變異來的第6型，但是新冠病毒仍持續發生變異中，正在產生新的子型。此次英國發生的變異株，也是第6型的子型。因此，繼續變異恐難以避免。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid py-3">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop10-zh">
+                                <div class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q10. 臺灣現在有沒有這株變異病毒？</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop10-zh" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel10-zh" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel10-zh">Q10. 臺灣現在有沒有這株變異病毒？</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">根據2020年12月30日指揮中心的資訊及媒體報導，臺灣出現首例英國變種病毒，但相關基因定序資料尚未公布。後續仍需持續密切監控與觀察。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <a  type="button" class="text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop11-zh">
+                                <div  class="card btn btn-outline-dark text-center h-100 w-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center qa-card-body">
+                                        <h5 class="card-title mb-0">Q11. 面對病毒持續變異，我們該怎麼辦?</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="modal fade" id="staticBackdrop11-zh" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel11-zh" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel11-zh">Q11. 面對病毒持續變異，我們該怎麼辦?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-justify">孫子兵法：「用兵之法，無恃其不來，恃吾有以待也；無恃其不攻，恃吾有所不可攻也」。面對COVID-19疫情，還是要保持正確的防疫觀念、落實做好各項防疫措施。新時代的各項科技進展，讓我們有機會見證這個病毒的演化，相信更多的研究能讓我們更加瞭解這個病毒，而發展出各種可以協助控制疫情的策略。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="container py-3">
+                <h4>參考資料</h4>
+                <ul>
+                    <li>Chand, Meera; Hopkins, Susan; Dabrera, Gavin; Achison, Christina; Barclay, Wendy; Ferguson, Neil; Volz, Erik; Loman, Nick; Rambaut, Andrew; Barrett, Jeff (21 December 2020). Investigation of novel SARS-COV-2 variant: Variant of Concern 202012/01 (PDF) (Report). Public Health England. Retrieved 22 December 2020. [<a href="https://www.gov.uk/government/publications/investigation-of-novel-sars-cov-2-variant-variant-of-concern-20201201">Link</a>]</li>
+                </ul>
+            </div>
+                    </div>
+        </main>
+    
+        <!-- ===== 頁尾 / Footer ===== -->
+        <footer class="footer mt-auto py-1 text-center">
+            <div class="container d-flex justify-content-center align-items-center gap-2">
+                <img src="/image/img-logo-academiasinica.png"
+                    alt="Academia Sinica Logo"
+                    width="30">
+
+                <p class="text-body-secondary mb-0 footer-text">
+                    &copy; 2026
+                    <a href="https://www.sinica.edu.tw/">Academia Sinica, Taiwan</a>
+                </p>
+            </div>
+        </footer>
+
+        <!-- Bootstrap 5.3.6 JavaScript（bundle 已含 Popper / the bundle includes Popper）：Q&A 視窗、展開問答、圖片輪播都需要
+             Needed by the Q&A modals, the expandable questions and the image carousels -->
+        <script src="/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- 導覽列標示目前頁面、加上 Back 按鈕 / Highlight the navbar item and add the Back button -->
+        <script src="/js/nav-active.js"></script>
+    </body>
+</html>

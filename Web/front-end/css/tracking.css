@@ -1,0 +1,851 @@
+/* =====================================================================
+   tracking.css
+   Tracking 頁（tracking.html）專用樣式。全站共用樣式在 site.css。
+   Styles used only by the Tracking page. Shared site styles are in site.css.
+
+   內容 / Contents
+     1. 頁面基本設定                Page base
+     2. 主頁：使用說明、功能按鈕    Main page: "How to use" and feature buttons
+     3. 主頁：世界地圖              Main page: world map
+     4. 國家視窗（2×2 圖表）        Country modal (2×2 charts)
+     5. 滿版面板（offcanvas）共用   Full-screen panels (shared)
+     6. 圖表共用：標題、下載、配對  Shared chart parts: titles, download, pairs
+     7. Six Strain Types 面板       Six Strain Types panel
+     8. Emerging Genomic Variation  Emerging Genomic Variation panel
+     9. VOC 面板                    VOC panel
+    10. CSS Rankings 面板           CSS Rankings panel
+    11. 使用說明視窗                "How to use" modal
+    12. 小螢幕調整                  Small screens
+   ===================================================================== */
+
+
+/* =====================================================================
+   1. 頁面基本設定 / Page base
+   ===================================================================== */
+
+/* 本頁導覽列下方留白較小，背景改淺灰（覆寫 site.css）
+   Less space under the navbar and a light grey background (overrides site.css) */
+body {
+  padding-top: 35px;
+  background: #f4f6f8;
+}
+
+/* 頁面內容寬度 / Page content width */
+.tracking-shell {
+  width: min(1600px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 8px 0 4px;
+}
+
+/* Bootstrap 下拉按鈕預設的小三角形不顯示
+   Hide Bootstrap's default caret on dropdown buttons */
+button.dropdown-toggle::after {
+  content: none;
+}
+
+
+/* =====================================================================
+   2. 主頁：使用說明、功能按鈕 / Main page: "How to use" and feature buttons
+   ===================================================================== */
+
+/* 右上角「How to use」按鈕 / "How to use" button at the top right */
+.tracking-topbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+.info-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid #ced4da;
+  border-radius: 999px;
+  background: #fff;
+  color: #343a40;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease, background-color .15s ease;
+}
+.info-btn:hover {
+  border-color: #29546e;
+  color: #29546e;
+  background: #f0f6fa;
+}
+
+/* 四個功能按鈕：一列四個 / Four feature buttons in one row */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.feature-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 54px;
+  padding: 12px 16px;
+  border: 1px solid #e1e5ea;
+  border-radius: 12px;
+  background: #fff;
+  color: #212529;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, .04);
+  transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+.feature-btn:hover {
+  border-color: #29546e;
+  box-shadow: 0 6px 16px rgba(41, 84, 110, .12);
+  transform: translateY(-2px);
+}
+.feature-btn:focus-visible {
+  outline: 3px solid rgba(41, 84, 110, .3);
+  outline-offset: 2px;
+}
+
+/* 編號方塊 01–04 / Number badge 01–04 */
+.feature-num {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #eef3f7;
+  color: #29546e;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background-color .15s ease, color .15s ease;
+}
+.feature-btn:hover .feature-num {
+  background: #29546e;
+  color: #fff;
+}
+.feature-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.feature-arrow {
+  flex: 0 0 auto;
+  color: #adb5bd;
+  font-size: 16px;
+  transition: color .15s ease, transform .15s ease;
+}
+.feature-btn:hover .feature-arrow {
+  color: #29546e;
+  transform: translateX(3px);
+}
+
+
+/* =====================================================================
+   3. 主頁：世界地圖 / Main page: world map
+   地圖由 word_country.js 載入 SVG 並建立互動。
+   word_country.js loads the SVG and adds the interaction.
+   ===================================================================== */
+
+/* 地圖區：不加外框，地圖直接放在頁面底色上
+   Map area: no frame, the map sits directly on the page background */
+.map-card {
+  margin-top: 22px;
+}
+
+/* 標題列：左邊標題與說明，右邊 Global View
+   Header row: title and hint on the left, Global View on the right */
+.map-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+/* 地圖左下角的操作提示（與右下角圖片來源對稱）
+   Usage hint at the bottom left of the map (mirrors the credit on the right) */
+.map-hint {
+  position: absolute;
+  left: 14px;
+  bottom: 10px;
+  font-size: 11px;
+  color: #868e96;
+  pointer-events: none;
+}
+.map-head-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Global View 按鈕 / Global View button */
+.global-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 20px 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: #212529;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .12);
+  transition: background-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.global-btn svg { flex: 0 0 auto; }
+.global-btn:hover {
+  background: #29546e;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(41, 84, 110, .3);
+}
+.global-btn:active { transform: translateY(0); }
+.global-btn:focus-visible {
+  outline: 3px solid rgba(41, 84, 110, .35);
+  outline-offset: 2px;
+}
+
+/* 地圖本體：保留定位，讓放大縮小鍵可以浮在右側
+   Map body: positioned so the zoom buttons can float on the right */
+.map-stage {
+  position: relative;
+  margin-top: 8px;
+}
+
+/* SVG 的容器 / SVG container */
+#svg-container {
+  padding: 4px 12px;
+  font-size: 0;           /* 去掉 inline 元素的空隙 / remove inline gaps */
+}
+
+/* 固定長寬比的外層，地圖寬度同時受視窗高度限制，整張地圖不超出畫面
+   Fixed-ratio wrapper; the width is also limited by the window height so
+   the whole map fits on screen */
+.map-wrap {
+  position: relative;
+  width: 100%;
+  max-width: min(1400px, calc((100vh - 327px) * 2756 / 1399));
+  margin: 0 auto;
+  aspect-ratio: 2756 / 1399;
+  overflow: hidden;
+}
+.map-wrap > svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: transparent;
+}
+
+/* 拖曳中的游標 / Cursor while zoomed or dragging */
+.map-wrap.map-zoomed svg { cursor: grab; touch-action: none; }
+.map-wrap.map-dragging svg,
+.map-wrap.map-dragging svg * { cursor: grabbing !important; }
+
+/* ---- 地圖顏色與滑鼠事件 / Map colours and mouse events ----
+   只有真正畫出國界的 shape（.map-country-shape）會接收滑鼠事件，
+   海洋、國界線、湖泊等都不攔截。
+   Only real country shapes (.map-country-shape) receive mouse events;
+   water, border lines, lakes, etc. do not. */
+#svg-container .water,
+#svg-container .border,
+#svg-container .disputed,
+#svg-container .outline,
+#svg-container .lake {
+  pointer-events: none !important;
+}
+#svg-container .water { fill: transparent !important; }
+
+#svg-container svg path:not(.map-country-shape),
+#svg-container svg circle:not(.map-country-shape),
+#svg-container svg polygon:not(.map-country-shape),
+#svg-container svg use:not(.map-country-shape) {
+  pointer-events: none;
+}
+
+/* 沒有資料的國家：淺灰、不能點
+   Countries without data: light grey, not clickable */
+#svg-container .land,
+#svg-container .land path,
+#svg-container .map-country-shape {
+  fill: #dde2e7;
+}
+#svg-container .map-country-shape {
+  pointer-events: visiblePainted !important;
+  cursor: default;
+  transition: fill 0.12s ease, opacity 0.12s ease, stroke 0.12s ease;
+}
+
+/* 有資料的國家：藍灰色、可以點
+   Countries with data: blue-grey, clickable */
+#svg-container .map-country-shape.map-country-available {
+  fill: #8eacc2;
+  cursor: pointer;
+}
+
+/* 滑鼠移到的國家（同一國家的所有島嶼一起變色）
+   Hovered country (all of its islands change colour together) */
+#svg-container .map-country-shape.map-country-hover {
+  fill: #29546e !important;
+  stroke: #29546e !important;
+  opacity: 0.88;
+}
+
+/* 香港：若 SVG 沒有獨立的形狀，JS 會建立一個透明的小圓點，hover 時才顯示
+   Hong Kong: if the SVG has no shape of its own, JS adds a transparent dot
+   that only shows on hover */
+#svg-container .map-country-shape.map-country-hotspot {
+  fill: rgba(0, 0, 0, 0.001) !important;
+  stroke: none !important;
+  opacity: 1 !important;
+  pointer-events: all !important;
+}
+#svg-container .map-country-shape.map-country-hotspot.map-country-hover {
+  fill: rgba(41, 84, 110, 0.28) !important;
+  stroke: #29546e !important;
+  stroke-width: 1.5 !important;
+  opacity: 1 !important;
+}
+
+/* 滑鼠移到國家時跟著游標的提示框
+   Tooltip that follows the pointer over a country */
+#svgTooltip {
+  position: absolute;
+  z-index: 1000;
+  display: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* 放大 / 縮小 / 重設按鈕（由 word_country.js 建立）
+   Zoom in / out / reset buttons (created by word_country.js) */
+.map-zoom {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #d5dbe1;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(16, 24, 40, .08);
+  font-size: 16px;
+}
+.map-zoom button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  background: #fff;
+  color: #212529;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color .15s ease, color .15s ease;
+}
+.map-zoom button + button { border-top: 1px solid #e1e5ea; }
+.map-zoom button:hover:not(:disabled) { background: #29546e; color: #fff; }
+.map-zoom button:disabled { color: #c4cad0; cursor: default; }
+.map-zoom button:focus-visible { outline: 2px solid #29546e; outline-offset: -2px; }
+
+/* 地圖右下角的圖片來源 / Image credit at the bottom right of the map */
+.map-credit {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  font-size: 10px;
+  color: #868e96;
+  pointer-events: none;
+}
+.map-hint { 
+  position: static; 
+  text-align: center; 
+  padding: 6px 0 0; 
+}
+
+
+/* =====================================================================
+   4. 國家視窗（2×2 圖表） / Country modal (2×2 charts)
+   點地圖上的國家或 Global View 後開啟。
+   Opens after clicking a country or Global View.
+   ===================================================================== */
+
+/* 防止 Chart.js 的 canvas 撐壞欄寬
+   Keep Chart.js canvases from stretching the Bootstrap columns */
+#countryModal .row > [class*="col-"] {
+  min-width: 0;
+}
+
+/* 視窗內容太高時可以捲動 / Scroll when the content is too tall */
+#countryModal .modal-body {
+  max-height: 78vh;
+  padding: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* 四張圖固定同樣大小 / All four charts have the same size */
+.chart-cell {
+  position: relative;
+  width: 100%;
+  height: 270px;
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+}
+.chart-cell canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* 沒有資料時蓋在圖上的「No Data」
+   "No Data" message shown over an empty chart */
+.country-no-data {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #6c757d;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+/* 載入中的遮罩與淡化效果
+   Loading overlay and the faded chart underneath */
+.country-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, .6);
+}
+.country-loading .spinner-border { width: 2.5rem; height: 2.5rem; }
+.chart-cell canvas.is-loading {
+  opacity: 0.4;
+  filter: grayscale(0.3);
+}
+
+
+/* =====================================================================
+   5. 滿版面板（offcanvas）共用 / Full-screen panels (shared)
+   四個功能各自開啟一個滿版面板。
+   Each of the four features opens a full-screen panel.
+   ===================================================================== */
+.offcanvas {
+  --bs-offcanvas-zindex: 1045;
+  --bs-offcanvas-padding-x: 3rem;
+  --bs-offcanvas-padding-y: 2rem;
+  --bs-offcanvas-color: black;
+  --bs-offcanvas-bg: #fff;
+  --bs-offcanvas-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+.offcanvas.offcanvas-fullscreen {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  border: 0;
+}
+.offcanvas.offcanvas-fullscreen .offcanvas-body {
+  overflow-y: auto;
+  padding-top: 1rem;
+}
+
+/* 標題列不要太高，下方加灰色分隔線
+   Compact header with a grey divider below */
+.offcanvas.offcanvas-fullscreen .offcanvas-header {
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #dee2e6;
+}
+.offcanvas.offcanvas-fullscreen .offcanvas-title {
+  margin-bottom: 0;
+  font-size: 1.1rem;
+}
+
+
+/* =====================================================================
+   6. 圖表共用：標題、下載、配對 / Shared chart parts
+   ===================================================================== */
+
+/* 每張圖上方的小標題 / Small title above each chart */
+.panel-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* 圖表右上角的下載圖示 / Download icon at the top right of a chart */
+.dl-icon { width: 15px; height: 15px; }
+
+/* 圖表外框：Chart.js 會填滿這個框
+   Chart box: Chart.js fills this box */
+.chart-box {
+  position: relative;
+  height: 38vh;
+  min-height: 240px;
+}
+.chart-box > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* 兩張圖一組：橫向螢幕左右並排，直向螢幕上下堆疊
+   Chart pairs: side by side in landscape, stacked in portrait */
+.chart-pair > .chart-pair-col {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+@media (orientation: landscape) {
+  .chart-pair > .chart-pair-col { width: 50%; }
+}
+@media (orientation: portrait) {
+  .chart-pair > .chart-pair-col { width: 100%; }
+  .chart-box { height: 26vh; min-height: 190px; }
+}
+
+
+/* =====================================================================
+   7. Six Strain Types 面板 / Six Strain Types panel
+   ===================================================================== */
+#six .offcanvas-body { padding-top: 1.5rem; }
+
+/* 國家選單寬度 / Width of the country menu */
+.six-country-select {
+  width: 480px;
+  max-width: 100%;
+}
+
+/* 下方 Type I–VI 標籤，滑鼠移過去顯示定義圖
+   Type I–VI labels at the bottom; hovering shows the definition image */
+.hover-label {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.hover-label:hover,
+.hover-label.active-hover {
+  background-color: black;
+  color: white;
+  text-decoration: underline;
+}
+
+
+/* =====================================================================
+   8. Emerging Genomic Variation 面板 / Emerging Genomic Variation panel
+   ===================================================================== */
+#gene .offcanvas-body { padding-top: 1.5rem; }
+
+/* Latest AF 滑桿（noUiSlider） / Latest AF slider (noUiSlider) */
+#slider { margin: 0 10px; }
+#slider .noUi-connect { background: #5dade2; }
+#slider .noUi-tooltip { display: none; }               /* 平常不顯示數值 / hidden normally */
+#slider .noUi-active .noUi-tooltip { display: block; } /* 拖曳時顯示 / shown while dragging */
+#slider-value {
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* 折線圖下方的圖例（由 genomic_variation.js 產生），太多時可捲動；
+   點一下可隱藏該條線（.is-hidden：灰字加刪除線）
+   Legend under the line chart (built by genomic_variation.js); scrolls when
+   long. Clicking an item hides its line (.is-hidden: grey, struck through) */
+.gene-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+.gene-legend-item {
+  display: flex;
+  align-items: center;
+  width: 12%;
+  min-width: 0;
+  font-size: 12px;
+  cursor: pointer;
+}
+.gene-legend-swatch {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+  border: 1px solid #000;
+}
+.gene-legend-label {
+  margin-left: 2px;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gene-legend-item.is-hidden .gene-legend-label {
+  color: gray;
+  text-decoration: line-through;
+}
+
+
+/* =====================================================================
+   9. VOC 面板 / VOC panel
+   四張圖使用同一套卡片樣式，排成 2×2。
+   All four charts use the same card style, laid out 2×2.
+   ===================================================================== */
+#voc .offcanvas-body.voc-body {
+  padding: 14px 24px 18px;
+  overflow-x: hidden;
+  background: #f4f6f8;
+}
+#voc canvas { display: block; width: 100% !important; height: 100% !important; }
+
+/* 選單列：國家、VOC / Menu row: country and VOC */
+.voc-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.voc-select { width: 420px; max-width: 100%; }
+
+/* VOC 多選框：看起來像選單，不顯示輸入游標
+   VOC multi-select: looks like a menu, no text cursor */
+#variantInput {
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+  caret-color: transparent;
+}
+
+/* 區塊標籤：左側色條 + 標題 + 一行說明
+   Section label: colour bar, title and a one-line note */
+.voc-section-label {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 14px 0 8px;
+  padding-left: 10px;
+  border-left: 3px solid #29546e;
+}
+.voc-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #29546e;
+}
+.voc-section-text { font-size: 12px; color: #6c757d; }
+
+/* 卡片 / Card */
+.voc-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 14px 10px;
+  background: #fff;
+  border: 1px solid #e1e5ea;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, .04);
+}
+.voc-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.voc-card-head > div:first-child { min-width: 0; flex: 1 1 auto; }
+
+/* 卡片的副標與說明，左右對齊 / Card subtitle and description, justified */
+.voc-sub,
+.voc-desc {
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #6c757d;
+  text-align: justify;
+  text-justify: inter-character;
+}
+
+/* 「Overall」「Daily」小標籤 / "Overall" and "Daily" badges */
+.voc-badge {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #eef3f7;
+  color: #29546e;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+/* 卡片右上角的下載按鈕 / Download button at the top right of a card */
+.voc-dl-btn {
+  padding: 4px 6px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  line-height: 1;
+}
+.voc-dl-btn:hover { background: #eef3f7; border-color: #d5dbe1; }
+
+/* 圖表高度依視窗高度縮放，整個面板盡量一頁看完
+   Chart heights follow the window height so the panel fits on one screen */
+.chart-box.voc-top-box    { height: clamp(210px, 30vh, 340px); min-height: 0; }
+.chart-box.voc-bottom-box { height: clamp(200px, 25vh, 300px); min-height: 0; flex: 1 1 auto; }
+@media (orientation: portrait) {
+  .chart-box.voc-top-box    { height: 24vh; min-height: 180px; }
+  .chart-box.voc-bottom-box { height: 22vh; min-height: 170px; }
+}
+
+/* 譜系圖下方的圖例（由 voc.js 產生）：最多兩行，多的捲動；
+   點一下可隱藏該條線（.is-hidden：灰字加刪除線）
+   Legend under the sublineage chart (built by voc.js): two lines at most,
+   then scroll. Clicking an item hides its line (.is-hidden: grey, struck through) */
+.voc-legend-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 3px 6px;
+  max-height: 44px;
+  margin-top: 6px;
+  padding: 6px 2px 4px;
+  border-top: 1px solid #eef0f2;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-size: 11px;
+}
+.voc-legend-item {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  max-width: 160px;
+  cursor: pointer;
+}
+.voc-legend-swatch {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+  border: 1px solid #333;
+}
+.voc-legend-label {
+  color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.voc-legend-item.is-hidden .voc-legend-label {
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+/* 每日直方圖的播放列 / Play bar of the daily histogram */
+.voc-player {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.voc-play {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  line-height: 1;
+}
+.voc-date {
+  min-width: 82px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #29546e;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* =====================================================================
+   10. CSS Rankings 面板 / CSS Rankings panel
+   內容是 css.html，用 iframe 嵌入，iframe 填滿整個面板。
+   The content is css.html in an iframe that fills the panel.
+   ===================================================================== */
+#cssPanel .offcanvas-body { height: calc(100vh - 53px); overflow: hidden; }
+.css-iframe { display: block; width: 100%; height: 100%; border: none; }
+
+
+/* =====================================================================
+   11. 使用說明視窗 / "How to use" modal
+   ===================================================================== */
+.info-card    { width: clamp(320px, 90vw, 80rem); }
+.info-card-sm { width: clamp(320px, 90vw, 50rem); }
+
+
+/* =====================================================================
+   12. 小螢幕調整 / Small screens
+   ===================================================================== */
+
+/* 平板：功能按鈕一列兩個 / Tablets: two feature buttons per row */
+@media (max-width: 1100px) {
+  .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* 手機 / Phones */
+@media (max-width: 576px) {
+  .tracking-shell { width: calc(100% - 20px); padding-top: 16px; }
+
+  /* 「How to use」只留圖示 / "How to use" shows the icon only */
+  .info-btn span { display: none; }
+  .info-btn { width: 34px; padding: 0; justify-content: center; }
+
+  .feature-grid { grid-template-columns: 1fr; gap: 8px; }
+  .feature-btn { min-height: 60px; }
+
+  .map-card-head { flex-direction: column; align-items: stretch; gap: 10px; }
+  .global-btn { justify-content: center; width: 100%; }
+  .map-credit { position: static; text-align: center; padding: 0 0 6px; }
+
+  /* 國家視窗：四張圖改成上下排列 / Country modal: charts stacked */
+  #countryModal .col-6 { flex: 0 0 100%; max-width: 100%; }
+  .chart-cell { height: 230px; }
+
+  #voc .offcanvas-body.voc-body { padding: 12px; }
+}

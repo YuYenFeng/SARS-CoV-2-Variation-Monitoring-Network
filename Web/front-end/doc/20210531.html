@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<!--
+    doc/20210531.html — 深度解析：印度變種新冠病毒（B.1.617）
+              In depth: the Indian variant of SARS-CoV-2 (B.1.617)
+    前半是內文，後半是可展開的 Q1–Q6 問答。
+    Article text first, then expandable Q1–Q6.
+    中英文內容各寫一份：<div data-l="en"> 與 <div data-l="zh">，由 i18n.js 切換。
+    English and Chinese content are written separately in <div data-l="en"> and
+    <div data-l="zh">; i18n.js shows one of them.
+    標題左邊的 Back 按鈕由 nav-active.js 自動加上（20201230 自己放了按鈕）。
+    The Back button left of the title is added by nav-active.js (20201230 has its own).
+    樣式 / Styles：css/site.css（全站共用 shared）、css/doc.css（文章頁共用 article pages）
+-->
+<html lang="en">
+    <head>
+        <title>SARS-CoV-2 Variation Monitoring Network</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- Bootstrap 5.3.6（本機 / local） -->
+        <link rel="stylesheet" href="/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+
+        <!-- 全站共用樣式 / Shared site styles -->
+        <link rel="stylesheet" href="/css/site.css">
+        <!-- 文章頁共用樣式 / Shared article-page styles -->
+        <link rel="stylesheet" href="/css/doc.css">
+
+        <!-- 中英文切換：要放在 <head>，頁面才不會先閃出另一種語言
+             Language switch: must be in <head> so the other language never flashes -->
+        <script src="/js/i18n.js"></script>
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+        <!-- ===== 導覽列 / Navigation bar ===== -->
+        <header class="fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-dark ">
+                <div class="container-fluid px-2">
+                    <a class="navbar-brand fw-bold text-truncate me-auto" href="/index.html">SARS-CoV-2 Variation Monitoring Network</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto me-4 mb-2 mb-lg-0 nav-pills">
+                        <li class="nav-item">
+                        <a class="nav-link" href="/index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/tracking.html">Tracking</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active nav-shl" href="https://shlab.duckdns.org/">Smart Health Lab</a>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="flex-fill pt-4">
+            <!-- ===== 英文內容（預設顯示）/ English content (shown by default) ===== -->
+            <div data-l="en">
+            <div class="container-fluid mb-3">
+                <h1 class="text-center">In Depth: The Indian Variant of SARS-CoV-2 (B.1.617)</h1>
+            </div>
+            <div class="container-fluid mb-3">
+                <p class="text-center">Updated: 2021-05-31 21:00</p>
+            </div>
+            <div class="container mb-2">
+                <p class="text-justify fs-5">SARS-CoV-2 continues to mutate, and the pandemic is raging worldwide. The UK variant is now spreading widely around the world and is also the variant Taiwan is working hard to contain. Meanwhile, the Indian variant (B.1.617), which caused India's severe outbreak, is drawing increasing attention<sup><a href="#note1">1</a></sup>.</p>
+            </div>
+            <div class="container mb-2">
+                <p class="text-justify fs-5">The Indian variant was first detected in India on October 5, 2020. According to the World Health Organization (WHO), by May 11, 2021 it had been found in about 44 countries and was continuing to spread to more. Taiwan has also had imported cases, all of which were fortunately contained at the border. Given the high transmissibility of this variant, the public should stay alert, keep the virus out of the country, and follow its international spread in real time.</p>
+            </div>
+            <div class="container mb-2">
+                <p class="text-justify fs-5">In February 2021, Academia Sinica's SARS-CoV-2 Variation Monitoring Network (hereafter, the Monitoring Network) observed that the frequencies of three important amino-acid mutations in the spike protein of this variant, L452R, E484Q and P681R, were rising rapidly in India. The first two strengthen the binding of the virus to ACE2 (angiotensin-converting enzyme 2) and make it easier for the virus to evade the human immune system. The third may increase the efficiency of S1-S2 cleavage of the spike protein, helping the virus fuse with host cells and speeding up transmission.</p>
+            </div>
+            <div class="container mb-2">
+                <p class="text-justify fs-5">According to a preliminary WHO analysis, current vaccines remain effective against the Indian variant, although vaccine-induced neutralizing antibody titers are reduced. On May 22, 2021, Public Health England (PHE) announced that the Pfizer-BioNTech, Moderna and Oxford/AstraZeneca vaccines are highly effective against B.1.617.2, a sub-lineage of the Indian variant, with effectiveness similar to that against the UK variant, and that they help reduce hospitalization and death.</p>
+            </div>
+            <div class="container mb-2">
+                <p class="text-justify fs-5">Sun Tzu's <i>The Art of War</i> says, "Know your enemy and know yourself, and you will never be defeated." Academia Sinica has analyzed more than 1.2 million SARS-CoV-2 genome sequences from the Global Initiative on Sharing All Influenza Data (GISAID). The Monitoring Network shows the growth trends of existing and emerging variants in countries around the world, which helps assess their transmissibility and give early warnings. It also provides the mutation frequencies of strains in each country, which helps predict dominant strains and the potential for vaccine escape and can be taken into account when designing next-generation vaccines.</p>
+            </div>
+            <div class="container mb-2">
+                <p class="text-justify fs-5">According to the Monitoring Network, Type VI<sup><a href="#note2">2</a></sup> is still predominant, but about 600 to 1,200 variant subtypes have already emerged. Viral mutation will continue and is hard to avoid; a Taiwanese variant cannot be ruled out, and the success of vaccines may even give rise to new dominant strains. It is therefore difficult for humans to eliminate the virus completely, and we must learn to coexist with it. However, bringing the pandemic under control as quickly as possible reduces the opportunities for the virus to replicate and spread, which greatly lowers the chance of highly transmissible variants emerging. Strict border control, compliance with national prevention policies, good everyday prevention habits and higher vaccination coverage, used together, are the fundamental way to fight the virus.</p>
+            </div>
+            <div class="container mb-2">
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                Q1. Which SARS-CoV-2 Variants of Concern (VOC) are there at present?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p>According to a report by Public Health England (PHE) (Note 1), there are currently 5 variants of concern: the UK variant (B.1.1.7), the South African variant (B.1.351), the Brazilian variant (P.1, or B.1.1.28.1), the UK variant with an additional mutation (B.1.1.7 with E484K), and B.1.617.2, a sub-lineage of the recently much-discussed Indian variant (B.1.617). All of these variants carry important mutations in the spike protein that increase the chance of viral entry or vaccine escape. In other words, all of them are more infectious than the strains they evolved from.</p>
+                                <p>Academia Sinica analyzed more than 1.2 million SARS-CoV-2 genome sequences from the Global Initiative on Sharing All Influenza Data (GISAID) database to obtain the temporal trends in the frequencies of these five variants of concern (Figure 1). Public Health England and the World Health Organization (WHO) upgraded B.1.617.2, a sub-lineage of the Indian variant (B.1.617), to a "variant of concern" on May 7, 2021 and May 11, 2021, respectively. Although B.1.617.1 and B.1.617.3 have not been classified as variants of concern, Public Health England lists them as "Variants Under Investigation (VUI)."</p>
+                                <figure class="figure text-center mx-auto d-block">
+                                    <img src="/doc/20210531-1.png" class="figure-img img-fluid rounded " alt="Temporal trends in the frequencies of the five variants of concern">
+                                    <figcaption class="figure-caption fs-6">Figure 1. Temporal trends in the frequencies of the five variants of concern</figcaption>
+                                </figure>
+                                <div >
+                                    <p class="bg-light rounded p-3 border"><strong>Note 1</strong> SARS-CoV-2 variants of concern and variants under investigation in England (Technical briefing 11, updated 2021/05/13)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                Q2. Which other variants have drawn wide attention and discussion?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p>At the end of 2020, the WHO announced four variants drawing wide attention: the D614G variant, the UK variant (B.1.1.7, also called VOC 202012/01 or 501Y.V1), the South African variant (B.1.351, also called VOC 202012/02 or 501Y.V2) and the Danish mink variant (also called Cluster 5). The first three were found to be more infectious and are still circulating in many countries, especially the UK variant (B.1.1.7). The Danish mink variant is a special case: studies found that SARS-CoV-2 can pass from humans to mink and from mink back to humans, but fortunately the Danish mink variant was later not found in humans (Note 2).</p>
+                                <p>Other variants include the Brazilian variant (P.1, or B.1.1.28.1), which is also highly transmissible, shows vaccine escape and has been listed as a variant of concern (VOC); the East African variant from Uganda and Rwanda (A.23.1); the California variant in the United States (B.1.429); and further variants carrying E484K that were identified later (B.1.1.7 with E484K, A.23.1 with E484K and B.1.525), of which B.1.1.7 with E484K has also been listed as a variant of concern.</p>
+                                <div>
+                                    <p class="bg-light rounded p-3 border"><strong>Note 2</strong> For details, see the 2021-01-09 report of the Academia Sinica SARS-CoV-2 Variation Monitoring Network: <a href="https://sarscov2.sinica.edu.tw/doc/20210109.html">https://sarscov2.sinica.edu.tw/doc/20210109.html</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                Q3. Where was the Indian variant first detected?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p>The Indian variant (B.1.617) (Note 3) was first detected in Maharashtra, India, on October 5, 2020. As the virus spread and mutated, three sub-lineages emerged: B.1.617.1, B.1.617.2 and B.1.617.3, which differ in their spike-protein mutations (Figure 2).</p>
+                                <figure class="figure text-center mx-auto d-block">
+                                    <img src="/doc/20210531-2.png" class="figure-img img-fluid rounded " alt="Amino-acid mutations in the spike protein of the sub-lineages of the Indian variant (B.1.617)">
+                                    <figcaption class="figure-caption fs-6">Figure 2. Amino-acid mutations in the spike protein of the sub-lineages of the Indian variant (B.1.617)</figcaption>
+                                </figure>
+                                <div>
+                                    <p class="bg-light rounded p-3 border"><strong>Note 3</strong> Definition of the Indian variant (B.1.617): according to Public Health England's report SARS-CoV-2 variants of concern and variants under investigation in England (Technical briefing 9, updated 2021/04/22), the Indian variant has 13 mutations (some reports define it with 15 or 17, depending on whether already widespread SNVs such as D614G are included). They are: 5 SNVs in ORF1ab, namely C3457T (Y1064Y) and C4965T (T749I) in nsp3, A11201G (T77A) in nsp6, G17523T (M429I) in nsp13 and A20396G (K259R) in nsp15; C25469T (S26L) in ORF3a; T27638C (V82A) in ORF7a; G28881T (R203M) in N; and 5 SNVs in the spike protein: T21895C (D111D on NTD), G22022A (E154K on NTD), T22917G (L452R on RBD), G23012C (E484Q on RBD) and C23604G (P681R immediately upstream of the furin cleavage site). Nucleotide changes are given first, with the corresponding amino-acid changes in parentheses. The WHO, the PANGO lineage system and the US Centers for Disease Control and Prevention (US CDC) define the SNVs of the B.1.617 sub-lineages slightly differently from Public Health England.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                Q4. What are the characteristics of the Indian variant? How does it differ from other variants?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p>The Indian variant (B.1.617) has 5 mutations in its spike protein. Three of them, the amino-acid mutations L452R, E484Q and P681R, are particularly noteworthy.</p>
+                                <p>L452R and E484Q lie in the receptor binding motif (RBM), an important functional sequence within the receptor binding domain (RBD). The RBM is the interface between the SARS-CoV-2 spike protein and human angiotensin-converting enzyme 2 (ACE2). L452R and E484Q strengthen binding to ACE2 and help the virus evade the human immune system.</p>
+                                <p>P681R lies just before the furin cleavage site. This mutation may increase the efficiency of S1-S2 cleavage of the spike protein, helping the virus fuse with host cells and enter them, so that the virus spreads faster.</p>
+                                <p>In February 2021, the Monitoring Network also observed that the frequencies of the L452R, E484Q and P681R spike mutations of the Indian variant were rising rapidly in India (Figure 3). L452R is also found in the California variant (B.1.429). E484Q appears in the Indian sub-lineage B.1.617.2 and differs from the E484K seen earlier in the South African variant, the Brazilian variant and the UK variant with E484K. P681R was seen earlier in the East African variant (A.23.1), but it differs from the P681H seen in the UK variant.</p>
+                                <figure class="figure text-center mx-auto d-block">
+                                    <img src="/doc/20210531-3.png" class="figure-img img-fluid rounded " alt="Temporal trends in the main spike-protein mutations of the Indian variant (B.1.617) in India">
+                                    <figcaption class="figure-caption fs-6">Figure 3. Temporal trends in the frequencies of the main spike-protein mutations of the Indian variant (B.1.617) in India</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                                Q5. Are COVID-19 vaccines still effective against the variants?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p>Different vaccines perform differently against the variants. In general, although their effectiveness may decline, they still provide a degree of protection and help reduce severe illness and death. There have been sporadic cases of side effects, but overall the benefits outweigh the risks.</p>
+                                <p>Vaccine manufacturers are evaluating whether higher doses, additional doses or new next-generation vaccines can meet the challenge of new variants. For example, the two RNA vaccines from Pfizer-BioNTech and Moderna were developed early and quickly. Although they were completed before many of the mutations emerged, their design is easy to modify, which makes later improvements convenient.</p>
+                                <p>According to a WHO report (Note 4), clinical results from Israel and Qatar show that after two doses, the Pfizer vaccine provides high protection against both infection with and disease caused by the UK variant (B.1.1.7). Its effectiveness against the South African variant (B.1.351) falls to 75%, but it prevents 100% of severe disease.</p>
+                                <p>Of the two adenovirus-vector vaccines, the AstraZeneca vaccine was developed earlier. One dose provides 76% protection, and a second dose eight weeks later increases protection to 86%. It remains effective against the UK variant (B.1.1.7), but its effectiveness against the South African variant drops considerably. The Johnson &amp; Johnson vaccine was completed later; variants were already circulating during its trials, with the UK variant already widespread, and it showed about 76.7% effectiveness.</p>
+                                <p>B.1.617.1 and B.1.617.2, the recently fast-spreading sub-lineages of the Indian variant (B.1.617), increase transmissibility, and cases are rising in many countries. UK studies also show that it is no less transmissible than the UK variant (B.1.1.7). Its effects on vaccines and drugs are not yet clear, and the results of existing small studies vary, with reductions in neutralizing antibodies ranging from very limited to 7-fold. The effectiveness of the SARS-CoV-2 monoclonal antibody therapy developed by Eli Lilly and Company (Lilly) is reduced. More research is needed to confirm these findings.</p>
+                                <div>
+                                    <p class="bg-light rounded p-3 border"><strong>Note 4</strong> COVID-19 Weekly Epidemiological Update (2021/05/11 edition)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                                 Q6. How effective are existing vaccines against the Indian variant?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p>On May 22, 2021, Public Health England (PHE) announced in a press release that, after two doses, the Pfizer, Moderna and AstraZeneca vaccines are highly effective against B.1.617.2, a sub-lineage of the Indian variant (B.1.617), with effectiveness similar to that against the UK variant (B.1.1.7), and that they help reduce hospitalization and death. After two doses, the Pfizer vaccine is 88% effective and the AstraZeneca vaccine 60% effective, but after only one dose, both are only 33% effective.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container mb-3">
+                <ol class="notes-small">
+                    <li id="note1">SARS-CoV-2 variants that are particularly transmissible are listed as Variants of Concern (VOC). They include the UK variant (B.1.1.7), the South African variant (B.1.351), the Brazilian variant (P.1 or B.1.1.28.1), the UK variant with E484K (B.1.1.7 with E484K) and B.1.617.2, a sub-lineage of the Indian variant. The incidence of the UK variant began rising at the end of October 2020 and it gradually became dominant in many countries; it is also the variant behind Taiwan's 2021 outbreak. The Brazilian variant is another variant that has recently been spreading rapidly around the world.</li>
+                    <li id="note2">SARS-CoV-2 strains can be classified into six major types. The dominant Type VI is defined jointly by C241T (5'UTR), C3037T (nsp3, F924F), C14408T (nsp12, P4715L) and A23403 (S, D614G) (Yang et al., PNAS, 2020/12). DOI: https://doi.org/10.1073/pnas.2007840117</li>
+                </ol>
+            </div>
+            <div class="container mb-3">
+                <h5>References</h5>
+                <ul>
+                    <li>World Health Organization (WHO), COVID-19 Weekly Epidemiological Update (2021/05/11 edition) (<a href="https://www.who.int/publications/m/item/weekly-epidemiological-update-on-covid-19---11-may-2021">https://www.who.int/publications/m/item/weekly-epidemiological-update-on-covid-19---11-may-2021</a>)</li>
+                    <li>Public Health England (PHE), SARS-CoV-2 Variants of Concern and Variants Under Investigation in England (updated 2021/05/13) (<a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/986380/Variants_of_Concern_VOC_Technical_Briefing_11_England.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/986380/Variants_of_Concern_VOC_Technical_Briefing_11_England.pdf</a>)</li>
+                    <li>Public Health England (PHE), press release: Vaccines highly effective against B.1.617.2 variant after 2 doses (2021/05/22) (<a href="https://www.gov.uk/government/news/vaccines-highly-effective-against-b-1-617-2-variant-after-2-doses">https://www.gov.uk/government/news/vaccines-highly-effective-against-b-1-617-2-variant-after-2-doses</a>)</li>
+                </ul>
+            </div>
+            </div>
+
+            <!-- ===== 中文內容 / Chinese content ===== -->
+            <div data-l="zh">
+            <div class="container-fluid mb-3">
+                <h1 class="text-center">深度解析：印度變種新冠病毒（B.1.617）</h1>
+            </div>
+            <div class="container-fluid mb-3">
+                <p class="text-center">更新日期：2021-05-31 21:00</p>
+            </div>
+            <div class="container mb-2">
+                <p class="text-justify fs-5">新冠病毒持續變異，疫情肆虐全球。目前，英國變異株於國際間大舉傳播，也是臺灣正竭力對抗的變種病毒。然而，造成印度嚴重疫情的印度變異株（B.1.617），也開始備受關注<sup><a href="#note1-zh">1</a></sup>。</p>
+            </div>
+            <div class="container mb-2">
+                <p class="text-justify fs-5">印度變異株於去（2020）年10月5日首次在印度發現。根據世界衛生組織（WHO）報告，今（2021）年5月11日前，印度變異株已在全球約44國現蹤，並持續蔓延至更多國家。臺灣也曾有境外移入個案，所幸皆已在邊境即被匡列。有鑑於此變異株的高傳播性，國人應及早提高警覺，將病毒阻絕於境外，並即時監控其國際傳播趨勢。</p>
+            </div>
+            <div class="container mb-2">
+                <p class="text-justify fs-5">今年2月，中研院「新冠病毒變異全球即時監測網」（下稱監測網）觀察到該變異株的刺突蛋白上，三個重要氨基酸變異L452R、E484Q和P681R的發生頻率，在印度快速爬升。前二者變異會增強病毒與血液中ACE2（angiotensin-converting enzyme 2，人類血管收縮素轉化酶2）的結合，讓病毒更容易逃避人類的免疫系統。第三個變異則可能增強刺突蛋白S1-S2的切割效率，促進病毒融入宿主細胞，加速病毒傳播。</p>
+            </div>
+            <div class="container mb-2">
+                <p class="text-justify fs-5">根據世衛的初步分析，目前的疫苗對印度變異株仍有效，但疫苗的中和抗體效價會降低。英格蘭公共衛生署（PHE）則於今年5月22日公布，輝瑞/BioNTech（Pfizer-BioNTech）、莫德納（Moderna）、牛津/阿斯利康（Oxford/AstraZeneca）等三劑疫苗，對印度變異株子型B.1.617.2有很高的有效性，與對抗英國變異株時的效果相似，也有助降低患者的住院率與死亡率。</p>
+            </div>
+            <div class="container mb-2">
+                <p class="text-justify fs-5">孫子兵法說：「知己知彼，百戰不殆」。中研院分析來自全球共享流感數據倡議組織（GISAID）超過120萬筆的新冠病毒基因序列資料，並在中研院監測網中，呈現世界各國原有病毒株與新興變異株的成長趨勢，有助評估其傳播力以事先預警。同時，監測網也提供了病毒株在各國的變異發生頻率，有利於預測病毒優勢種和疫苗逃脫的可能性，在設計次世代疫苗時納入考量。</p>
+            </div>
+            <div class="container mb-2">
+                <p class="text-justify fs-5">根據監測網，目前變異病毒仍以第六型<sup><a href="#note2-zh">2</a></sup>為主，但已產生約600到1,200種變異子型；而病毒的變異仍會持續發生且難以避免，也無法排除臺灣變異株的可能性，甚至疫苗的成功也可能讓病毒產生更新的優勢種。因此，人類不易完全消滅病毒，未來要努力與之和平共存。不過，若能儘快控制住疫情，減少病毒複製與傳播的機會，將可大大降低產生具高傳染力變種病毒的機會。因此，「落實病毒邊境管理，遵守國家防疫政策，養成防疫生活好習慣，提升整體疫苗接種率」，多管齊下，是對抗病毒的根本之道。</p>
+            </div>
+            <div class="container mb-2">
+                <div class="accordion accordion-flush" id="accordionFlushExample-zh">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-zh" aria-expanded="false" aria-controls="flush-collapseOne-zh">
+                                Q1. 目前深受關切的新冠病毒變異株（Variant of Concern, VOC）有哪些？
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne-zh" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample-zh">
+                            <div class="accordion-body">
+                                <p>根據英格蘭公共衛生署（Public Health England, PHE）的報告（註一），目前有5株深受關切的變異株，包括：英國變異株（B.1.1.7）、南非變異株（B.1.351）、巴西變異株（稱P.1或B.1.1.28.1）、英國再變異株（B.1.1.7 with E484K），以及近日獲廣泛討論的印度變異株（B.1.617）的子系B.1.617.2。這些變異株都在刺突蛋白（spike protein）上發生了重要變異，增加病毒入侵或疫苗脫逃的機會。換言之，都比變異前的病毒株更具傳染力。</p>
+                                <p>本院分析了來自全球共享流感數據倡議組織（GISAID）資料庫上超過120萬筆的新冠病毒基因序列資料，得到這五株深受關切的變異株發生頻率的時間動態趨勢（圖一）。英格蘭公共衛生署與世界衛生組織（WHO）分別在2021年5月7日和2021年5月11日將印度變異株（B.1.617）的子系B.1.617.2升級為「深受關切的變異株」。B.1.617.1和B.1.617.3雖尚未被歸類為深受關切的變異株，但也被英格蘭公共衛生署列為「調查中的變異株（Variant Under Investigation, VUI）」。</p>
+                                <figure class="figure text-center mx-auto d-block">
+                                    <img src="/doc/20210531-1.png" class="figure-img img-fluid rounded " alt="五株深受關切的變異株發生頻率的時間動態趨勢">
+                                    <figcaption class="figure-caption fs-6">圖一、五株深受關切的變異株發生頻率的時間動態趨勢</figcaption>
+                                </figure>
+                                <div >
+                                    <p class="bg-light rounded p-3 border"><strong>註一</strong> SARS-CoV-2 variants of concern and variants under investigation in England（Technical briefing 11，2021/05/13更新版）</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo-zh" aria-expanded="false" aria-controls="flush-collapseTwo-zh">
+                                Q2. 還有哪些變異株受到廣泛注意與討論？
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo-zh" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample-zh">
+                            <div class="accordion-body">
+                                <p>2020年底，世界衛生組織公告四個引起廣泛注意的變異株：D614G變異株、英國變異株（B.1.1.7，也稱為VOC 202012/01或501Y.V1）、南非變異株（B.1.351，也稱為VOC 202012/02或501Y.V2）、丹麥水貂變異株（也稱為Cluster 5）。前三種變異株都發現有傳染力增加，目前也還在各國流傳，特別是英國變異株（B.1.1.7）。丹麥水貂變種比較特別，研究發現人身上的新冠病毒會傳貂，貂也會把新冠病毒回傳人，但所幸後來沒在人類身上發現丹麥水貂變異株（註二）。</p>
+                                <p>其他變異株尚包括：巴西變異株（P.1，或稱B.1.1.28.1）也有強的傳播力且有疫苗逃逸現象，被列入深受關切的變異株（VOC）、東非變異株（烏干達和盧安達）（A.23.1）、美國加州變異株（B.1.429），以及陸續發現的英國再變異株（B.1.1.7 with E484K、A.23.1 with E484K、B.1.525），其中B.1.1.7 with E484K也已列入深受關切的變異株。</p>
+                                <div>
+                                    <p class="bg-light rounded p-3 border"><strong>註二</strong> 細節請參見中研院新冠病毒全球即時監測網（SARS-CoV-2 Variation Monitoring Network, Academia Sinica）於2021-01-09的報告。網址：<a href="https://sarscov2.sinica.edu.tw/doc/20210109.html">https://sarscov2.sinica.edu.tw/doc/20210109.html</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree-zh" aria-expanded="false" aria-controls="flush-collapseThree-zh">
+                                Q3. 印度變種新冠病毒最早在哪裡被發現？
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree-zh" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample-zh">
+                            <div class="accordion-body">
+                                <p>印度變異株（B.1.617）（註三）於2020年10月5日首次在印度（Maharashtra, India）發現，隨著病毒的傳播與變異後，目前有三個子系（sub-lineages）：B.1.617.1、B.1.617.2、B.1.617.3，不同子系在刺突蛋白（spike protein）上的變異有所差異（圖二）。</p>
+                                <figure class="figure text-center mx-auto d-block">
+                                    <img src="/doc/20210531-2.png" class="figure-img img-fluid rounded " alt="印度變異株（B.1.617）的子系在刺突蛋白上的氨基酸變異">
+                                    <figcaption class="figure-caption fs-6">圖二、印度變異株（B.1.617）的子系在刺突蛋白上的氨基酸變異</figcaption>
+                                </figure>
+                                <div>
+                                    <p class="bg-light rounded p-3 border"><strong>註三</strong> 印度變異株（B.1.617）的定義：根據英格蘭公共衛生署的SARS-CoV-2 variants of concern and variants under investigation in England報告（Technical briefing 9，2021/04/22更新版），印度變異株有13個病毒基因變異點（也有報告是定義為15或17個，差別在於要不要把已經普遍發生的單位點變異納入，例如D614G），包括：ORF1ab上的5個單點變異，分別是nps3上的C3457T（Y1064Y）、C4965T（T749I）、nsp6上的A11201G（T77A）、nsp13上的G17523T（M429I）和nsp15上的A20396G（K259R）；ORF3a上的C25469T（S26L）；ORF7a上的T27638C（V82A）；N上的G28881T（R203M）；刺突蛋白上的5個單點變異，包括T21895C (D111D on NTD)、G22022A (E154K on NTD)、T22917G (L452R on RBD)、G23012C (E484Q on RBD) 和C23604G (P681R immediately upstream of the furin cleavage site)。以上變異名稱的描述先呈現核苷酸變異，括號內再補充氨基酸變異名稱。世界衛生組織（WHO）、PANGO譜系、美國疾病管制與預防中心（US CDC）對「B.1.617」子系定義的單位點變異與英格蘭公共衛生署略有不同。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour-zh" aria-expanded="false" aria-controls="flush-collapseFour-zh">
+                                Q4. 印度變種病毒的特性為何？與其他的變種病毒有何不同？
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFour-zh" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample-zh">
+                            <div class="accordion-body">
+                                <p>印度變異株（B.1.617）在刺突蛋白上有5個變異，其中3個氨基酸變異： L452R、E484Q 和P681R，特別值得注意。</p>
+                                <p>L452R和E484Q落在受體結合域（receptor binding domain, RBD）上的重要功能序列（receptor binding motif, RBM）上，RBM是新冠病毒刺突蛋白和人類血管收縮素轉化酶2（angiotensin-converting enzyme 2, ACE2）的結合面。L452R和E484Q會增強ACE2的結合，以利病毒產生逃避人類免疫系統的能力。</p>
+                                <p>P681R落在furin蛋白酶切割位點區（furin cleavage site）前，變異可能增強刺突蛋白S1-S2的切割效率，促進病毒與宿主細胞融合，進而增加病毒進入感染宿主細胞，讓病毒傳播更快速。</p>
+                                <p>中研院新冠病毒全球即時監測網於今（2021）年2月也觀察到印度變異株在刺突蛋白（spike protein）上L452R、E484Q 和P681R變異的發生頻率在印度快速爬升（圖三）。L452R在加州變異株（B.1.429）上也有。E484Q出現在印度變異株的子系B.1.617.2上，與過去南非變異株、巴西變異株、英國再變異株上看到的E484K不同。P681R過去東非變異株（A.23.1）上也有，但跟英國變異株看到的P681H不同。</p>
+                                <figure class="figure text-center mx-auto d-block">
+                                    <img src="/doc/20210531-3.png" class="figure-img img-fluid rounded " alt="在印度，印度變異株（B.1.617）在刺突蛋白上主要變異發生的時間變化趨勢">
+                                    <figcaption class="figure-caption fs-6">圖三、在印度，印度變異株（B.1.617）在刺突蛋白上主要變異發生的時間變化趨勢</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive-zh" aria-expanded="false" aria-controls="flush-collapseFive-zh">
+                                Q5. 新冠病毒疫苗對變種病毒是否仍然有效？
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFive-zh" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample-zh">
+                            <div class="accordion-body">
+                                <p>面對變種病毒，各家疫苗的表現不盡相同，但一般而言，疫苗效果雖可能有所降，但仍有一定保護力，且有助降低重症與死亡率，雖有零星副作用的案例，但整體而言利大於弊。</p>
+                                <p>各疫苗廠都在評估是否可以透過增加劑量，增加免疫注射，或是開發新的次世代疫苗，來面對新變種病毒的挑戰。例如兩款RNA疫苗，輝瑞（Pfizer-BioNTech）與莫德納（Moderna）開發較早也較快，雖然是在許多變異發生前就開發完成，但因為設計有容易修改的優點，方便後續疫苗的改良。</p>
+                                <p>根據世界衛生組織（WHO）的報告（註四），以色列與卡達的臨床試驗結果顯示，施打兩劑後，輝瑞疫苗對英國變異株（B.1.1.7）的感染前防護力與感染後病症都有相當高的保護效果。對南非變異株（B.1.351）的效果雖然降到75%，但能100%預防重症。</p>
+                                <p>兩款腺病毒載體疫苗，AZ疫苗開發較早，施打一劑有76%防護效果，隔八週施打第二劑會增強防護效果到86%，對於英國變異株（B.1.1.7）仍是有效，但對南非變異株效果下降多。嬌生疫苗開發完成較晚，但試驗期間已經有變種病毒，英國變異株當時已普遍，疫苗有約76.7%的有效性。</p>
+                                <p>最近快速傳播的印度變異株（B.1.617）子系B.1.617.1和B.1.617.2變異會造成病毒傳播力增加，在多國感染案例增加，英國的研究也顯示其傳染力不低於英國變異株（B.1.1.7）。對疫苗與藥物的影響尚未清楚，現有的小型研究的結果也有所差異，中和抗體從下降很有限到下降7倍都有，對於禮來（Eli Lilly and Company, Lilly）研發的新冠病毒單株抗體療法效果降低，還需要更多的研究來確認。</p>
+                                <div>
+                                    <p class="bg-light rounded p-3 border"><strong>註四</strong> COVID-19 Weekly Epidemiological Update（2021/05/11版）</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix-zh" aria-expanded="false" aria-controls="flush-collapseSix-zh">
+                                 Q6. 現有疫苗對印度變種病毒效果如何？
+                            </button>
+                        </h2>
+                        <div id="flush-collapseSix-zh" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample-zh">
+                            <div class="accordion-body">
+                                <p>2021年5月22日，英格蘭公共衛生署（Public Health England, PHE）發布新聞稿表示，在完成輝瑞、莫德納（Moderna）、AZ等疫苗的兩劑接種後，對印度變異株（B.1.617）子型B.1.617.2有很高的效果，與對抗英國變異株（B.1.1.7）的效果相似，也對降低住院與死亡率有幫助。接種兩劑後，輝瑞有88%效果，AZ疫苗有60%效果，但若只有施打一劑，輝瑞和AZ都只有33%效果。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container mb-3">
+                <ol class="notes-small">
+                    <li id="note1-zh">在新冠病毒變異的子型中，其傳播性特別高者，被列為深受關切的變異株（Variant of Concern, VOC），包括：英國變異株（B.1.1.7）、南非變異株（B.1.351）、巴西變異株（稱P.1或B.1.1.28.1）、英國再變異株（B.1.1.7 with E484K），以及印度變異株的子型B.1.617.2。其中，英國變異株發生率自2020年10月底開始攀升，在多國逐漸成為主流，也是造成臺灣2021年疫情爆發的病毒變異株。巴西變異株則是近期另一在國際間快速傳播的變異株。</li>
+                    <li id="note2-zh">病毒株可歸類為六大類型，主宰世界的第6型病毒株是由 C241T（5’UTR）、C3037T（nsp3, F924F）、C14408T（nsp12, P4715L）、A23403（S, D614G）所共同定義（Yang et al., PNAS, 2020/12）。DOI：https://doi.org/10.1073/pnas.2007840117</li>
+                </ol>
+            </div>
+            <div class="container mb-3">
+                <h5>參考資料</h5>
+                <ul>
+                    <li>世界衛生組織（World Health Organization, WHO）的COVID-19 Weekly Epidemiological Update報告（2021/05/11版）（<a href="https://www.who.int/publications/m/item/weekly-epidemiological-update-on-covid-19---11-may-2021">https://www.who.int/publications/m/item/weekly-epidemiological-update-on-covid-19---11-may-2021</a>）</li>
+                    <li>格蘭公共衛生署（Public Health England, PHE）的SARS-CoV-2 Variants of Concern and Variants Under Investigation in England報告（2021/05/13更新版）（<a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/986380/Variants_of_Concern_VOC_Technical_Briefing_11_England.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/986380/Variants_of_Concern_VOC_Technical_Briefing_11_England.pdf</a>）</li>
+                    <li>格蘭公共衛生署（Public Health England, PHE）的即時報告（Press release – Vaccines highly effective against B.1.617.2 variant after 2 doses）（2021/05/22版）（<a href="https://www.gov.uk/government/news/vaccines-highly-effective-against-b-1-617-2-variant-after-2-doses">https://www.gov.uk/government/news/vaccines-highly-effective-against-b-1-617-2-variant-after-2-doses</a>）</li>
+                </ul>
+            </div>
+                    </div>
+        </main>
+
+        <!-- ===== 頁尾 / Footer ===== -->
+        <footer class="footer mt-auto py-1 text-center">
+            <div class="container d-flex justify-content-center align-items-center gap-2">
+                <img src="/image/img-logo-academiasinica.png"
+                    alt="Academia Sinica Logo"
+                    width="30">
+
+                <p class="text-body-secondary mb-0 footer-text">
+                    &copy; 2026
+                    <a href="https://www.sinica.edu.tw/">Academia Sinica, Taiwan</a>
+                </p>
+            </div>
+        </footer>
+
+        <!-- Bootstrap 5.3.6 JavaScript（bundle 已含 Popper / the bundle includes Popper）：Q&A 視窗、展開問答、圖片輪播都需要
+             Needed by the Q&A modals, the expandable questions and the image carousels -->
+        <script src="/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- 導覽列標示目前頁面、加上 Back 按鈕 / Highlight the navbar item and add the Back button -->
+        <script src="/js/nav-active.js"></script>
+    </body>
+</html>

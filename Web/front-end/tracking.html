@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<!--
+  tracking.html — Tracking 頁 / Tracking page
+  上方：「How to use」按鈕與四個功能按鈕，每個按鈕開啟一個滿版面板（offcanvas）。
+  Top: the "How to use" button and four feature buttons; each opens a full-screen panel.
+    01 Six Strain Types              → #six       js/six_type.js
+    02 Emerging Genomic Variation    → #gene      js/genomic_variation.js
+    03 Variant of Concern Tracking   → #voc       js/voc.js
+    04 CSS Rankings                  → #cssPanel  css.html（iframe，由 js/tracking.js 載入 / loaded by js/tracking.js）
+  下方：互動世界地圖，點國家或 Global View 開啟 2×2 圖表視窗（js/word_country.js）。
+  Bottom: interactive world map; clicking a country or Global View opens the 2×2 chart modal (js/word_country.js).
+  網址加 #six / #gene / #voc / #css 會直接開啟對應面板（js/tracking.js）。
+  Adding #six / #gene / #voc / #css to the URL opens that panel directly (js/tracking.js).
+  樣式 / Styles：css/site.css（全站共用 shared）、css/tracking.css（本頁 this page）
+-->
+<html lang="en">
+    <head>
+        <title>SARS-CoV-2 Variation Monitoring Network</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- Bootstrap 5.3.6（本機 / local） -->
+        <link rel="stylesheet" href="/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+        <!-- noUiSlider：Genomic 面板的 AF 範圍滑桿 / AF range slider in the Genomic panel -->
+        <link href="https://cdn.jsdelivr.net/npm/nouislider@15.8.1/dist/nouislider.min.css" rel="stylesheet">
+
+        <!-- 全站共用樣式 / Shared site styles -->
+        <link rel="stylesheet" href="/css/site.css">
+        <!-- 本頁樣式 / Tracking page styles -->
+        <link rel="stylesheet" href="/css/tracking.css">
+
+        <!-- 圖表相關套件 / Chart libraries
+          Chart.js（圖表 charts）、date-fns adapter（時間軸 time axis）、
+          datalabels（數值標籤 value labels）、jsPDF（下載 PDF）、noUiSlider（滑桿 slider） -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.1.1/dist/chart.umd.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/nouislider@15.8.1/dist/nouislider.min.js"></script>
+
+        <!-- 中英文切換：要放在 <head>，頁面才不會先閃出另一種語言
+          Language switch: must be in <head> so the other language never flashes -->
+        <script src="/js/i18n.js"></script>
+        <!-- 圖表文字的中英文切換（需在 Chart.js 之後）/ Chart text translation (after Chart.js) -->
+        <script src="/js/chart-i18n.js"></script>
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+        <!-- ===== 導覽列 / Navigation bar ===== -->
+        <header class="fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-dark ">
+                <div class="container-fluid px-2">
+                    <a class="navbar-brand fw-bold text-truncate me-auto" href="/index.html">SARS-CoV-2 Variation Monitoring Network</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto me-4 mb-2 mb-lg-0 nav-pills">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/tracking.html">Tracking</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about.html">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active nav-shl" href="https://shlab.duckdns.org/">Smart Health Lab</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="flex-fill pt-4">
+            <div class="tracking-shell">
+
+                <!-- ===== 右上角「How to use」按鈕 / "How to use" button ===== -->
+                <div class="tracking-topbar">
+                    <button type="button" class="info-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop-info" aria-label="How to use this page">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+                        </svg>
+                        <span><span data-l="en">How to use</span><span data-l="zh">使用說明</span></span>
+                    </button>
+                </div>
+
+                <!-- ===== 使用說明視窗：每張圖卡是一段說明加一張示意圖
+                  "How to use" modal: each card is a short note plus a screenshot ===== -->
+                <div class="modal fade" id="staticBackdrop-info" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel"><span data-l="en">How to use the Tracking page</span><span data-l="zh">Tracking 頁面使用說明</span></h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body bg-dark">
+                                <div class="card mx-auto p-3 mb-3 info-card">
+                                    <div class="card-body">
+                                        <p class="card-text fs-6" data-l="en">Click a country on the map to view its charts, or click <b>Global View</b> to view worldwide statistics.</p>
+                                        <p class="card-text fs-6" data-l="zh">點選地圖上的國家即可檢視該國圖表，或點選 <b>全球檢視</b> 查看全球統計資料。</p>
+                                    </div>
+                                    <img src="/image/info/tracking_home.svg" class="card-img-top" alt="Map view of the Tracking page">
+                                </div>
+                                <div class="card mx-auto p-3 mb-3 info-card">
+                                    <div class="card-body">
+                                        <p class="card-text fs-6" data-l="en">After selecting a country on the map, the overview shown below will be displayed. This page provides a general summary of the selected country. For more detailed information, please open the 【Six Strain Types】, 【Emerging Genomic Variation】, 【Variant of Concern (VOC) Tracking】 and 【Correlated SNV Set (CSS) Rankings】 panels.</p>
+                                        <p class="card-text fs-6" data-l="zh">在地圖上選擇國家後，會顯示如下的總覽，提供該國的概況。若需要更詳細的資訊，請開啟【六型病毒株】、【新興基因體變異】、【關注變異株（VOC）追蹤】及【相關 SNV 組（CSS）排名】面板。</p>
+                                    </div>
+                                    <img src="/image/info/tracking_home_country.svg" class="card-img-top" alt="Country overview with four charts">
+                                </div>
+                                <div class="card mx-auto p-3 mb-3 info-card">
+                                    <div class="card-body">
+                                        <p class="card-text fs-6"><span data-l="en">【Six Strain Types】panel</span><span data-l="zh">【六型病毒株】面板</span></p>
+                                    </div>
+                                    <img src="/image/info/Six Strain Types.svg" class="card-img-top" alt="Six Strain Types panel">
+                                </div>
+                                <div class="card mx-auto p-3 mb-3 info-card">
+                                    <div class="card-body">
+                                        <p class="card-text fs-6"><span data-l="en">【Emerging Genomic Variation】panel</span><span data-l="zh">【新興基因體變異】面板</span></p>
+                                    </div>
+                                    <img src="/image/info/Emerging Genomic Variation.svg" class="card-img-top" alt="Emerging Genomic Variation panel">
+                                </div>
+                                <div class="card mx-auto p-3 mb-3 info-card">
+                                    <div class="card-body">
+                                        <p class="card-text fs-6"><span data-l="en">【Variant of Concern (VOC) Tracking】panel</span><span data-l="zh">【關注變異株（VOC）追蹤】面板</span></p>
+                                    </div>
+                                    <img src="/image/info/VOC tracking.svg" class="card-img-top" alt="Variant of Concern (VOC) Tracking panel">
+                                </div>
+                                <div class="card mx-auto p-3 mb-3 info-card-sm">
+                                    <div class="card-body">
+                                        <p class="card-text fs-6"><span data-l="en">【Correlated SNV Set (CSS) Rankings】panel</span><span data-l="zh">【相關 SNV 組（CSS）排名】面板</span></p>
+                                    </div>
+                                    <img src="/image/info/CSS Rankings.svg" class="card-img-top" alt="Correlated SNV Set (CSS) Rankings panel">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== 四個功能按鈕與各自的滿版面板
+                  Four feature buttons and their full-screen panels
+                  面板是 fixed 定位，不佔 grid 的位置 / Panels are fixed and take no grid space ===== -->
+                <div class="feature-grid">
+
+                    <!-- ── 01 Six Strain Types（js/six_type.js）── -->
+                    <button class="feature-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#six" aria-controls="six">
+                        <span class="feature-num">01</span>
+                        <span class="feature-label"><span data-l="en">Six Strain Types</span><span data-l="zh">六型病毒株</span></span>
+                        <span class="feature-arrow" aria-hidden="true">→</span>
+                    </button>
+                    <div class="offcanvas offcanvas-start offcanvas-fullscreen" data-bs-scroll="true" tabindex="-1" id="six" aria-labelledby="sixLabel">
+                        <div class="offcanvas-header">
+                            <h4 class="offcanvas-title" id="sixLabel"><span data-l="en">Six Strain Types</span><span data-l="zh">六型病毒株</span></h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <!-- 國家選單 / Country menu -->
+                            <div class="input-group six-country-select mb-3">
+                                <span class="input-group-text text-light bg-dark"><span data-l="en">Select a country</span><span data-l="zh">選擇國家</span></span>
+                                <select class="form-select" aria-label="Select a country" id="countrySelect"></select>
+                            </div>
+
+                            <!-- 左：折線圖　右：每日直方圖 / Left: line chart, right: daily histogram -->
+                            <div class="row g-4 align-items-start chart-pair">
+                                <div class="col-12 chart-pair-col">
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <span class="panel-title"><span data-l="en">Strain type proportions and daily sample sizes</span><span data-l="zh">病毒株類型比例與每日樣本數</span></span>
+                                            <div class="dropdown ms-auto">
+                                                <button class="btn btn-white dropdown-toggle btn-sm py-1 px-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img class="dl-icon" src="/image/download.svg" alt="Download">
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" id="printChart-six"><span data-l="en">Print chart</span><span data-l="zh">列印圖表</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPNG-six"><span data-l="en">Download PNG image</span><span data-l="zh">下載 PNG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadJPEG-six"><span data-l="en">Download JPEG image</span><span data-l="zh">下載 JPEG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPDF-six"><span data-l="en">Download PDF document</span><span data-l="zh">下載 PDF 文件</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="chart-box">
+                                            <canvas id="lineChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 chart-pair-col">
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <span class="panel-title"><span data-l="en">Daily strain type proportions</span><span data-l="zh">各病毒株類型的每日比例</span></span>
+                                            <div class="dropdown ms-auto">
+                                                <button class="btn btn-white dropdown-toggle btn-sm py-1 px-2" type="button" id="dropdownMenuButton1b" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img class="dl-icon" src="/image/download.svg" alt="Download">
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1b">
+                                                    <li><a class="dropdown-item" id="printChart-sixBar"><span data-l="en">Print chart</span><span data-l="zh">列印圖表</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPNG-sixBar"><span data-l="en">Download PNG image</span><span data-l="zh">下載 PNG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadJPEG-sixBar"><span data-l="en">Download JPEG image</span><span data-l="zh">下載 JPEG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPDF-sixBar"><span data-l="en">Download PDF document</span><span data-l="zh">下載 PDF 文件</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="chart-box">
+                                            <canvas id="barChart"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center align-items-center mt-2">
+                                        <div class="col-auto">
+                                            <button id="toggleBarPlay" class="btn btn-dark btn-sm">▶</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="range" id="progressSlider" class="form-range" min="0" step="1">
+                                        </div>
+                                        <div class="col-auto">
+                                            <span id="barDateLabel" class="ms-3 fs-5 fw-bold"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 說明 / Description -->
+                            <div class="container mt-4 text-justify">
+                                <p data-l="en">SARS-CoV-2 strains can be classified into six major types. Type VI (blue) has been the predominant strain type worldwide since April 2020. Use the menu above to see how the six types change over time in different countries. The curves show the daily proportion of samples of each type (left vertical axis), and the histogram shows the number of samples per day (right vertical axis). Move your mouse pointer over a Type label to see the definition of each strain type.</p>
+                                <p data-l="zh">新型冠狀病毒株可分為6大型，第6型 ( 藍色 ) 自今年4月已成為全球最主要的病毒株類型。使用者可透過上方選單來查看不同國家6大型隨時間的變化，曲線呈現6大型每天的病毒株樣本的比率隨著時間的變化 (左縱軸)，直方圖表示每日病毒株樣本的數量 (右縱軸)。游標移到 Type 處會出現各病毒株類型的定義。</p>
+                                <p><span data-l="en">Last updated</span><span data-l="zh">最後更新</span>: 2026-08-27</p>
+                            </div>
+                            <!-- Type I–VI 定義圖：滑鼠移到標籤上切換圖片
+                              Type I–VI definitions: hover a label to switch the image -->
+                            <hr class="my-4 border-dark w-100 mx-auto">
+                            <div class="container text-center my-4">
+                                <span class="hover-label active-hover mx-2" data-img="type1.jpg">Type I</span>
+                                <span class="hover-label mx-2" data-img="type2.jpg">Type II</span>
+                                <span class="hover-label mx-2" data-img="type3.jpg">Type III</span>
+                                <span class="hover-label mx-2" data-img="type4.jpg">Type IV</span>
+                                <span class="hover-label mx-2" data-img="type5.jpg">Type V</span>
+                                <span class="hover-label mx-2" data-img="type6.jpg">Type VI</span>
+                            </div>
+                            <div class="container text-center">
+                                <img id="previewImage" src="/image/type1.jpg" alt="Type I" class="img-fluid" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── 02 Emerging Genomic Variation（js/genomic_variation.js）── -->
+                    <button class="feature-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#gene" aria-controls="gene">
+                        <span class="feature-num">02</span>
+                        <span class="feature-label"><span data-l="en">Emerging Genomic Variation</span><span data-l="zh">新興基因體變異</span></span>
+                        <span class="feature-arrow" aria-hidden="true">→</span>
+                    </button>
+                    <div class="offcanvas offcanvas-top offcanvas-fullscreen" data-bs-scroll="true" tabindex="-1" id="gene" aria-labelledby="geneLabel">
+                        <div class="offcanvas-header">
+                            <h4 class="offcanvas-title" id="geneLabel"><span data-l="en">Emerging Genomic Variation</span><span data-l="zh">新興基因體變異</span></h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <div class="container-fluid px-0">
+                                <!-- 國家、基因選單 / Country and gene menus -->
+                                <div class="row g-3 mb-3 justify-content-center align-items-center">
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-group">
+                                            <span class="input-group-text text-light bg-dark"><span data-l="en">Country</span><span data-l="zh">國家</span></span>
+                                            <select class="form-select" id="genomic-country" aria-label="Country"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-group">
+                                            <span class="input-group-text text-light bg-dark"><span data-l="en">Gene</span><span data-l="zh">基因</span></span>
+                                            <select class="form-select" id="genomic-gene" aria-label="Gene"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Latest AF 範圍滑桿 / Latest AF range slider -->
+                                <div class="row g-3 mb-3 justify-content-center align-items-center">
+                                    <div class="col-12 col-xl-8">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="input-group-text text-light bg-dark flex-shrink-0" id="slider-value">Latest allele frequency (AF): 0.250 – 0.750</div>
+                                            <div id="slider" class="flex-grow-1"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="loadingSpinner" class="d-flex justify-content-center mt-3 d-none">
+                                    <div class="spinner-border" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                                <!-- 左：折線圖　右：每日直方圖 / Left: line chart, right: daily histogram -->
+                                <div class="row g-4 align-items-start chart-pair">
+                                    <div class="col-12 chart-pair-col">
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <span class="panel-title"><span data-l="en">Variation frequencies and daily sample sizes</span><span data-l="zh">變異頻率與每日樣本數</span></span>
+                                            <div class="dropdown ms-auto">
+                                                <button class="btn btn-white dropdown-toggle btn-sm py-1 px-2" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img class="dl-icon" src="/image/download.svg" alt="Download">
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
+                                                    <li><a class="dropdown-item" id="printChart-gene"><span data-l="en">Print chart</span><span data-l="zh">列印圖表</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPNG-gene"><span data-l="en">Download PNG image</span><span data-l="zh">下載 PNG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadJPEG-gene"><span data-l="en">Download JPEG image</span><span data-l="zh">下載 JPEG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPDF-gene"><span data-l="en">Download PDF document</span><span data-l="zh">下載 PDF 文件</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="chart-box">
+                                            <canvas id="linearChart-geno"></canvas>
+                                        </div>
+                                        <div id="linearChart-geno-legend" class="mt-2 p-2 gene-legend"></div>
+                                    </div>
+                                    <div class="col-12 chart-pair-col">
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <span class="panel-title"><span data-l="en">Daily variation frequencies</span><span data-l="zh">每日變異頻率</span></span>
+                                            <div class="dropdown ms-auto">
+                                                <button class="btn btn-white dropdown-toggle btn-sm py-1 px-2" type="button" id="dropdownMenuButton2b" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img class="dl-icon" src="/image/download.svg" alt="Download">
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton2b">
+                                                    <li><a class="dropdown-item" id="printChart-geneBar"><span data-l="en">Print chart</span><span data-l="zh">列印圖表</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPNG-geneBar"><span data-l="en">Download PNG image</span><span data-l="zh">下載 PNG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadJPEG-geneBar"><span data-l="en">Download JPEG image</span><span data-l="zh">下載 JPEG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPDF-geneBar"><span data-l="en">Download PDF document</span><span data-l="zh">下載 PDF 文件</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="chart-box">
+                                            <canvas id="barChart-gene"></canvas>
+                                        </div>
+                                        <div class="row justify-content-center align-items-center mt-2">
+                                            <div class="col-auto">
+                                                <button id="toggleBarPlay-gene" class="btn btn-dark btn-sm">▶</button>
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="range" id="progressSlider-gene" class="form-range" min="0" step="1">
+                                            </div>
+                                            <div class="col-auto">
+                                                <span id="barDateLabel-gene" class="ms-3 fs-5 fw-bold"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 說明 / Description -->
+                                <div class="container-fluid px-0 mt-3 text-justify">
+                                    <p data-l="en">Type VI strains carry four highly correlated variations (241T, 3037T, 14408T and 23403G). Type VI has become the predominant strain type worldwide and continues to spread, and new subtypes have been observed. Use the menus above to view emerging variations in different countries. The lines show the frequency of the variation at each site (left vertical axis), and the histogram shows the number of strains per day (right vertical axis).</p>
+                                    <p data-l="zh">第6型病毒株帶有四個高相關的變異 (241T、3037T、14408T、23403G) ，目前成為全球最主要的病毒株類型，且持續傳播，也觀察到新的亞型出現。使用者可透過上方選單來查看不同國家的新興變異，線表示特定位點的變異頻率 (左縱軸)，直方圖表示每日病毒株數量 (右縱軸)。</p>
+                                    <p><span data-l="en">Last updated</span><span data-l="zh">最後更新</span>: 2026-06-27</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── 03 Variant of Concern (VOC) Tracking（js/voc.js）── -->
+                    <button class="feature-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#voc" aria-controls="voc">
+                        <span class="feature-num">03</span>
+                        <span class="feature-label"><span data-l="en">Variant of Concern (VOC) Tracking</span><span data-l="zh">關注變異株（VOC）追蹤</span></span>
+                        <span class="feature-arrow" aria-hidden="true">→</span>
+                    </button>
+                    <div class="offcanvas offcanvas-end offcanvas-fullscreen" data-bs-scroll="true" tabindex="-1" id="voc" aria-labelledby="vocLabel">
+                        <div class="offcanvas-header border-bottom">
+                            <h4 class="offcanvas-title" id="vocLabel"><span data-l="en">Variant of Concern (VOC) Tracking</span><span data-l="zh">關注變異株（VOC）追蹤</span></h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body voc-body">
+
+                            <!-- 國家、VOC 選單 / Country and VOC menus -->
+                            <div class="voc-toolbar">
+                                <div class="input-group voc-select">
+                                    <span class="input-group-text text-light bg-dark"><span data-l="en">Country</span><span data-l="zh">國家</span></span>
+                                    <select class="form-select" id="voc-country"></select>
+                                </div>
+                                <div class="input-group voc-select">
+                                    <span class="input-group-text text-white bg-dark border-dark"><span data-l="en">VOC</span><span data-l="zh">變異株</span></span>
+                                    <input class="form-control dropdown-toggle border-dark" data-bs-toggle="dropdown"
+                                        readonly id="variantInput" aria-label="VOC">
+                                    <ul class="dropdown-menu p-3" id="variantDropdown">
+                                        <li><div class="form-check"><input class="form-check-input variant-checkbox" type="checkbox" value="All" id="v-All"><label class="form-check-label" for="v-All"><span data-l="en">All</span><span data-l="zh">全部</span></label></div></li>
+                                        <li><div class="form-check"><input class="form-check-input variant-checkbox" type="checkbox" value="Alpha" id="v-Alpha"><label class="form-check-label" for="v-Alpha">Alpha</label></div></li>
+                                        <li><div class="form-check"><input class="form-check-input variant-checkbox" type="checkbox" value="Beta" id="v-Beta"><label class="form-check-label" for="v-Beta">Beta</label></div></li>
+                                        <li><div class="form-check"><input class="form-check-input variant-checkbox" type="checkbox" value="Delta" id="v-Delta"><label class="form-check-label" for="v-Delta">Delta</label></div></li>
+                                        <li><div class="form-check"><input class="form-check-input variant-checkbox" type="checkbox" value="Gamma" id="v-Gamma"><label class="form-check-label" for="v-Gamma">Gamma</label></div></li>
+                                        <li><div class="form-check"><input class="form-check-input variant-checkbox" type="checkbox" value="Omicron" id="v-Omicron"><label class="form-check-label" for="v-Omicron">Omicron</label></div></li>
+                                        <li><div class="form-check"><input class="form-check-input variant-checkbox" type="checkbox" value="Others" id="v-Others"><label class="form-check-label" for="v-Others"><span data-l="en">Others</span><span data-l="zh">其他</span></label></div></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- ── 上排：時間趨勢 / Top row: trends over time ── -->
+                            <div class="voc-section-label">
+                                <span class="voc-section-title"><span data-l="en">Trends over time</span><span data-l="zh">隨時間的趨勢</span></span>
+                            </div>
+                            <div class="row g-3 chart-pair">
+                                <div class="col-12 chart-pair-col">
+                                    <div class="voc-card">
+                                        <div class="voc-card-head">
+                                            <div>
+                                                <div class="panel-title"><span data-l="en">VOC frequencies over time</span><span data-l="zh">變異株頻率隨時間的變化</span></div>
+                                                <div class="voc-sub"><span data-l="en">VOC frequencies and daily sample sizes</span><span data-l="zh">變異株頻率與每日樣本數</span></div>
+                                            </div>
+                                            <div class="dropdown ms-auto">
+                                                <button class="btn btn-sm voc-dl-btn dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download">
+                                                    <img class="dl-icon" src="/image/download.svg" alt="">
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton3">
+                                                    <li><a class="dropdown-item" id="printChart-voc"><span data-l="en">Print chart</span><span data-l="zh">列印圖表</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPNG-voc"><span data-l="en">Download PNG image</span><span data-l="zh">下載 PNG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadJPEG-voc"><span data-l="en">Download JPEG image</span><span data-l="zh">下載 JPEG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPDF-voc"><span data-l="en">Download PDF document</span><span data-l="zh">下載 PDF 文件</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="chart-box voc-top-box">
+                                            <canvas id="linearChart-voc"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 chart-pair-col">
+                                    <div class="voc-card">
+                                        <div class="voc-card-head">
+                                            <div>
+                                                <div class="panel-title"><span data-l="en">Sublineage frequencies by VOC</span><span data-l="zh">變異株：譜系頻率</span></div>
+                                                <div class="voc-sub"><span data-l="en">Sublineage frequencies for the last 7 days with available data</span><span data-l="zh">最近 7 個有資料日期的譜系頻率</span></div>
+                                            </div>
+                                            <div class="dropdown ms-auto">
+                                                <button class="btn btn-sm voc-dl-btn dropdown-toggle" type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download">
+                                                    <img class="dl-icon" src="/image/download.svg" alt="">
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton4">
+                                                    <li><a class="dropdown-item" id="printChart-voc2"><span data-l="en">Print chart</span><span data-l="zh">列印圖表</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPNG-voc2"><span data-l="en">Download PNG image</span><span data-l="zh">下載 PNG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadJPEG-voc2"><span data-l="en">Download JPEG image</span><span data-l="zh">下載 JPEG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPDF-voc2"><span data-l="en">Download PDF document</span><span data-l="zh">下載 PDF 文件</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="chart-box voc-top-box">
+                                            <canvas id="linearChart-voc2"></canvas>
+                                        </div>
+                                        <div id="linearChart-voc2-legend" class="voc-legend-box"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ── 下排：組成 / Bottom row: composition ── -->
+                            <div class="voc-section-label">
+                                <span class="voc-section-title"><span data-l="en">VOC and sublineage composition</span><span data-l="zh">變異株與譜系組成</span></span>
+                                <span class="voc-section-text"><span data-l="en">This section compares the overall distribution of VOCs in the selected country with the daily distribution of its most common sublineages.</span><span data-l="zh">比較所選國家變異株的整體分布，以及其最常見譜系的每日分布。</span></span>
+                            </div>
+                            <div class="row g-3 chart-pair">
+                                <div class="col-12 chart-pair-col">
+                                    <div class="voc-card">
+                                        <div class="voc-card-head">
+                                            <div>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span class="voc-badge"><span data-l="en">Overall</span><span data-l="zh">整體</span></span>
+                                                    <span class="panel-title"><span data-l="en">VOC composition</span><span data-l="zh">變異株組成</span></span>
+                                                </div>
+                                                <div class="voc-desc"><span data-l="en">This chart shows the total number of sequences assigned to each VOC across all available records for the selected country. Move your mouse pointer over a VOC in the chart to see which sublineages make up that VOC and the share contributed by each sublineage.</span><span data-l="zh">顯示所選國家所有紀錄中，各變異株的序列總數。將游標移到變異株上，可以看到組成該變異株的譜系，以及各譜系所占的比例。</span></div>
+                                            </div>
+                                            <div class="dropdown ms-auto">
+                                                <button class="btn btn-sm voc-dl-btn dropdown-toggle" type="button" id="dropdownMenuButton5" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download">
+                                                    <img class="dl-icon" src="/image/download.svg" alt="">
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton5">
+                                                    <li><a class="dropdown-item" id="printChart-vocPolar"><span data-l="en">Print chart</span><span data-l="zh">列印圖表</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPNG-vocPolar"><span data-l="en">Download PNG image</span><span data-l="zh">下載 PNG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadJPEG-vocPolar"><span data-l="en">Download JPEG image</span><span data-l="zh">下載 JPEG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPDF-vocPolar"><span data-l="en">Download PDF document</span><span data-l="zh">下載 PDF 文件</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="chart-box voc-bottom-box voc-polar-box">
+                                            <canvas id="voc-polar"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 chart-pair-col">
+                                    <div class="voc-card">
+                                        <div class="voc-card-head">
+                                            <div>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span class="voc-badge"><span data-l="en">Daily</span><span data-l="zh">每日</span></span>
+                                                    <span class="panel-title"><span data-l="en">Top 10 sublineages by proportion</span><span data-l="zh">比例前 10 名的譜系</span></span>
+                                                </div>
+                                                <div class="voc-desc"><span data-l="en">This chart shows the 10 sublineages with the highest proportions on the selected date. Use the slider or the play button to follow how the leading sublineages change over time.</span><span data-l="zh">顯示所選日期比例最高的 10 個譜系。使用滑桿或播放鍵，可以觀察主要譜系隨時間的變化。</span></div>
+                                            </div>
+                                            <div class="dropdown ms-auto">
+                                                <button class="btn btn-sm voc-dl-btn dropdown-toggle" type="button" id="dropdownMenuButton6" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download">
+                                                    <img class="dl-icon" src="/image/download.svg" alt="">
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton6">
+                                                    <li><a class="dropdown-item" id="printChart-vocBar"><span data-l="en">Print chart</span><span data-l="zh">列印圖表</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPNG-vocBar"><span data-l="en">Download PNG image</span><span data-l="zh">下載 PNG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadJPEG-vocBar"><span data-l="en">Download JPEG image</span><span data-l="zh">下載 JPEG 圖片</span></a></li>
+                                                    <li><a class="dropdown-item" id="downloadPDF-vocBar"><span data-l="en">Download PDF document</span><span data-l="zh">下載 PDF 文件</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="chart-box voc-bottom-box">
+                                            <canvas id="voc-barchart"></canvas>
+                                        </div>
+                                        <!-- 播放控制只屬於每日直方圖 / Play controls for the daily histogram -->
+                                        <div class="voc-player">
+                                            <button id="toggleBarPlay-voc" class="btn btn-dark btn-sm voc-play" aria-label="Play daily sublineage proportions over time">▶</button>
+                                            <input type="range" id="progressSlider-voc" class="form-range flex-grow-1" min="0" step="1">
+                                            <span id="barDateLabel-voc" class="voc-date"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!-- /offcanvas-body -->
+                    </div>
+
+                    <!-- ── 04 Correlated SNV Set (CSS) Rankings
+                      內容是 css.html，第一次開啟時才由 js/tracking.js 載入 iframe
+                      The content is css.html, loaded into the iframe by js/tracking.js on first open ── -->
+                    <button class="feature-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#cssPanel" aria-controls="cssPanel">
+                        <span class="feature-num">04</span>
+                        <span class="feature-label"><span data-l="en">Correlated SNV Set (CSS) Rankings</span><span data-l="zh">相關 SNV 組（CSS）排名</span></span>
+                        <span class="feature-arrow" aria-hidden="true">→</span>
+                    </button>
+                    <div class="offcanvas offcanvas-bottom offcanvas-fullscreen" data-bs-scroll="true" tabindex="-1" id="cssPanel" aria-labelledby="cssPanelLabel">
+                        <div class="offcanvas-header border-bottom py-2">
+                            <h4 class="offcanvas-title" id="cssPanelLabel"><span data-l="en">Correlated SNV Set (CSS) Rankings</span><span data-l="zh">相關 SNV 組（CSS）排名</span></h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body p-0">
+                            <iframe class="css-iframe" id="cssPanelIframe" src="about:blank"
+                                title="Correlated SNV Set (CSS) Rankings" loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                </div><!-- /feature-grid -->
+
+                <!-- ===== 世界地圖（js/word_country.js 載入 SVG）
+                  World map (the SVG is loaded by js/word_country.js) ===== -->
+                <section class="map-card"  aria-label="World map">
+                    <div class="map-card-head">
+                        <div class="map-head-actions">
+                            <button type="button" class="global-btn" id="country_global" aria-label="View global statistics">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                                    <path d="m10.495 6.92 1.278-.619a.483.483 0 0 0 .126-.782c-.252-.244-.682-.139-.932.107-.23.226-.513.373-.816.53l-.102.054c-.338.178-.264.626.1.736a.48.48 0 0 0 .346-.027ZM7.741 9.808V9.78a.413.413 0 1 1 .783.183l-.22.443a.6.6 0 0 1-.12.167l-.193.185a.36.36 0 1 1-.5-.516l.112-.108a.45.45 0 0 0 .138-.326M5.672 12.5l.482.233A.386.386 0 1 0 6.32 12h-.416a.7.7 0 0 1-.419-.139l-.277-.206a.302.302 0 1 0-.298.52z"/>
+                                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0M1.612 10.867l.756-1.288a1 1 0 0 1 1.545-.225l1.074 1.005a.986.986 0 0 0 1.36-.011l.038-.037a.88.88 0 0 0 .26-.755c-.075-.548.37-1.033.92-1.099.728-.086 1.587-.324 1.728-.957.086-.386-.114-.83-.361-1.2-.207-.312 0-.8.374-.8.123 0 .24-.055.318-.15l.393-.474c.196-.237.491-.368.797-.403.554-.064 1.407-.277 1.583-.973.098-.391-.192-.634-.484-.88-.254-.212-.51-.426-.515-.741a7 7 0 0 1 3.425 7.692 1 1 0 0 0-.087-.063l-.316-.204a1 1 0 0 0-.977-.06l-.169.082a1 1 0 0 1-.741.051l-1.021-.329A1 1 0 0 0 11.205 9h-.165a1 1 0 0 0-.945.674l-.172.499a1 1 0 0 1-.404.514l-.802.518a1 1 0 0 0-.458.84v.455a1 1 0 0 0 1 1h.257a1 1 0 0 1 .542.16l.762.49a1 1 0 0 0 .283.126 7 7 0 0 1-9.49-3.409Z"/>
+                                </svg>
+                                <span><span data-l="en">Global View</span><span data-l="zh">全球檢視</span></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="map-stage">
+                        <div id="svg-container" class="text-center"></div>
+                        <div class="map-hint"><span data-l="en">Click a country to view its statistics</span><span data-l="zh">點選國家可檢視統計資訊</span></div>
+                        <div class="map-credit"><span data-l="en">Image Reference</span><span data-l="zh">圖片來源</span>: Wikimedia Commons</div>
+                    </div>
+                </section>
+
+            </div><!-- /tracking-shell -->
+
+            <!-- 地圖提示框：放在最外層，用滑鼠的頁面座標定位
+              Map tooltip: kept at the top level and positioned by page coordinates -->
+            <div id="svgTooltip"></div>
+
+            <!-- ===== 國家視窗：點國家或 Global View 後顯示 2×2 圖表
+              Country modal: 2×2 charts after clicking a country or Global View
+              world1 六型 Six types、world2 基因體變異 Genomic、world3 VOC、world4 VOC 譜系 sublineages ===== -->
+            <div class="modal fade" id="countryModal" tabindex="-1" aria-labelledby="countryModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="countryModalLabel"></h1>
+                            <div class="d-flex">
+                                <div class="dropdown ms-auto">
+                                    <button class="btn btn-white dropdown-toggle btn-sm py-1 px-2" type="button" id="dropdownMenuButton-country" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img class="dl-icon" src="/image/download.svg" alt="Download">
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-country">
+                                        <li><a class="dropdown-item" id="printChart-country"><span data-l="en">Print chart</span><span data-l="zh">列印圖表</span></a></li>
+                                        <li><a class="dropdown-item" id="downloadPNG-country"><span data-l="en">Download PNG image</span><span data-l="zh">下載 PNG 圖片</span></a></li>
+                                        <li><a class="dropdown-item" id="downloadJPEG-country"><span data-l="en">Download JPEG image</span><span data-l="zh">下載 JPEG 圖片</span></a></li>
+                                        <li><a class="dropdown-item" id="downloadPDF-country"><span data-l="en">Download PDF document</span><span data-l="zh">下載 PDF 文件</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body p-2">
+                            <div class="row g-2">
+                                <div class="col-6 country-chart-col"><div class="chart-cell"><canvas id="world1"></canvas></div></div>
+                                <div class="col-6 country-chart-col"><div class="chart-cell"><canvas id="world2"></canvas></div></div>
+                                <div class="col-6 country-chart-col"><div class="chart-cell"><canvas id="world3"></canvas></div></div>
+                                <div class="col-6 country-chart-col"><div class="chart-cell"><canvas id="world4"></canvas></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- ===== 頁尾 / Footer ===== -->
+        <footer class="footer mt-auto py-1 text-center">
+            <div class="container d-flex justify-content-center align-items-center gap-2">
+                <img src="/image/img-logo-academiasinica.png"
+                    alt="Academia Sinica Logo"
+                    width="30">
+
+                <p class="text-body-secondary mb-0 footer-text">
+                    &copy; 2026
+                    <a href="https://www.sinica.edu.tw/">Academia Sinica, Taiwan</a>
+                </p>
+            </div>
+        </footer>
+
+        <!-- Bootstrap 5.3.6 JavaScript（bundle 已含 Popper / the bundle includes Popper） -->
+        <script src="/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- 各面板的程式 / Panel scripts
+          word_country.js 會用到前三個檔案的繪圖函式，所以要放在它們後面。
+          word_country.js uses drawing functions from the first three, so it must come after them. -->
+        <script src="/js/six_type.js"></script>
+        <script src="/js/genomic_variation.js"></script>
+        <script src="/js/voc.js"></script>
+        <script src="/js/word_country.js"></script>
+
+        <!-- 面板開關、網址 hash、CSS Rankings 的 iframe / Panel open/close, URL hash, CSS Rankings iframe -->
+        <script src="/js/tracking.js"></script>
+        <!-- 導覽列標示目前頁面 / Highlight the current page in the navbar -->
+        <script src="/js/nav-active.js"></script>
+    </body>
+</html>

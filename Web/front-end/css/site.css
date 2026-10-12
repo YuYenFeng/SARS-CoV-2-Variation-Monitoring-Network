@@ -1,0 +1,162 @@
+/* =====================================================================
+   site.css
+   全站共用樣式：每一頁都會載入。
+   Shared styles loaded by every page.
+
+   內容 / Contents
+     1. 頁面基本設定      Page base
+     2. 導覽列            Navigation bar
+     3. 語言切換按鈕      Language toggle button (button created by i18n.js)
+     4. 文章頁返回按鈕    Back button on article pages (created by nav-active.js)
+     5. 頁尾              Footer
+     6. 共用工具 class    Shared utility classes
+   ===================================================================== */
+
+
+/* ---------------------------------------------------------------------
+   1. 頁面基本設定 / Page base
+   導覽列是 fixed-top，所以內容往下推 80px，避免被導覽列蓋住。
+   The navbar is fixed to the top, so content is pushed down 80px.
+   個別頁面可在自己的 .css 覆寫（例如 tracking.css）。
+   A page can override this in its own stylesheet (e.g. tracking.css).
+   --------------------------------------------------------------------- */
+body {
+  font-family: Arial, sans-serif;
+  padding-top: 80px;
+}
+
+
+/* ---------------------------------------------------------------------
+   2. 導覽列 / Navigation bar
+   --------------------------------------------------------------------- */
+
+/* 右側的 Smart Health Lab 黑色按鈕
+   The black "Smart Health Lab" button on the right */
+.navbar .nav-pills .nav-link.active.nav-shl {
+  background-color: #000;
+  color: #fff;
+}
+
+/* 目前所在頁面的選項（由 nav-active.js 加上 .is-current）
+   Highlight for the current page (nav-active.js adds .is-current).
+   不用 .active，避免和 Smart Health Lab 按鈕的樣式衝突。
+   .active is not used so it does not clash with the Smart Health Lab button. */
+.navbar .nav-link.is-current {
+  background-color: #dee2e6;
+  color: #000 !important;
+  font-weight: 700;
+  box-shadow: inset 0 -3px 0 #163b74;
+}
+.navbar .nav-link[href^="/"]:not(.is-current):hover {
+  background-color: #f1f3f5;
+}
+
+
+/* ---------------------------------------------------------------------
+   3. 語言切換按鈕 / Language toggle button
+   按鈕本身由 i18n.js 插入導覽列。
+   The button itself is inserted into the navbar by i18n.js.
+   --------------------------------------------------------------------- */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  margin: 0 10px;
+  padding: 0 13px;
+  border: 1px solid #ced4da;
+  border-radius: 999px;
+  background: #fff;
+  color: #212529;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease, background-color .15s ease;
+}
+.lang-toggle:hover {
+  border-color: #29546e;
+  color: #29546e;
+  background: #f0f6fa;
+}
+.lang-toggle:focus-visible {
+  outline: 3px solid rgba(41, 84, 110, .3);
+  outline-offset: 2px;
+}
+/* 導覽列收合（手機）時，按鈕上下留一點空間
+   Spacing when the navbar is collapsed on small screens */
+@media (max-width: 991.98px) {
+  .lang-toggle { margin: 6px 0; }
+}
+
+
+/* ---------------------------------------------------------------------
+   4. 文章頁返回按鈕 / Back button on article pages (/doc/)
+   按鈕由 nav-active.js 插入，放在標題左邊；標題維持置中。
+   nav-active.js inserts the button to the left of the title;
+   the title stays centred (an invisible spacer sits on the right).
+   --------------------------------------------------------------------- */
+.doc-back {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  white-space: nowrap;
+  padding: .3rem .85rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: 600;
+  color: #334155;
+  text-decoration: none;
+  background: #fff;
+  transition: all .15s;
+}
+.doc-back:hover {
+  background: #1e293b;
+  border-color: #1e293b;
+  color: #fff;
+}
+.doc-back svg { transition: transform .15s; }
+.doc-back:hover svg { transform: translateX(-2px); }
+
+/* 三欄：返回按鈕 | 標題 | 隱形佔位
+   Three columns: back button | title | invisible spacer */
+.doc-title-row {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, auto) 1fr;
+  align-items: center;
+  column-gap: 1rem;
+  margin-bottom: .5rem;
+}
+.doc-title-row > h1,
+.doc-title-row > h3 { margin: 0; }
+.doc-title-row .doc-back { justify-self: start; }
+.doc-title-row .doc-spacer { visibility: hidden; }
+
+/* 窄螢幕：按鈕在上、標題在下
+   Narrow screens: button above the title */
+@media (max-width: 767.98px) {
+  .doc-title-row { grid-template-columns: 1fr; row-gap: .5rem; }
+  .doc-title-row .doc-spacer { display: none; }
+}
+
+
+/* ---------------------------------------------------------------------
+   5. 頁尾 / Footer
+   --------------------------------------------------------------------- */
+.footer .footer-text {
+  font-size: 12px;
+}
+
+
+/* ---------------------------------------------------------------------
+   6. 共用工具 class / Shared utility classes
+   --------------------------------------------------------------------- */
+
+/* 文字左右對齊（Bootstrap 5 已移除 .text-justify，這裡補上）
+   Justified text (Bootstrap 5 removed .text-justify) */
+.text-justify {
+  text-align: justify;
+  text-justify: inter-character;
+}

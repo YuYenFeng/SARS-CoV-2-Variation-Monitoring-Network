@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<!--
+    doc/20210109.html — 四個引起廣泛注意的新冠病毒變異株
+              Four SARS-CoV-2 variants drawing wide attention
+    每個變異株一個區塊，深淺色交錯，搭配說明影片。
+    One band per variant, alternating light and dark, each with a video.
+    中英文內容各寫一份：<div data-l="en"> 與 <div data-l="zh">，由 i18n.js 切換。
+    English and Chinese content are written separately in <div data-l="en"> and
+    <div data-l="zh">; i18n.js shows one of them.
+    標題左邊的 Back 按鈕由 nav-active.js 自動加上（20201230 自己放了按鈕）。
+    The Back button left of the title is added by nav-active.js (20201230 has its own).
+    樣式 / Styles：css/site.css（全站共用 shared）、css/doc.css（文章頁共用 article pages）
+-->
+<html lang="en">
+    <head>
+        <title>SARS-CoV-2 Variation Monitoring Network</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- Bootstrap 5.3.6（本機 / local） -->
+        <link rel="stylesheet" href="/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+
+        <!-- 全站共用樣式 / Shared site styles -->
+        <link rel="stylesheet" href="/css/site.css">
+        <!-- 文章頁共用樣式 / Shared article-page styles -->
+        <link rel="stylesheet" href="/css/doc.css">
+
+        <!-- 中英文切換：要放在 <head>，頁面才不會先閃出另一種語言
+             Language switch: must be in <head> so the other language never flashes -->
+        <script src="/js/i18n.js"></script>
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+        <!-- ===== 導覽列 / Navigation bar ===== -->
+        <header class="fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-dark ">
+                <div class="container-fluid px-2">
+                    <a class="navbar-brand fw-bold text-truncate me-auto" href="/index.html">SARS-CoV-2 Variation Monitoring Network</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto me-4 mb-2 mb-lg-0 nav-pills">
+                        <li class="nav-item">
+                        <a class="nav-link" href="/index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/tracking.html">Tracking</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active nav-shl" href="https://shlab.duckdns.org/">Smart Health Lab</a>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        
+        <main class="flex-fill pt-4">
+            <!-- ===== 英文內容（預設顯示）/ English content (shown by default) ===== -->
+            <div data-l="en">
+            <div class="container-fluid mb-3">
+                <h1 class="text-center">Four SARS-CoV-2 Variants Drawing Wide Attention</h1>
+            </div>
+            <div class="container-fluid mb-3">
+                <p class="text-center">Updated: 2021-01-09</p>
+            </div>
+            <div class="container-fluid text-center mb-3">
+                <h5>In its Disease Outbreak News published on December 31, 2020, the World Health Organization (WHO) highlighted four SARS-CoV-2 variants that have drawn wide concern and discussion:</h5>
+            </div>
+            <div class="container text-justify fs-5">
+                <ol>
+                    <li><a href="#item1" class="text-dark">The D614G variant</a></li>
+                    <li><a href="#item2" class="text-dark">The UK variant VOC 202012/01</a></li>
+                    <li><a href="#item3" class="text-dark">The South African variant 501Y.V2</a></li>
+                    <li><a href="#item4" class="text-dark">The Danish mink variant</a></li>
+                </ol>
+            </div>
+            <div class="container-fluid mb-3 py-4 bg-cream">
+                <div class="container mb-3 text-justify">
+                    <p class="fs-5">The Academia Sinica SARS-CoV-2 Variation Monitoring Network (hereafter, the Monitoring Network) shows that Type VI is still the dominant strain worldwide. The first three variants above all belong to Type VI. The fourth has not been confirmed, but it is also quite likely to be Type VI.</p>
+                    <img src="/doc/20210109.png" class="figure-img img-fluid rounded mx-auto d-block" alt="Four SARS-CoV-2 variants drawing wide attention">
+                </div>
+            </div>
+            <div class="container-fluid mb-3 py-4">
+                <div class="container mb-3">
+                    <div class="row d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <div class="col">
+                            <h3 id="item1" class="text-decoration-underline">The D614G Variant</h3>
+                            <br>
+                            <p class="text-justify fs-6">Coronaviruses are named for the crown-like (corona) shape of their surface, which is formed by spike proteins. The spike protein is a glycoprotein and serves as the "key" that lets the virus enter human cells. D614G is a mutation at amino acid 614 of the spike protein. It is also one of the four single-nucleotide variants (SNVs) that define Type VI<a href="#note1"><sup>1</sup></a>. Research by Academia Sinica's interdisciplinary team also shows that D614G alone is not enough: the four Type VI mutations must occur together, and the strain cannot persist if any one of them is missing.</p>
+                            <p class="text-justify fs-6">According to a <a href="https://science.sciencemag.org/content/370/6523/1464">study</a> published in <i>Science</i> on December 18, 2020, cell and animal experiments showed that this mutation increases the infectivity and transmission of SARS-CoV-2. There is currently no evidence that it affects disease severity, and its effect on neutralizing antibody titers is still being evaluated.</p>
+                        </div>
+                        <div class="col d-flex justify-content-center py-4">
+                            <video width="360" controls autoplay>
+                                <source src="/doc/20210109/D614G_label.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid mb-3 py-4 bg-slate">
+                <div class="container mb-3" >
+                    <div class="row text-light d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <div class="col d-flex justify-content-center py-4">
+                            <video width="360" controls autoplay>
+                                <source src="/doc/20210109/Denmark_label.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="col">
+                            <h3 id="item2" class="text-decoration-underline">The UK Variant VOC 202012/01</h3>
+                            <br>
+                            <p class="text-justify fs-6">VOC 202012/01 evolved from Type VI and carries 8 mutations in its spike protein<a class="link-mint" href="#note2"><sup>2</sup></a>. Monitoring Network data show that VOC 202012/01 accounted for nearly 35% of strains in the UK at the end of December 2020. For details, see the <a class="link-mint" href="/doc/20201230.html">FAQ</a> updated on December 30, 2020.</p>
+                            <p class="text-justify fs-6">The Monitoring Network also shows that, besides VOC 202012/01, other strains are prevalent in the UK. For example, some strains carry 4 spike-protein mutations that are not found in VOC 202012/01<a class="link-mint" href="#note3"><sup>3</sup></a>. Whether these mutations will come together in the same strain needs close monitoring.</p>
+                            <p class="text-justify fs-6">According to a <a class="link-mint" href="https://www.gov.uk/government/publications/investigation-of-novel-sars-cov-2-variant-variant-of-concern-20201201">report</a> by Public Health England, VOC 202012/01 is more transmissible. There is currently no evidence that it affects disease severity, and its effect on neutralizing antibody titers is still being evaluated.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid mb-3 py-4">
+                <div class="container mb-3">
+                    <div class="row d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <div class="col">
+                            <h3 id="item3" class="text-decoration-underline">The South African Variant 501Y.V2</h3>
+                            <br>
+                            <p class="text-justify fs-6">501Y.V2 also evolved from Type VI. On December 9, 2020, the South African government <a href="https://www.gov.za/speeches/minister-zweli-mkhize-confirms-8-725-morecases-coronavirus-covid-19-18-dec-2020-0000">announced the new variant 501.V2</a> (also called 501Y.V2). It is defined mainly by 8 SNVs in the spike protein<a href="#note4"><sup>4</sup></a> and corresponds to lineage B.1.351 in the Global Initiative on Sharing All Influenza Data (GISAID). The Monitoring Network shows that by the end of December 2020, 501Y.V2 accounted for more than 80% of strains in South Africa.</p>
+                            <p class="text-justify fs-6">According to the European Centre for Disease Prevention and Control (ECDC) Rapid Risk Assessment <a href="https://www.ecdc.europa.eu/en/publications-data/covid-19-risk-assessment-spread-new-sars-cov-2-variants-eueea">report</a> of December 29, 2020, 501Y.V2 first appeared in early August 2020 in Nelson Mandela Bay, on the coast of the Eastern Cape Province. By early November it had become the dominant strain in the Eastern Cape and Western Cape Provinces, and it was later found in the UK and other countries.</p>
+                            <p class="text-justify fs-6">Scientists' <a href="https://www.scribd.com/document/488618010/Full-Presentation-by-SSAK-18-Dec">early research</a> shows that 501Y.V2 produces a higher viral load and spreads faster, which makes it more transmissible. There is currently no evidence that it affects disease severity. However, a study shows that the E484K mutation reduces the titer of the neutralizing antibody PT188<a href="#note5"><sup>5</sup></a>; its effect on other neutralizing antibodies is still being evaluated.</p>
+                        </div>
+                        <div class="col d-flex justify-content-center py-4">
+                            <video width="360" controls autoplay>
+                                <source src="/doc/20210109/SouthAfrica_label.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid mb-3 py-4 bg-slate">
+                <div class="container mb-3" >
+                    <div class="row text-light d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <div class="col d-flex justify-content-center py-4">
+                            <video width="360" controls autoplay>
+                                <source src="/doc/20210109/VOC202012_label.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="col">
+                            <h3 id="item4" class="text-decoration-underline">The Danish Mink Variant</h3>
+                            <br>
+                            <p class="text-justify fs-6">According to the WHO Disease Outbreak News published on November 6, 2020, transmission of SARS-CoV-2 from mink back to humans can be traced to June 2020. In particular, in September 2020, some unique viral mutations (Cluster 5), known as the Danish mink variant, were found in 12 patients infected by mink.</p>
+                            <p class="text-justify fs-6">This variant carries 4 mutations in its spike protein: a deletion (&#8710;H69/V70, N-terminal domain) that is also found in the UK variant VOC 202012/01, and three SNVs<a class="link-mint" href="#note6"><sup>6</sup></a>. Fortunately, it has not been found in humans since September 2020.</p>
+                            <p class="text-justify fs-6">SARS-CoV-2 infections in mink have been reported in Denmark, the Netherlands, Spain, Sweden, Italy and the United States. Academia Sinica's interdisciplinary team previously analyzed 18 strains transmitted from farmed mink to humans in the Netherlands and found that all of them were Type VI. The sequences from the 12 Danish cases of mink-to-human transmission are not yet available, but based on the timing, Monitoring Network data and the prevalence of Type VI in Denmark, the mink variant is likely also Type VI.</p>
+                            <p class="text-justify fs-6">In addition, <a class="link-mint" href="https://www.ssi.dk/-/media/arkiv/dk/aktuelt/nyheder/2020/mink-cluster-5-kort-rapport.pdf">preliminary results</a> from Statens Serum Institut in Denmark (November 2020) showed that the Cluster 5 mutations somewhat reduced sensitivity to neutralizing antibodies: in convalescent plasma from 9 recovered patients, neutralizing antibody titers fell 4-fold in 2 people (the average across 100 people was 3.58-fold). Its effect on human disease has not yet been assessed further, and fortunately it has not been found in humans since September 2020.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container mb-3 py-4">
+                <h5>Notes</h5>
+                <ol>
+                    <li id="note1">SARS-CoV-2 strains can be classified into six major types. The dominant Type VI is defined jointly by C241T (5'UTR), C3037T (nsp3, F924F), C14408T (nsp12, P4715L) and A23403 (S, D614G) (Yang et al., PNAS, 2020/12). DOI: <a href="https://doi.org/10.1073/pnas.2007840117">https://doi.org/10.1073/pnas.2007840117</a></li>
+                    <li id="note2">&#8710;H69/V70, &#8710;Y144, N501Y, A570D, P681H, T716I, S982A, D1118H. D614G is already widespread and is therefore not listed.</li>
+                    <li id="note3">C2227T (S, A222V), C21614T (S, L18F), C24334T (S, A924A)</li>
+                    <li id="note4">Including D80A (N-terminal domain), D215G (N-terminal domain), E484K (RBD), N501Y (RBD) and A701V (loop), identified on October 15, 2020, and L18F (N-terminal domain), R246I (N-terminal domain) and K417N (RBD), identified at the end of November 2020. Source: Tegally et al., medRxiv (a preprint that has been made public but has not been peer reviewed or formally published in an academic journal). DOI: <a href="https://doi.org/10.1101/2020.12.21.20248640">https://doi.org/10.1101/2020.12.21.20248640</a></li>
+                    <li id="note5">Andreano et al., bioRxiv (a preprint that has been made public but has not been peer reviewed or formally published in an academic journal). DOI: <a href="https://doi.org/10.1101/2020.12.28.424451">https://doi.org/10.1101/2020.12.28.424451</a></li>
+                    <li id="note6">Y453F (RBD), I692V (downstream of the furin cleavage site), M1229I (transmembrane domain).</li>
+                </ol>
+            </div>
+            </div>
+
+            <!-- ===== 中文內容 / Chinese content ===== -->
+            <div data-l="zh">
+            <div class="container-fluid mb-3">
+                <h1 class="text-center">四個引起廣泛注意的新冠病毒變異株</h1>
+            </div>
+            <div class="container-fluid mb-3">
+                <p class="text-center">更新日期: 2021-01-09</p>
+            </div>
+            <div class="container-fluid text-center mb-3">
+                <h5>世界衛生組織（WHO）在 2020年12月31日公布的疫病爆發新聞（Disease Outbreak News）中指出四個引起廣泛關心與討論的新冠病毒變異，分別是：</h5>
+            </div>
+            <div class="container text-justify fs-5">
+                <ol>
+                    <li><a href="#item1-zh" class="text-dark">D614G變異株</a></li>
+                    <li><a href="#item2-zh" class="text-dark">英國變種新冠病毒株VOC 202012/01</a></li>
+                    <li><a href="#item3-zh" class="text-dark">南非變種新冠病毒株501Y.V2</a></li>
+                    <li><a href="#item4-zh" class="text-dark">丹麥水貂變異株</a></li>
+                </ol>
+            </div>
+            <div class="container-fluid mb-3 py-4 bg-cream">
+                <div class="container mb-3 text-justify">
+                    <p class="fs-5">中研院「病毒變異全球即時監測網」（以下簡稱監測網）顯示，第6型病毒株仍是目前主宰世界的病毒株。上述前三種新冠病毒變異株都屬於第6型病毒株；第四種尚未證實，但屬第6型的可能性也相當高。</p>
+                    <img src="/doc/20210109.png" class="figure-img img-fluid rounded mx-auto d-block" alt="四個引起廣泛注意的新冠病毒變異株">
+                </div>
+            </div>
+            <div class="container-fluid mb-3 py-4">
+                <div class="container mb-3">
+                    <div class="row d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <div class="col">
+                            <h3 id="item1-zh" class="text-decoration-underline">D614G 變異株</h3>
+                            <br>
+                            <p class="text-justify fs-6">冠狀病毒因其如日冕般外圍的冠狀而得名，這些冠狀物質叫做刺突蛋白（spike protein），是一種糖蛋白，也是病毒進入人體細胞的「鑰匙」。D614G是在刺突蛋白上第614個胺基酸的變異。此變異亦是用來定義第6型病毒株的4個單位點變異（SNV）的其中之一<a href="#note1-zh"><sup>1</sup></a>。本院跨領域研究團隊研究也顯示，只有D614G並不足夠，第6型病毒株的四個變異需同時發生，缺一則無法持續。</p>
+                            <p class="text-justify fs-6">根據國際期刊《科學》（Science）2020年12月18日的<a href="https://science.sciencemag.org/content/370/6523/1464">研究報告</a>，研究者透過細胞與動物研究顯示，此變異會增加新冠病毒的感染與傳播。目前沒有證據顯示會影響傳染後的嚴重度，而對於中和性抗體效價的影響仍在評估。</p>
+                        </div>
+                        <div class="col d-flex justify-content-center py-4">
+                            <video width="360" controls autoplay>
+                                <source src="/doc/20210109/D614G_label.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid mb-3 py-4 bg-slate">
+                <div class="container mb-3" >
+                    <div class="row text-light d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <div class="col d-flex justify-content-center py-4">
+                            <video width="360" controls autoplay>
+                                <source src="/doc/20210109/Denmark_label.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="col">
+                            <h3 id="item2-zh" class="text-decoration-underline">英國變種新冠病毒株VOC 202012/01</h3>
+                            <br>
+                            <p class="text-justify fs-6">VOC 202012/01 為第6 型病毒株變異後的病毒株，其刺突蛋白上有8個變異<a class="link-mint" href="#note2-zh"><sup>2</sup></a>，監測網數據顯示，英國在2020年12月底VOC 202012/01的比例接近35%。細節可參閱同年12月30日更新之 <a class="link-mint" href="/doc/20201230.html">FAQ</a>。</p>
+                            <p class="text-justify fs-6">此外，監測網也顯示，除了VOC 202012/01，英國還有其他盛行的病毒株。例如在刺突蛋白上有4個未出現在VOC 202012/01的變異<a class="link-mint" href="#note3-zh"><sup>3</sup></a>，後續需密切觀察這些變異是否會合併發生在同一株上。</p>
+                            <p class="text-justify fs-6">根據英格蘭公共衛生署的<a href="https://www.gov.uk/government/publications/investigation-of-novel-sars-cov-2-variant-variant-of-concern-20201201">報告</a>說明，VOC 202012/01變異有較高的傳播性。目前沒有證據顯示會影響傳染後的嚴重度，對於中和性抗體效價的影響仍在評估。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid mb-3 py-4">
+                <div class="container mb-3">
+                    <div class="row d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <div class="col">
+                            <h3 id="item3-zh" class="text-decoration-underline">南非變種新冠病毒株501Y.V2</h3>
+                            <br>
+                            <p class="text-justify fs-6">501.V2亦為第6型病毒株變異後的病毒株。南非政府在2020年12月9日<a href="https://www.gov.za/speeches/minister-zweli-mkhize-confirms-8-725-morecases-coronavirus-covid-19-18-dec-2020-0000">公告新變異 501.V2</a>（亦稱501Y.V2）。此變種病毒主要是由刺突蛋白上的 8 個單位點變異來定義<a href="#note4-zh"><sup>4</sup></a>，且對應到全球共享流感數據倡議組織（GISAID）上的B.1.351的支系。監測網顯示，截至同年12月底，在南非501.V2的比例已逾80%。</p>
+                            <p class="text-justify fs-6">根據歐洲疾病預防管制中心快速風險評估（ECDC Rapid Risk Assessment）2020年12月29日的<a href="https://www.ecdc.europa.eu/en/publications-data/covid-19-risk-assessment-spread-new-sars-cov-2-variants-eueea">報導</a>，501.V2最早於2020年8月初出現在東開普省（Eastern Cape Province）海岸的納爾遜曼德拉灣（Nelson Mandela Bay）。到了同年11月初已經成為東開普省和西開普省（Western Cape Province）的主要病毒株。後來在英國及其他國家也陸續現蹤。</p>
+                            <p class="text-justify fs-6">科學家的<a href="https://www.scribd.com/document/488618010/Full-Presentation-by-SSAK-18-Dec">初期研究</a>顯示，501.V2變異株有較高的病毒量會較快地擴散，因此造成病毒較高的傳播性。目前沒有證據顯示會影響傳染後的嚴重度。但有研究顯示，變異E484K會降低變異PT188中和性抗體的效價<a href="#note5-zh"><sup>5</sup></a>，對更多中和性抗體的影響仍待評估。</p>
+                        </div>
+                        <div class="col d-flex justify-content-center py-4">
+                            <video width="360" controls autoplay>
+                                <source src="/doc/20210109/SouthAfrica_label.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid mb-3 py-4 bg-slate">
+                <div class="container mb-3" >
+                    <div class="row text-light d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <div class="col d-flex justify-content-center py-4">
+                            <video width="360" controls autoplay>
+                                <source src="/doc/20210109/VOC202012_label.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="col">
+                            <h3 id="item4-zh" class="text-decoration-underline">丹麥水貂變異株</h3>
+                            <br>
+                            <p class="text-justify fs-6">根據世界衛生組織在 2020年11月6日公布的疫病爆發新聞（Disease Outbreak News），新冠病毒透過水貂回傳給人類的情況可以回溯到2020年6月，特別是在同年9月發現，12位被水貂傳染新冠病毒的病患中，有一些獨特的病毒變異（Cluster 5），即丹麥水貂變異。</p>
+                            <p class="text-justify fs-6">此變異的刺突蛋白上的4個變異包括一個也在英國變種新冠病毒株（VOC 202012/01）上發現的缺失（deletion）變異（&#8710;H69/V70，N-terminal domain），以及另外三個單位點（SNV）變異<a class="link-mint" href="#note6-zh"><sup>6</sup></a>，所幸在2020年9月後並未在人身上發現。</p>
+                            <p class="text-justify fs-6">丹麥、荷蘭、西班牙、瑞典、義大利及美國都已有水貂被感染新冠病毒的案例。中研院跨領域研究團隊過去曾分析18株荷蘭的農場水貂傳人病毒株，發現100%都是第6型。目前尚查不到12例丹麥農場水貂傳人的病毒株序列，但根據發生時間、監測網資料，以及第6型在丹麥的盛行情形推斷，水貂變異株也可能是第6型病毒株。</p>
+                            <p class="text-justify fs-6">此外，根據丹麥國家血清研究所（Statens Serum Institut）2020年11月的<a class="link-mint" href="https://www.ssi.dk/-/media/arkiv/dk/aktuelt/nyheder/2020/mink-cluster-5-kort-rapport.pdf">初步實驗結果</a>顯示，Cluster 5的變異對於中和性抗體的敏感性有些下降，9個康復病人血液（convalescent plasma）中，有2人的中和性抗體效價下降4倍（100人的平均為3.58倍）。目前對人類病情影響尚未有進一步的評估，且所幸在2020年9月後並未在人身上發現。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container mb-3 py-4">
+                <h5>Note</h5>
+                <ol>
+                    <li id="note1-zh">病毒株可歸類為六大類型，主宰世界的第6型病毒株是由 C241T（5’UTR）、C3037T（nsp3, F924F）、C14408T（nsp12, P4715L）、A23403（S, D614G）所共同定義（Yang et al., PNAS, 2020/12）。DOI: <a href="https://doi.org/10.1073/pnas.2007840117">https://doi.org/10.1073/pnas.2007840117</a></li>
+                    <li id="note2-zh">&#8710;H69/V70、&#8710;Y144、N501Y、A570D、P681H、T716I、S982A、D1118H。D614G已是普遍變異，因此不列入。</li>
+                    <li id="note3-zh">C2227T（S, A222V）、C21614T（S, L18F）、C24334T（S, A924A）</li>
+                    <li id="note4-zh">包括2020年10月15日時發現的D80A（N-terminal domain）、D215G（N-terminal domain）、E484K（RBD）、N501Y（RBD）、A701V（loop），以及2020年11月底發現的L18F（N-terminal domain）、R246I（N-terminal domain）、K417N（RBD）。資料來源：Tegally et al., medRxiv相關文章為已公開，但未經審查且正式發表於學術期刊之醫學研究。DOI: <a href="https://doi.org/10.1101/2020.12.21.20248640">https://doi.org/10.1101/2020.12.21.20248640</a></li>
+                    <li id="note5-zh">Andreano et al, bioRxiv相關文章為已公開，但未經審查且正式發表於學術期刊之生物學研究。DOI: <a href="https://doi.org/10.1101/2020.12.28.424451">https://doi.org/10.1101/2020.12.28.424451</a></li>
+                    <li id="note6-zh">Y453F（RBD）、I692V（downstream of the furin cleavage site）、M1229I （transmembrane domain）。</li>
+                </ol>
+            </div>
+                    </div>
+        </main>
+
+        <!-- ===== 頁尾 / Footer ===== -->
+        <footer class="footer mt-auto py-1 text-center">
+            <div class="container d-flex justify-content-center align-items-center gap-2">
+                <img src="/image/img-logo-academiasinica.png"
+                    alt="Academia Sinica Logo"
+                    width="30">
+
+                <p class="text-body-secondary mb-0 footer-text">
+                    &copy; 2026
+                    <a href="https://www.sinica.edu.tw/">Academia Sinica, Taiwan</a>
+                </p>
+            </div>
+        </footer>
+
+        <!-- Bootstrap 5.3.6 JavaScript（bundle 已含 Popper / the bundle includes Popper）：Q&A 視窗、展開問答、圖片輪播都需要
+             Needed by the Q&A modals, the expandable questions and the image carousels -->
+        <script src="/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- 導覽列標示目前頁面、加上 Back 按鈕 / Highlight the navbar item and add the Back button -->
+        <script src="/js/nav-active.js"></script>
+    </body>
+</html>

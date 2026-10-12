@@ -1,0 +1,658 @@
+/* ════════════════════════════════════════════════════════
+   css_country.css
+   CSS Rankings 頁（css.html）的樣式；這頁在 Tracking 頁的 iframe 裡顯示。
+   Styles for the CSS Rankings page (css.html), shown in an iframe on the Tracking page.
+
+   內容 / Contents
+     1. 顏色變數、版面基本設定        Colour tokens and page base
+     2. 識別標籤與資訊列              Identity chips and context bars
+     3. 圖說                          Figure legends
+     4. 指標分頁與排名清單            Rank tabs and rank lists
+     5. SNV 面板與基因體圖            SNV panel and genome map
+     6. 雷達圖數值表與指標定義        Radar table and metric definitions
+     7. 各國名次表                    Country rank table
+     8. 日期範圍控制列                Date range controls
+     9. 圖表尺寸                      Chart sizes
+    10. 分頁與三欄版面                Page tabs and three-column layout
+    11. 表單欄位                      Form fields
+   ════════════════════════════════════════════════════════ */
+
+/* ════════════════════════════════════════════════════════
+   1. 顏色變數、版面基本設定 / Colour tokens and page base
+   藍色系代表「哪個 CSS」，橘色系代表「哪個國家」。
+   Blue answers "which CSS"; amber answers "which country".
+   ════════════════════════════════════════════════════════ */
+:root {
+    --ink: #1e293b;
+    --ink-soft: #475569;
+    --ink-mute: #64748b;
+    --ink-faint: #94a3b8;
+    --line: #e2e8f0;
+    --line-soft: #f1f5f9;
+    --surface: #f8fafc;
+    --css-accent: #1d4ed8;      /* 哪個 CSS / which CSS */
+    --css-tint: #eff6ff;
+    --css-line: #bfdbfe;
+    --country-accent: #b45309;  /* 哪個國家 / which country */
+    --country-tint: #fffbeb;
+    --country-line: #fcd34d;
+}
+
+/* 在 iframe 內沒有導覽列，上方留白很小 / No navbar inside the iframe, so little top space */
+body { padding-top: 8px; }
+
+.layout-row {
+    padding: 0 10px;
+    margin-bottom: 12px;
+}
+
+.panel-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+/* 面板右上角的下載按鈕（由 css.js 產生） / Download button at a panel's top right (built by css.js) */
+.panel-download {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px 4px;
+    opacity: 0.55;
+    transition: opacity 0.18s;
+}
+.panel-download:hover { opacity: 1; }
+
+/* ════════════════════════════════════════════════════════
+   2. 識別標籤與資訊列 / Identity chips and context bars
+   每個面板上方的 Pango、UID、國家標籤，以及頁面最上方的資訊列。
+   Pango, UID and country chips on each panel, and the bar at the top of each tab.
+   ════════════════════════════════════════════════════════ */
+.id-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 8px;
+}
+
+.id-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    font-size: 0.68rem;
+    line-height: 1.35;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.id-chip .id-key {
+    color: var(--ink-faint);
+    font-weight: 700;
+    font-size: 0.6rem;
+}
+
+.id-chip .id-val {
+    color: #334155;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.id-chip.pango { border-color: var(--css-line); background: var(--css-tint); }
+.id-chip.pango .id-val { color: var(--css-accent); font-size: 0.8rem; }
+
+.id-chip.uid .id-val {
+    color: var(--ink-soft);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.66rem;
+    font-weight: 600;
+}
+
+.id-chip.country { border-color: var(--country-line); background: var(--country-tint); }
+.id-chip.country .id-val { color: var(--country-accent); font-size: 0.8rem; }
+
+.context-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 0 10px 10px;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--css-accent);
+    border-radius: 8px;
+    background: #fff;
+}
+.context-bar.for-country { border-left-color: #f59e0b; }
+.context-bar-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+.context-bar .id-strip { margin: 0; }
+.context-bar .context-empty,
+.context-bar .context-note {
+    font-size: 0.68rem;
+    color: var(--ink-faint);
+}
+.context-bar .context-note { margin-left: auto; }
+
+/* ════════════════════════════════════════════════════════
+   3. 圖說 / Figure legends
+   圖說放在圖旁邊，下載整個面板時會一起截進去。
+   Legends sit next to their figure, so panel downloads include them.
+   ════════════════════════════════════════════════════════ */
+.figure-legend {
+    margin-top: 6px;
+    font-size: 0.64rem;
+    line-height: 1.55;
+    color: var(--ink-mute);
+}
+.figure-legend b { color: #334155; font-weight: 700; }
+
+.legend-swatch {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    vertical-align: baseline;
+    margin-right: 3px;
+}
+
+/* 趨勢曲線圖說的色塊：長條 = 序列數，折線 = 比例
+   Swatches in the trend legend: bars = sequence count, line = proportion */
+.legend-swatch.swatch-bars { background: rgba(59, 130, 246, .4); border: 1px solid #3b82f6; }
+.legend-swatch.swatch-line { background: #ef4444; }
+
+.list-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    margin-bottom: 6px;
+    font-size: 0.62rem;
+    color: var(--ink-mute);
+}
+.list-legend .legend-key {
+    display: inline-block;
+    min-width: 14px;
+    font-weight: 800;
+    color: var(--ink-soft);
+}
+
+.list-country-head {
+    margin-bottom: 5px;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+}
+.list-country-head b { color: var(--country-accent); }
+
+.metric-label {
+    margin-bottom: 8px;
+    font-size: 0.66rem;
+    color: var(--ink-mute);
+}
+.metric-label b { color: var(--ink); }
+
+/* ════════════════════════════════════════════════════════
+   4. 指標分頁與排名清單 / Rank tabs and rank lists（兩個分頁共用 / shared by both tabs）
+   ════════════════════════════════════════════════════════ */
+.rank-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
+    padding-bottom: 2px;
+}
+
+.rank-tab {
+    width: 100%;
+    min-width: 0;
+    font-size: 0.64rem;
+    font-weight: 600;
+    padding: 4px 3px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink-faint);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.18s;
+}
+.rank-tab:hover { border-color: #cbd5e1; color: var(--ink-soft); }
+.rank-tab.active { color: #fff; border-color: transparent; }
+
+.rank-list {
+    overflow-y: auto;
+    max-height: 430px;
+    padding-right: 4px;
+}
+
+.rank-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+}
+.rank-row:hover { background: var(--line-soft); border-color: var(--line); }
+.rank-row.selected { background: var(--css-tint); border-color: #3b82f6; }
+
+.rank-badge {
+    min-width: 48px;
+    height: 24px;
+    border-radius: 6px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 800;
+    flex-shrink: 0;
+    padding: 0 7px;
+}
+
+.rank-info { flex: 1; min-width: 0; }
+
+.rank-pango {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.rank-uid {
+    font-size: 0.64rem;
+    color: var(--ink-faint);
+    margin-top: 1px;
+}
+
+.rank-pango, .rank-uid {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rank-metric {
+    font-size: 0.68rem;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* 已選的 CSS 不在目前指標的前 N 名時，釘在清單底部，不會消失
+   The selected CSS stays pinned to the bottom when it falls outside the current Top N */
+.rank-pinned {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    box-shadow: 0 -6px 8px -6px rgba(15, 23, 42, 0.18);
+}
+.rank-pinned .rank-row { margin-bottom: 2px; }
+
+.rank-extra-label {
+    margin: 6px 2px 4px;
+    padding-top: 7px;
+    border-top: 1px dashed #cbd5e1;
+    color: var(--ink-mute);
+    font-size: 0.64rem;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+/* 排名清單：沒有名次的 CSS（灰色） / Rank list: a CSS without a rank (grey) */
+.rank-badge.no-rank  { background: #cbd5e1; }
+.rank-metric.no-rank { color: var(--ink-faint); }
+
+/* ════════════════════════════════════════════════════════
+   5. SNV 面板與基因體圖 / SNV panel and genome map
+   ════════════════════════════════════════════════════════ */
+.snv-svg-wrap {
+    background: #fafafa;
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+    padding: 10px 8px 32px;   /* 有 SNV 的基因會下移，留出空間 / room for raised genes */
+    margin: 8px 0 0;
+    overflow: visible;
+}
+.snv-svg-wrap svg {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 120px;
+    min-height: 70px;
+    overflow: visible;
+}
+
+/* 基因體圖：有 SNV 的基因浮起（下移）並加陰影，其他基因淡化
+   Genome map: genes with SNVs are raised (moved down) with a shadow; others fade */
+.snv-svg-wrap svg g { transition: transform .3s, opacity .3s; }
+.snv-svg-wrap svg g.snv-gene-on  { opacity: 1; filter: drop-shadow(0 0 2px rgba(0, 0, 0, .35)); transform: translateY(26px); }
+.snv-svg-wrap svg g.snv-gene-off { opacity: .15; }
+
+.snv-list {
+    overflow-y: auto;
+    max-height: 300px;
+    padding-right: 4px;
+}
+
+.snv-gene-block { margin-bottom: 10px; }
+
+.snv-gene-header {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+}
+
+.snv-gene-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.snv-gene-name { font-size: 0.78rem; font-weight: 700; color: var(--ink); }
+.snv-gene-count { font-size: 0.65rem; color: var(--ink-faint); }
+
+.snv-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding-left: 17px;
+}
+
+.snv-chip {
+    font-size: 0.68rem;
+    padding: 2px 8px;
+    border-radius: 99px;
+    background: var(--line-soft);
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    white-space: nowrap;
+}
+.snv-chip span { color: var(--ink-faint); margin-left: 3px; font-size: 0.62rem; }
+.snv-chip em { font-size: 0.6rem; color: var(--ink-faint); font-style: normal; }
+
+/* ════════════════════════════════════════════════════════
+   6. 雷達圖數值表與指標定義 / Radar table and metric definitions
+   ════════════════════════════════════════════════════════ */
+.radar-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.66rem;
+    margin-top: 8px;
+}
+.radar-table th {
+    padding: 4px 6px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-mute);
+    font-weight: 700;
+    text-align: right;
+    white-space: nowrap;
+}
+.radar-table th:first-child { text-align: left; }
+.radar-table td {
+    padding: 4px 6px;
+    border-bottom: 1px solid var(--line-soft);
+    white-space: nowrap;
+}
+.radar-table td.rt-name { color: var(--ink); font-weight: 600; white-space: normal; }
+.radar-table td.rt-value { color: #3b82f6; font-weight: 700; text-align: right; }
+.radar-table td.rt-rank { color: var(--ink-faint); text-align: right; }
+
+/* 指標定義（雷達圖下方，可收合） / Metric definitions under the radar (collapsible) */
+.rank-def-box {
+    margin-top: .5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: #f8fafc;
+    font-size: .68rem;
+}
+.rank-def-box > summary {
+    cursor: pointer;
+    padding: .35rem .6rem;
+    font-weight: 700;
+    color: #475569;
+    list-style: none;
+}
+.rank-def-box > summary::-webkit-details-marker { display: none; }
+.rank-def-box > summary::before { content: '\25B8 '; color: #94a3b8; }
+.rank-def-box[open] > summary::before { content: '\25BE '; }
+.rank-def-box > summary:hover { color: #1e293b; }
+.rank-def-table { width: 100%; border-collapse: collapse; }
+.rank-def-table th {
+    text-align: left; padding: .3rem .6rem;
+    font-size: .62rem; text-transform: uppercase; letter-spacing: .04em;
+    color: #94a3b8; border-bottom: 1px solid #e2e8f0; font-weight: 700;
+}
+.rank-def-table td {
+    padding: .32rem .6rem; border-bottom: 1px solid #eef2f7;
+    vertical-align: top; line-height: 1.45;
+}
+.rank-def-table tr:last-child td { border-bottom: none; }
+.rank-def-table .rd-name { white-space: nowrap; }
+.rank-def-table .rd-name code {
+    font-size: .64rem; color: #1d4ed8; background: #eff6ff;
+    padding: .05rem .3rem; border-radius: 3px;
+}
+.rank-def-table .rd-desc { color: #475569; }
+
+/* ════════════════════════════════════════════════════════
+   7. 各國名次表 / Country rank table（CSS 搜尋左下 / CSS search, bottom left）
+   ════════════════════════════════════════════════════════ */
+#ctryRankTableWrap {
+    width: 100%;
+    max-height: 360px;
+    overflow: auto;
+    border: 1px solid var(--line-soft);
+    border-radius: 8px;
+    margin-top: 6px;
+}
+
+.country-rank-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 690px;
+    font-size: 0.69rem;
+}
+.country-rank-table th,
+.country-rank-table td {
+    padding: 7px 8px;
+    border-bottom: 1px solid var(--line-soft);
+    text-align: center;
+    white-space: nowrap;
+}
+.country-rank-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: var(--surface);
+    color: var(--ink-mute);
+    font-weight: 700;
+    border-bottom: 1px solid var(--line);
+}
+.country-rank-table .country-col {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    text-align: left;
+    min-width: 125px;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.country-rank-table thead .country-col { z-index: 4; background: var(--surface); }
+.country-rank-table tbody .country-col { background: #fff; font-weight: 600; color: #334155; }
+.country-rank-table tbody tr { cursor: pointer; transition: background 0.15s; }
+.country-rank-table tbody tr:hover td,
+.country-rank-table tbody tr:hover .country-col { background: var(--surface); }
+.country-rank-table tbody tr.selected-country td,
+.country-rank-table tbody tr.selected-country .country-col { background: #fef3c7; }
+.country-rank-table tbody tr.selected-country .country-col {
+    color: var(--country-accent);
+    font-weight: 800;
+    box-shadow: inset 4px 0 0 #f59e0b;
+}
+.country-rank-table tbody tr:last-child td { border-bottom: 0; }
+
+.country-rank-number { font-weight: 700; color: #334155; line-height: 1.1; }
+.country-rank-value { margin-top: 2px; font-size: 0.6rem; color: var(--ink-faint); line-height: 1.1; }
+
+/* ════════════════════════════════════════════════════════
+   8. 日期範圍控制列 / Date range controls
+   ════════════════════════════════════════════════════════ */
+.smooth-date-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding: 7px 9px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+}
+.smooth-date-controls .smooth-date-label {
+    color: var(--ink-soft);
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-right: 2px;
+}
+.smooth-date-controls label {
+    color: var(--ink-mute);
+    font-size: 0.66rem;
+    font-weight: 600;
+    margin-left: 3px;
+}
+.smooth-date-controls input[type="date"] {
+    width: 142px;
+    min-height: 29px;
+    padding: 2px 7px;
+    font-size: 0.7rem;
+}
+.smooth-date-controls .btn {
+    padding: 3px 9px;
+    font-size: 0.68rem;
+    line-height: 1.2;
+}
+
+/* ════════════════════════════════════════════════════════
+   9. 圖表尺寸 / Chart sizes
+   ════════════════════════════════════════════════════════ */
+.chart-box { position: relative; width: 100%; }
+.smooth-box { height: 280px; }
+.radar-box { height: 250px; }
+
+.panel-body-fill {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* ════════════════════════════════════════════════════════
+  10. 分頁與三欄版面 / Page tabs and three-column layout
+   ════════════════════════════════════════════════════════ */
+.search-mode-tabs { padding: 0 10px; margin-bottom: 12px; }
+.search-mode-tabs .nav-link { font-size: 0.82rem; font-weight: 600; color: var(--ink-mute); }
+.search-mode-tabs .nav-link.active { color: var(--css-accent); font-weight: 700; }
+
+.search-middle {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.search-top-row > [class*="col-"] { display: flex; }
+.search-top-row .side-panel,
+.search-middle .panel { width: 100%; }
+
+@media (max-width: 575.98px) {
+    .rank-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .smooth-date-controls input[type="date"] { width: 132px; }
+}
+
+@media (min-width: 992px) {
+    /* 上方三欄固定同一個高度，彼此對齊 / One fixed height keeps the three top columns aligned */
+    .search-top-row { align-items: stretch; }
+
+    .search-top-row .side-panel,
+    .search-middle {
+        height: 840px;
+        min-height: 840px;
+        max-height: 840px;
+    }
+    .search-top-row .side-panel {
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* 中間欄：上下兩個面板平分高度 / Middle column: two panels share the height equally */
+    .search-middle .panel {
+        flex: 1 1 0;
+        min-height: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .rank-list,
+    .snv-list,
+    .side-panel .panel-scroll {
+        flex: 1 1 auto;
+        min-height: 0;
+        max-height: none;
+        overflow-y: auto;
+    }
+
+    /* 只有捲動清單吸收剩餘空間，標籤維持原大小 / Only the scrolling lists take the leftover space */
+    .snv-svg-wrap,
+    .panel > .figure-legend,
+    .panel > .id-strip,
+    .panel > [id$="CssMeta"] { flex: 0 0 auto; }
+
+    .panel-body-fill { flex: 1 1 auto; overflow: hidden; }
+    .panel-body-fill .chart-box { flex: 1 1 auto; height: auto; min-height: 0; }
+    .panel-body-fill .figure-legend { flex: 0 0 auto; }
+
+    #ctryRankTableWrap { max-height: 300px; }
+}
+
+/* ════════════════════════════════════════════════════════
+  11. 表單欄位 / Form fields
+   ════════════════════════════════════════════════════════ */
+
+/* 國家選單下方的序列數說明 / Note on sequence counts under the country menu */
+.country-sample-note {
+    margin-top: .25rem;
+    font-size: .62rem;
+    line-height: 1.4;
+    color: #94a3b8;
+}
+.country-sample-note b { color: #64748b; }
+
+
+/* 識別標籤列：預設隱藏，css.js 用 style.display 顯示（不能用 Bootstrap 的 d-none，它有 !important）
+   Identity rows: hidden by default; css.js shows them via style.display (Bootstrap d-none uses !important) */
+.meta-hidden { display: none; }
+
+.svg-loading { font-size: 0.75rem; color: #94a3b8; padding: 4px; }
+.field-label { font-size: 0.68rem; color: #64748b; font-weight: 700; }
+.curve-country-row { font-size: 0.72rem; }
+.curve-country-label { font-weight: 700; color: #475569; }
+.upload-note { font-size: 0.78rem; line-height: 1.7; }
+
+/* 下拉選單 / Menus */
+#rankTopN          { font-size: 0.72rem; padding: 2px 26px 2px 10px; min-width: 96px; }
+#ctryCountrySelect { font-size: 0.72rem; padding: 2px 26px 2px 10px; min-width: 160px; }
+#countrySearchSelect { font-size: 0.78rem; font-weight: 700; color: #b45309; }
+#countryCssTopN    { font-size: 0.74rem; }

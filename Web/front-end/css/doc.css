@@ -1,0 +1,95 @@
+/* =====================================================================
+   doc.css
+   報導文章頁（/doc/*.html）共用樣式。全站共用樣式（導覽列、頁尾、
+   Back 按鈕、.text-justify 等）在 site.css。
+   Shared styles for the article pages (/doc/*.html). Site-wide styles
+   (navbar, footer, Back button, .text-justify, …) are in site.css.
+
+   使用的頁面 / Used by
+     20201230.html  英國變異株 Q&A          UK variant Q&A
+     20210109.html  四個引起廣泛注意的變異株  Four variants drawing attention
+     20210531.html  印度變異株深度解析        The Indian variant in depth
+     20220128.html  超級傳播變異株 Omicron    Omicron, a super-spreading variant
+
+   內容 / Contents
+     1. 標題與日期        Title and date
+     2. Q&A 卡片          Q&A cards            (20201230)
+     3. 色塊與連結顏色    Colour bands, links  (20210109)
+     4. 圖片輪播          Image carousel       (20220128)
+     5. 註腳              Footnotes            (20210531, 20220128)
+   ===================================================================== */
+
+
+/* ---------------------------------------------------------------------
+   1. 標題與日期 / Title and date
+   --------------------------------------------------------------------- */
+
+/* 標題下方的更新日期
+   Updated date below the title */
+.doc-date { font-size: 0.9rem; }
+
+
+/* ---------------------------------------------------------------------
+   2. Q&A 卡片 / Q&A cards (20201230)
+   每張卡片是一個問題，點選後跳出答案視窗。
+   Each card is one question; clicking it opens the answer in a modal.
+   --------------------------------------------------------------------- */
+
+/* 問題框固定高度，讓每張卡片一樣高
+   Fixed height so all question cards line up */
+.qa-card-body { height: 120px; }
+
+
+/* ---------------------------------------------------------------------
+   3. 色塊與連結顏色 / Colour bands and link colour (20210109)
+   --------------------------------------------------------------------- */
+.bg-slate  { background-color: #616a6b; }   /* 深灰色區塊 / dark grey band  */
+.bg-cream  { background-color: #fef5e7; }   /* 米色區塊 / cream band        */
+.link-mint { color: #d5f5e3; }              /* 深色區塊上的連結 / links on the dark band */
+
+
+/* ---------------------------------------------------------------------
+   4. 圖片輪播 / Image carousel (20220128)
+   左右切換鈕縮小成半透明灰色方塊，放在圖片垂直中間。
+   Smaller, semi-transparent grey prev/next buttons, vertically centred.
+   --------------------------------------------------------------------- */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 40px;
+  height: 60px;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 4px;
+}
+
+
+/* ---------------------------------------------------------------------
+   5. 註腳 / Footnotes
+   --------------------------------------------------------------------- */
+
+/* 頁尾註解小字（20210531）
+   Small footnote text (20210531) */
+.notes-small { font-size: 12px; }
+
+/* 自動編號的註腳（20220128）：中文顯示「註1」，英文顯示「Note 1」
+   Auto-numbered footnotes (20220128): "註1" in Chinese, "Note 1" in English */
+.custom-list {
+  counter-reset: note-counter;   /* 編號從 0 開始 / start the counter      */
+  list-style: none;              /* 不用預設編號 / hide the default numbers */
+  padding-left: 1.5em;
+}
+.custom-list li {
+  counter-increment: note-counter;
+  position: relative;
+  padding-left: 2em;
+}
+.custom-list li::before {
+  content: "註" counter(note-counter);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+[data-l="en"] .custom-list li         { padding-left: 3.6em; }
+[data-l="en"] .custom-list li::before { content: "Note " counter(note-counter); }

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--
+    about.html — 關於我們 / About us
+    上方：網站與研究團隊的介紹（中英文各一段，由 i18n.js 切換）
+    Top: introduction to the website and the team (one paragraph per language, switched by i18n.js)
+    下方：研究分析專家學者
+    Bottom: the research and analysis team
+    本頁沒有專用樣式，全部用 Bootstrap 與 css/site.css。
+    This page has no stylesheet of its own; it uses Bootstrap and css/site.css only.
+-->
+<html lang="en">
+    <head>
+        <title>SARS-CoV-2 Variation Monitoring Network</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- Bootstrap 5.3.6（本機 / local） -->
+        <link rel="stylesheet" href="/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+
+        <!-- 全站共用樣式 / Shared site styles -->
+        <link rel="stylesheet" href="/css/site.css">
+
+        <!-- 中英文切換：要放在 <head>，頁面才不會先閃出另一種語言
+             Language switch: must be in <head> so the other language never flashes -->
+        <script src="/js/i18n.js"></script>
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+        <!-- ===== 導覽列 / Navigation bar ===== -->
+        <header class="fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-dark ">
+                <div class="container-fluid px-2">
+                    <a class="navbar-brand fw-bold text-truncate me-auto" href="/index.html">SARS-CoV-2 Variation Monitoring Network</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto me-4 mb-2 mb-lg-0 nav-pills">
+                        <li class="nav-item">
+                        <a class="nav-link" href="/index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/tracking.html">Tracking</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active nav-shl" href="https://shlab.duckdns.org/">Smart Health Lab</a>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="flex-fill pt-4">
+            <!-- ===== 網站與團隊介紹（黑色區塊）/ Introduction (dark box) =====
+                 每段文字中英文各一份：data-l="en" / data-l="zh"
+                 Each paragraph is written twice: data-l="en" / data-l="zh" -->
+            <div class="container-fluid mb-3">
+                <div class="container bg-dark text-white px-5 py-5 rounded-4 shadow">
+                    <h1 class="text-center mb-3">About Us</h1>
+                    <p class="text-justify" data-l="en">An interdisciplinary research team at Academia Sinica analyzes SARS-CoV-2 whole-genome sequences using data from the Global Initiative on Sharing All Influenza Data (GISAID). Besides recording the rise and fall of past variants, this monitoring network tracks recently emerging variants, so users can follow how each variant spreads in individual countries (or worldwide) and how mutations occur in different viral genes, such as the S gene, which matters most for vaccines. Users can generate trend charts of specific mutation sites for a selected country (or worldwide) and watch time-lapse animations of how mutations change. The website will also publish reports and analyses of the latest viral variants from time to time.</p>
+                    <p class="text-justify" data-l="zh">中央研究院跨領域研究團隊根據全球共享流感數據倡議組織（GISAID）資料，對新型冠狀病毒全基因體序列進行分析。此監測網除記錄過往各變異病毒株消長的情形外，並追蹤近期崛起的變異株，可供使用者觀察各病毒變異株在各國（或全球）傳播的情形，及在不同病毒基因（如對疫苗最重要的S基因）上的變異情形。透過此網站，使用者可依需要產生特定變異點在指定國別（或全球）的消長圖，亦可觀賞變異情形的縮時影片。本網站並將不定期提供最新病毒變異情形的報導及分析。</p>
+                    <p class="text-justify" data-l="en">The analyses used in this monitoring network have been published in the following papers: <a href="https://www.pnas.org/doi/10.1073/pnas.2007840117" target="_blank" rel="noopener" class="link-light">Analysis of genomic distributions of SARS-CoV-2 reveals a dominant strain type with strong allelic associations</a> (Yang et al. PNAS 2020) and <a href="https://academic.oup.com/pnasnexus/article/1/4/pgac181/6680463" target="_blank" rel="noopener" class="link-light">Subtyping of major SARS-CoV-2 variants reveals different transmission dynamics based on 10 million genomes</a> (Yang et al. PNAS Nexus 2022). Analysis of more than 200,000 viral genome sequences showed that SARS-CoV-2 variants can be classified into six major types. Type VI began rising rapidly in many countries in February and March 2020, became dominant by April, and accounts for 99% of currently circulating viruses. Since August 2020, many emerging variants have appeared, most of them derived from Type VI. Website: Ling-Jyh Chen (Institute of Information Science) and Yu-Yen Feng (Institute of Statistical Science). Statistical results: Chia-Wei Chen, Yin-Chun Lin, Han-Ni Hsieh and Sung-Lin Tsai (Hsin-Chou Yang's team).</p>
+                    <p class="text-justify" data-l="zh">本監測網所用分析已發表於下述論文：<a href="https://www.pnas.org/doi/10.1073/pnas.2007840117" target="_blank" rel="noopener" class="link-light">Analysis of genomic distributions of SARS-CoV-2 reveals a dominant strain type with strong allelic associations</a> (Yang et al. PNAS 2020) 和 <a href="https://academic.oup.com/pnasnexus/article/1/4/pgac181/6680463" target="_blank" rel="noopener" class="link-light">Subtyping of major SARS-CoV-2 variants reveals different transmission dynamics based on 10 million genomes</a> (Yang et al. PNAS Nexus 2022)。經分析二十萬筆以上的病毒基因序列樣本資料發現，新冠病毒的變異株可歸類為六大類型。其中「第六型」自2020年2、3月開始在各國急速竄升，4月已雄霸一方，佔目前流傳病毒類型的99%。從2020年8月起，多種新興變異株竄起，大多從第六型產生。本網站由資訊所陳伶志研究員及統計所馮聿嬿研究助理建置，楊欣洲研究員團隊的陳佳煒、林胤均、謝涵霓、蔡松霖提供統計結果。</p>
+                </div>
+            </div>
+            <!-- ===== 研究分析專家學者 / Research and analysis team =====
+                 每人一欄：英文版姓名與職稱分兩行，中文版同一行
+                 One column per person: name and title on two lines in English, one line in Chinese -->
+            <div class="container-fluid px-4 pt-4 pb-3 mt-4 border-top">
+                <h3 class="pb-2 border-bottom text-center"><span data-l="en">Research and Analysis Team</span><span data-l="zh">研究分析專家學者</span></h3>
+                <!-- 欄位之間留空隙並水平置中 / Spaced columns, centred horizontally -->
+                <div class="row g-2 justify-content-center">
+
+                    <div class="col-12 col-sm-6 col-lg-2 col-md-12">
+                        <div class="p-4 h-100 text-center">
+                            <h4 class="fw-semibold text-body-emphasis mb-2"><span data-l="en">James C. Liao<br><span class="fs-6 fw-normal">President</span></span><span data-l="zh">廖俊智 院長</span></h4>
+                            <h6 class="mb-0 text-secondary"><span data-l="en">Academia Sinica</span><span data-l="zh">中央研究院</span></h6>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-lg-2 col-md-12">
+                        <div class="p-4 h-100 text-center">
+                            <h4 class="fw-semibold text-body-emphasis mb-2"><span data-l="en">Hsin-Chou Yang<br><span class="fs-6 fw-normal">Research Fellow</span></span><span data-l="zh">楊欣洲 研究員</span></h4>
+                            <h6 class="mb-0 text-secondary"><span data-l="en">Institute of Statistical Science,<br>Academia Sinica</span><span data-l="zh">中央研究院<br>統計科學研究所</span></h6>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-lg-2 col-md-12">
+                        <div class="p-4 h-100 text-center">
+                            <h4 class="fw-semibold text-body-emphasis mb-2"><span data-l="en">Mi-Hua Tao<br><span class="fs-6 fw-normal">Research Fellow</span></span><span data-l="zh">陶秘華 研究員</span></h4>
+                            <h6 class="mb-0 text-secondary"><span data-l="en">Institute of Biomedical Sciences,<br>Academia Sinica</span><span data-l="zh">中央研究院<br>生物醫學科學研究所</span></h6>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-lg-2 col-md-12">
+                        <div class="p-4 h-100 text-center">
+                            <h4 class="fw-semibold text-body-emphasis mb-2"><span data-l="en">Yi-Ling Lin<br><span class="fs-6 fw-normal">Research Fellow</span></span><span data-l="zh">林宜玲 研究員</span></h4>
+                            <h6 class="mb-0 text-secondary"><span data-l="en">Institute of Biomedical Sciences,<br>Academia Sinica</span><span data-l="zh">中央研究院<br>生物醫學科學研究所</span></h6>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-lg-2 col-md-12">
+                        <div class="p-4 h-100 text-center">
+                            <h4 class="fw-semibold text-body-emphasis mb-2"><span data-l="en">Shang-Te Danny Hsu<br><span class="fs-6 fw-normal">Associate Research Fellow</span></span><span data-l="zh">徐尚德 副研究員</span></h4>
+                            <h6 class="mb-0 text-secondary"><span data-l="en">Institute of Biological Chemistry,<br>Academia Sinica</span><span data-l="zh">中央研究院<br>生物化學研究所</span></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- ===== 頁尾 / Footer ===== -->
+        <footer class="footer mt-auto py-1 text-center">
+            <div class="container d-flex justify-content-center align-items-center gap-2">
+                <img src="/image/img-logo-academiasinica.png"
+                    alt="Academia Sinica Logo"
+                    width="30">
+
+                <p class="text-body-secondary mb-0 footer-text">
+                    &copy; 2026
+                    <a href="https://www.sinica.edu.tw/">Academia Sinica, Taiwan</a>
+                </p>
+            </div>
+        </footer>
+
+        <!-- Bootstrap 5.3.6 JavaScript（bundle 已含 Popper / the bundle includes Popper）：導覽列在手機上展開需要
+             Needed to open the navbar menu on small screens -->
+        <script src="/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- 導覽列標示目前頁面 / Highlight the current page in the navbar -->
+        <script src="/js/nav-active.js"></script>
+    </body>
+</html>
