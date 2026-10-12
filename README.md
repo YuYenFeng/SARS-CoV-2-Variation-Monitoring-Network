@@ -2,6 +2,8 @@
 
 This platform analyzes whole-genome sequences from GISAID to track SARS-CoV-2 variants by country or worldwide. Users can follow the spread of variants, examine mutations across viral genes such as the spike (S) gene, and view time-lapse trends at specific mutation sites.
 
+**Website:** <https://covid19.shlab.duckdns.org/>
+
 The interface is bilingual (English / Traditional Chinese) and has four modules:
  
 | Module | Description |
