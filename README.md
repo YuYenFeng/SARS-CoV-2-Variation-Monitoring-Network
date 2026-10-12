@@ -1,6 +1,6 @@
 # SARS-CoV-2-Variation-Monitoring-Network
 
-This platform analyzes GISAID whole-genome sequences to track SARS-CoV-2 variants by country or worldwide. Users can follow the spread of variants, mutations across viral genes such as the S gene, and time-lapse trends of specific mutation sites.
+This platform analyzes whole-genome sequences from GISAID to track SARS-CoV-2 variants by country or worldwide. Users can follow the spread of variants, examine mutations across viral genes such as the spike (S) gene, and view time-lapse trends at specific mutation sites.
 
 The interface is bilingual (English / Traditional Chinese) and has four modules:
  
