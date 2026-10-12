@@ -1,6 +1,6 @@
 # SARS-CoV-2-Variation-Monitoring-Network
 
-This platform analyzes whole-genome sequences from GISAID to track SARS-CoV-2 variants by country or worldwide. Users can follow the spread of variants, examine mutations across viral genes such as the spike (S) gene, and view time-lapse trends at specific mutation sites.
+This platform analyzes whole-genome sequences from GISAID to track SARS-CoV-2 variants by country or worldwide. It presents daily proportions of six major strain types, emerging genomic variations, variants of concern (VOCs) and their sublineages, and rankings of correlated SNV sets (CSSs), along with articles on notable variants.
 
 **Website:** <https://covid19.shlab.duckdns.org/>
 
