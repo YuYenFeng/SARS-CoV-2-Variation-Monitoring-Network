@@ -18,3 +18,14 @@ The analyses used in this monitoring network are described in:
 2. Yang H-C, et al. **Subtyping of major SARS-CoV-2 variants reveals different transmission dynamics based on 10 million genomes.** *PNAS Nexus* 1(4), pgac181 (2022). [doi:10.1093/pnasnexus/pgac181](https://doi.org/10.1093/pnasnexus/pgac181)
 
 Sequence data are from [GISAID](https://gisaid.org/). Only aggregated results are stored in the database; no individual sequences are included in this repository.
+
+## Requirements
+
+### Server
+
+| Software | Version | Notes |
+|---|---|---|
+| Linux | Ubuntu 24.04.3 LTS | Other distributions should also work |
+| Apache HTTP Server | 2.4.58 (prefork MPM) | Modules: `mod_php`, `mod_headers`, `mod_alias` |
+| PHP | 8.3.6 | Extensions: `pdo_mysql`, `mysqlnd` |
+| MySQL | 8.0.46 | 8.0 or later required; MariaDB is **not** supported (requires `utf8mb4_0900_ai_ci` and window functions) |
