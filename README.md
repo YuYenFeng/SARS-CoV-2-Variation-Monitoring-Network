@@ -29,3 +29,11 @@ Sequence data are from [GISAID](https://gisaid.org/). Only aggregated results ar
 | Apache HTTP Server | 2.4.58 (prefork MPM) | Modules: `mod_php`, `mod_headers`, `mod_alias` |
 | PHP | 8.3.6 | Extensions: `pdo_mysql`, `mysqlnd` |
 | MySQL | 8.0.46 | 8.0 or later required; MariaDB is **not** supported (requires `utf8mb4_0900_ai_ci` and window functions) |
+
+Versions listed are those used on the production server.
+
+```bash
+sudo apt update
+sudo apt install apache2 php libapache2-mod-php php-mysql mysql-server
+sudo a2enmod headers
+```
