@@ -42,13 +42,13 @@ sudo a2enmod headers
 
 Bootstrap is included in this repository. The other libraries are loaded from CDNs, so nothing else needs to be downloaded.
 
-| Library | Version | Source |
+| Library | Version | Purpose |
 |---|---|---|
-| Bootstrap | 5.3.6 | Included (`Web/front-end/bootstrap-5.3.6-dist/`) |
-| Chart.js | 4.x | jsDelivr |
-| chartjs-adapter-date-fns | 3.x | jsDelivr |
-| chartjs-plugin-datalabels | 2.x | jsDelivr |
-| noUiSlider | 15.8.1 | jsDelivr |
-| jsPDF | 2.5.1 | cdnjs |
-| html2canvas | 1.4.1 | cdnjs |
-| SheetJS (xlsx) | 0.18.5 | cdnjs |
+| Bootstrap | 5.3.6 | Layout and UI components |
+| Chart.js | 4.1.1 / 4.4.0 | Line, bar, polar-area and radar charts |
+| chartjs-adapter-date-fns | 3.0.0 | Time axes |
+| chartjs-plugin-datalabels | 2.2.0 | Value labels on bars |
+| noUiSlider | 15.8.1 | Allele-frequency range slider |
+| jsPDF | 2.5.1 | PDF export of charts |
+| html2canvas | 1.4.1 | PNG export of panels |
+| SheetJS (xlsx) | 0.18.5 | Excel export of rank tables |
